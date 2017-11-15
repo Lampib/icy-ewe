@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# temp folders
+./dist/*
+./dist/**/*
+./tmp/*
+./tmp/**/*
