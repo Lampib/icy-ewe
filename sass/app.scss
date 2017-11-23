@@ -1,5 +1,9 @@
 // Elements
-@import "elements/meyer-resets";
+@import "./elements/meyer-resets";
+@import "./elements/base";
 
 // Components
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "./components/videos";
+
+// Components
+//@import "../node_modules/bootstrap/scss/bootstrap";

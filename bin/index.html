@@ -2,11 +2,20 @@
 <head>
   <title>Lampib I see you</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="./css/app.css">
 </head>
 
 <body>
-  <video id="myvideo" style="transform: scaleX(-1)" autoplay muted></video>
+  <div class="videos">
+    <div id="primary-videos" class="videos__primary">
+      <div id="my-video-container" class="videos__video-container">
+          <video autoplay muted></video>
+      </div>
+    </div>
+    <div id="secondary-videos" class="videos__secondary"></div>
+  </div>
 
+  <script src="https://cdn.temasys.com.sg/adapterjs/0.11.x/adapter.debug.js"></script>
   <script src="./scripts/skylink.js"></script>
   <script src="./scripts/app.js"></script>
 </body>
