@@ -2,17 +2,27 @@
 <head>
   <title>Lampib I see you</title>
   <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
   <link rel="stylesheet" href="./css/app.css">
 </head>
 
 <body>
-  <div class="videos">
-    <div id="primary-videos" class="videos__primary">
-      <div id="my-video-container" class="videos__video-container">
-          <video autoplay muted></video>
+  <div class="app">
+    <header class="app__header">
+      <div class="site-header">
+        <h1 class="site-header__title">I See You!</h1>
       </div>
-    </div>
-    <div id="secondary-videos" class="videos__secondary"></div>
+    </header>
+    <main class="app__body">
+      <div class="videos">
+        <div id="primary-videos" class="videos__primary">
+          <div id="my-video-container" class="videos__video-container">
+              <video autoplay muted></video>
+          </div>
+        </div>
+        <div id="secondary-videos" class="videos__secondary"></div>
+      </div>
+    </main>
   </div>
 
   <script src="https://cdn.temasys.com.sg/adapterjs/0.11.x/adapter.debug.js"></script>

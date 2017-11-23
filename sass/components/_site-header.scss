@@ -1,0 +1,18 @@
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  background: #333;
+
+  &__title {
+    padding: 15px 30px;
+    line-height: 30px;
+    font-size: 22px;
+    font-family: 'Arapey', serif;
+    color: white;
+    background: #666;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 5px 0 10px rgba(0,0,0,0.2);
+  }
+}

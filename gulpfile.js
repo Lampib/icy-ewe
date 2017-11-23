@@ -34,10 +34,12 @@ gulp.task('copy', () =>
     .pipe(gulp.dest('./dist'))
 );
 
-gulp.task('watch', ['default'], () =>
+gulp.task('watch', ['compile'], () =>
   gulp.watch('./sass/**/*.scss', ['sass']),
   gulp.watch('./scripts/**/*.js', ['rollup']),
   gulp.watch('./bin/**/*.*', ['copy'])
 );
 
-gulp.task('default', ['sass', 'rollup', 'copy']);
+gulp.task('compile', ['sass', 'rollup', 'copy']);
+
+gulp.task('default', ['watch']);

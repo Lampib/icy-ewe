@@ -1,0 +1,19 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  &__header {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    position: relative;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+}
