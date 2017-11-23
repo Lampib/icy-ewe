@@ -58,7 +58,5 @@ typings/
 .env
 
 # temp folders
-./dist/*
-./dist/**/*
-./tmp/*
-./tmp/**/*
+./dist/**
+./tmp/**
