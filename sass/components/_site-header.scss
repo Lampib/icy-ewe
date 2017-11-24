@@ -2,15 +2,16 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  background: #333;
+  background: rgb(57, 54, 58);
+
 
   &__title {
     padding: 15px 30px;
     line-height: 30px;
     font-size: 22px;
     font-family: 'Arapey', serif;
-    color: white;
-    background: #666;
+    color: rgb(153, 63, 63);
+    background: rgb(220, 217, 224);
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: 5px 0 10px rgba(0,0,0,0.2);

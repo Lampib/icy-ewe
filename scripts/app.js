@@ -3,14 +3,15 @@ import config from './_config.js';
 import videos from './_create-video.js';
 
 const myVideoContainer = document.getElementById('my-video-container');
-let myVideo            = myVideoContainer.querySelector('video');
+
+videos.add('_SELF_', {}, true);
 
 room.on('peerJoined', videos.add);
 room.on('incomingStream', videos.attach);
 room.on('peerLeft', videos.remove);
 
 room.on('mediaAccessSuccess', stream => {
-  myVideo = attachMediaStream(myVideo, stream);
+  videos.attach('_SELF_', stream, true);
 });
 
 AdapterJS.webRTCReady(initialiseRoom);
