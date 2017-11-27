@@ -1,5 +1,5 @@
 import room   from './_lampib-room.js';
-import config from './_config.js';
+import config from './_env.js';
 import videos from './_create-video.js';
 
 const myVideoContainer = document.getElementById('my-video-container');
