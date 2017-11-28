@@ -54,6 +54,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# This should be yarn-lock
+package-lock.json
+
 # dotenv environment variables file
 .env
 scripts/_env.js

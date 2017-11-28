@@ -1,3 +1,8 @@
+video#_self_ {
+  filter: grayscale(1);
+  transform: scaleX(-1);
+}
+
 .videos {
   position: absolute;
   top: 0;
@@ -10,6 +15,7 @@
   &__primary,
   &__secondary {
     display: flex;
+    overflow: hidden;
   }
 
   &__primary {
@@ -30,12 +36,5 @@
   &__video-container {
     flex-basis: 0;
     flex-grow: 1;
-  }
-
-  video,
-  object {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
   }
 }

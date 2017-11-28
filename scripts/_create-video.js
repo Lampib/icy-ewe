@@ -6,7 +6,6 @@ let videoData = {
   add:    createVideo,
   attach: attachVideo,
   remove: removeVideo,
-  ownID:  null,
 };
 
 export default videoData;
@@ -14,48 +13,16 @@ export default videoData;
 function createVideo(peerId, peerInfo, isSelf) {
   if (isSelf && videos._SELF_) { return; };
 
-  let videoContainer = document.createElement('div');
-  let video          = document.createElement('video');
-  let videoData      = {
+  let videoData = {
     isSelf,
-    isPrimary: isSelf,
     peerInfo,
-    video: {
-      element:   video,
-      container: videoContainer,
-      stream:    null,
-    },
+    peerId,
+    stream:    null,
+    isPrimary: isSelf,
   };
-  videoData.switchArea = buildSwitchVideoArea(videoData);
 
-  videoContainer.className = 'videos__video-container';
-  videoContainer.addEventListener('dblclick', videoData.switchArea);
-  videoContainer.addEventListener('touchstart', switchOnSecondTap);
-
-  video.autoplay = true;
-  video.muted    = true;
-  video.id       = peerId;
-
-  videoContainer.appendChild(video);
-  if (isSelf) {
-    videoContainer.style.filter = 'grayscale(1)';
-    videoContainer.style.transform = 'scaleX(-1)';
-    primaryVideos.appendChild(videoContainer);
-  } else {
-    secondaryVideos.appendChild(videoContainer);
-  }
-
-  videos[peerId] = videoData;
-
-  function switchOnSecondTap() {
-    videoContainer.removeEventListener('touchstart', switchOnSecondTap);
-    videoContainer.addEventListener('touchstart', videoData.switchArea);
-
-    let TO = setTimeout(() => {
-      videoContainer.removeEventListener('touchstart', videoData.switchArea);
-      videoContainer.addEventListener('touchstart', switchOnSecondTap);
-    }, 300);
-  }
+  videoData.element = buildVideo(videoData);
+  videos[peerId]    = videoData;
 }
 
 function buildSwitchVideoArea(videoData) {
@@ -63,28 +30,66 @@ function buildSwitchVideoArea(videoData) {
 
   function switchVideoArea() {
     if (videoData.isPrimary) {
-      secondaryVideos.appendChild(videoData.video.container);
+      secondaryVideos.appendChild(videoData.element.container);
     } else {
-      primaryVideos.appendChild(videoData.video.container);
+      primaryVideos.appendChild(videoData.element.container);
     }
     videoData.isPrimary = !videoData.isPrimary;
-    attachMediaStream(videoData.video.element, videoData.video.stream);
+    attachMediaStream(videoData.element.video, videoData.stream);
   }
 }
 
 function attachVideo(peerId, stream, isSelf) {
   if (isSelf && peerId !== '_SELF_') { return; };
 
-  let vid = videos[peerId].video.element;
+  let videoData = videos[peerId];
+  let videoElt  = videoData.element.video;
 
-  videos[peerId].video.stream  = stream;
-  videos[peerId].video.element = attachMediaStream(vid, stream);
+  videoData.stream        = stream;
+  videoData.element.video = attachMediaStream(videoElt, stream);
 }
 
 function removeVideo(peerId, peerInfo, isSelf) {
   let vid                = videos[peerId];
-  let vidContainer       = vid.video.container;
+  let vidContainer       = vid.element.container;
   let vidContainerParent = vidContainer.parentNode;
 
   vidContainerParent.removeChild(vidContainer);
+}
+
+function buildVideo(videoData) {
+  let videoContainer    = document.createElement('div');
+  let controlsLayer     = document.createElement('div');
+  let switchLevelButton = document.createElement('button');
+  let video             = document.createElement('video');
+
+  videoData.switchArea = buildSwitchVideoArea(videoData);
+
+  videoContainer.className = 'videos__video-container video-container';
+
+  video.autoplay  = true;
+  video.muted     = true;
+  video.id        = videoData.peerId;
+  video.className = 'video-container__video';
+
+  controlsLayer.className = 'video-container__controls';
+
+  switchLevelButton.className = 'video-container__switch-level-button';
+  switchLevelButton.addEventListener('mousedown', videoData.switchArea);
+  switchLevelButton.addEventListener('touchstart', videoData.switchArea);
+
+  if (videoData.isSelf) {
+    primaryVideos.appendChild(videoContainer);
+  } else {
+    secondaryVideos.appendChild(videoContainer);
+  }
+
+  videoContainer.appendChild(video);
+  controlsLayer.appendChild(switchLevelButton);
+  videoContainer.appendChild(controlsLayer);
+
+  return {
+    video:     video,
+    container: videoContainer,
+  };
 }
