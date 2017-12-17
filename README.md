@@ -16,3 +16,8 @@ DEBUG=icy-ewe:* npm start
 npm start
 
 ```
+
+## Renew SSL
+```shell
+/opt/letsencrypt/letsencrypt-auto --no-bootstrap renew
+```
