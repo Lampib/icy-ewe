@@ -1,7 +1,8 @@
-let router = require('express').Router();
+module.exports = renderIndex;
 
-/* GET home page. */
-module.exports = (req, res, next) => {
-  res.render('index', res.locals.hbs);
+function renderIndex(req, res, next) {
+  res
+    .status(200)
+    .render('index', res.locals.hbs);
   next();
 }

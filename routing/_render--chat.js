@@ -1,6 +1,8 @@
-let router = require('express').Router();
+module.exports = renderChat;
 
-module.exports = (req, res, next) => {
-  res.render('chat', res.locals.hbs);
+function renderChat(req, res, next) {
+  res
+    .status(200)
+    .render('chat', res.locals.hbs);
   next();
-};
+}
