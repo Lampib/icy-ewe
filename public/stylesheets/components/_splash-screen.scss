@@ -1,0 +1,36 @@
+.splash-screen {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  background: 50% 50% url("/assets/images/crates.jpg");
+  background-size: cover;
+
+  &__overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    background-color: rgba(#375DA1, 0.7);
+  }
+
+  &__title {
+    font-family: $f-header;
+    font-size: 80px;
+    line-height: 120px;
+  }
+
+  &__strap-line {
+    font-family: $f-body;
+    font-size: 30px;
+    line-height: 72px;
+    border-top: 4px solid white;
+    padding: 0 $g-4;
+  }
+}

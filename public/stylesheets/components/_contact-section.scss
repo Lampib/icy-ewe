@@ -1,0 +1,51 @@
+.contact-section {
+  width: calc(100% - #{$g-4});
+  max-width: g(150);
+  margin: $g-4 auto;
+
+  &__contact-list {
+    @include box;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+    flex-basis: g(43);
+    flex-grow: 1;
+    margin: $g-2;
+
+    &-image {
+      width: g(15);
+      height: g(15);
+    }
+
+    &-detail {
+      &--name {
+        @include t-heading(0);
+      }
+
+      &--role {
+        @include t-subheading(0);
+      }
+
+      &--phone {
+        @include t-body(0);
+      }
+
+      &--email {
+        @include t-link(0);
+      }
+    }
+
+    &--padder {
+      @include margin-vertical(0);
+    }
+
+    > * + * {
+      margin-left: $g-2;
+    }
+  }
+}

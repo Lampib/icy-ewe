@@ -1,0 +1,247 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+button,
+[type="button"] {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  outline: 0; }
+
+* {
+  box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+a:not(:hover) {
+  text-decoration: none; }
+
+html,
+body {
+  background: #fafafa; }
+
+.app {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  .app__header, .app__footer {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow: hidden; }
+  .app__body {
+    position: relative;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    overflow: hidden;
+    overflow-y: auto; }
+
+.main-nav {
+  display: flex;
+  padding: 8px 40px;
+  background-color: white; }
+  .main-nav__nav-item {
+    flex-grow: 1;
+    line-height: 32px;
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #375da1; }
+    .main-nav__nav-item + .main-nav__nav-item {
+      border-left: 1px solid #c9c9c9; }
+
+.splash-screen {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  background: 50% 50% url("/assets/images/crates.jpg");
+  background-size: cover; }
+  .splash-screen__overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    background-color: rgba(55, 93, 161, 0.7); }
+  .splash-screen__title {
+    font-family: "Arvo", "Baskerville", serif;
+    font-size: 80px;
+    line-height: 120px; }
+  .splash-screen__strap-line {
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 30px;
+    line-height: 72px;
+    border-top: 4px solid white;
+    padding: 0 32px; }
+
+.main-header {
+  height: 0; }
+  .main-header__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    width: 100%;
+    padding: 16px 40px;
+    line-height: 24px;
+    color: #535353;
+    font-family: Arvo;
+    font-weight: 800;
+    font-size: 24px;
+    background-color: #f4f4f4;
+    transition: transform 0.1s ease-in; }
+    .body--header-open .main-header__content {
+      transform: scaleY(1);
+      transition: transform 0.1s ease-out; }
+
+@media (min-height: 500px) {
+  .main-header__content {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    font-size: 26px; } }
+
+@media (min-height: 750px) {
+  .main-header__content {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    line-height: 32px;
+    font-size: 30px; } }
+
+.contact-section {
+  width: calc(100% - 32px);
+  max-width: 1200px;
+  margin: 32px auto; }
+  .contact-section__contact-list {
+    background: white;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap; }
+  .contact-section__contact {
+    display: flex;
+    align-items: center;
+    flex-basis: 344px;
+    flex-grow: 1;
+    margin: 16px; }
+    .contact-section__contact-image {
+      width: 120px;
+      height: 120px; }
+    .contact-section__contact-detail--name {
+      margin-top: 0px;
+      font-family: "Arvo", "Baskerville", serif;
+      font-size: 22px;
+      line-height: 32px; }
+    .contact-section__contact-detail--role {
+      margin-top: 0px;
+      font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+      font-size: 10px;
+      line-height: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #535353; }
+    .contact-section__contact-detail--phone {
+      margin-top: 0px;
+      font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      color: #535353; }
+    .contact-section__contact-detail--email {
+      margin-top: 0px;
+      font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      color: #535353;
+      color: #375da1; }
+    .contact-section__contact--padder {
+      margin-top: 0px;
+      margin-bottom: 0px; }
+    .contact-section__contact > * + * {
+      margin-left: 16px; }
+
+.company-section {
+  display: flex;
+  width: calc(100% - 32px);
+  max-width: 1200px;
+  margin: 32px auto;
+  flex-wrap: wrap; }
+  .company-section__company {
+    flex-basis: 344px;
+    flex-grow: 1;
+    margin: 16px; }
+    .company-section__company-detail--name {
+      margin-top: 32px;
+      font-family: "Arvo", "Baskerville", serif;
+      font-size: 22px;
+      line-height: 32px; }
+    .company-section__company-detail--address {
+      margin-top: 16px;
+      font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      color: #535353; }
+    .company-section__company-detail--phone {
+      margin-top: 16px;
+      font-family: "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      color: #535353; }
+    .company-section__company--padder {
+      margin-top: 0px;
+      margin-bottom: 0px; }
+
+/*# sourceMappingURL=preco.0.0.1.css.map */

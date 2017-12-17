@@ -1,0 +1,43 @@
+.main-header {
+  height: 0;
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    width: 100%;
+    padding: $g-2 $g-5;
+    line-height: $g-3;
+    color: $gray-3;
+    font-family: Arvo;
+    font-weight: 800;
+    font-size: 24px;
+    background-color: $gray-8;
+    transition: transform 0.1s ease-in;
+
+    .body--header-open & {
+      transform: scaleY(1);
+      transition: transform 0.1s ease-out;
+    }
+  }
+}
+
+@media (min-height: 500px) {
+  .main-header__content {
+    padding-top: $g-3;
+    padding-bottom: $g-3;
+    font-size: 26px;
+  }
+}
+
+@media (min-height: 750px) {
+  .main-header__content {
+    padding-top: $g-4;
+    padding-bottom: $g-4;
+    line-height: $g-4;
+    font-size: 30px;
+  }
+}

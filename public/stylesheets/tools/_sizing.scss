@@ -1,0 +1,14 @@
+@function g($x) {
+  @return $grid-unit * $x;
+}
+
+@mixin margin-horizontal($size: 5) {
+  margin-left: g($size);
+  margin-right: g($size);
+}
+
+@mixin margin-vertical($size: 4) {
+  margin-top: g($size);
+  margin-bottom: g($size);
+}
+

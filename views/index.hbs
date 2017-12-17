@@ -1,0 +1,135 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Preco</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Open+Sans:400,700" rel="stylesheet">
+  {{! update this and the file name }}
+  <link rel="stylesheet" href="/assets/stylesheets/preco.0.0.1.css">
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="main-header__content">
+      Preco
+    </div>
+  </header>
+
+  <div class="app">
+    <main class="app__body">
+      <div class="splash-screen">
+        <div class="splash-screen__overlay">
+          <h1 class="splash-screen__title">Preco</h1>
+          <p class="splash-screen__strap-line">Every box counts</p>
+        </div>
+      </div>
+
+
+      <div class="contact-section" id="contact-section">
+        <div class="contact-section__contact-list">
+          {{#times 5}}
+            <div class="contact-section__contact">
+              <div class="contact-section__contact-image-wrapper">
+                <img class="contact-section__contact-image"
+                    src="/assets/images/sammy.jpg"
+                    alt=""
+                    role="presentation">
+              </div>
+
+              <div class="contact-section__contact-details">
+                <p class="contact-section__contact-detail contact-section__contact-detail--name">
+                  Sammy Potts</p>
+                <p class="contact-section__contact-detail contact-section__contact-detail--role">
+                  Executive man</p>
+                <p class="contact-section__contact-detail contact-section__contact-detail--phone">
+                  9384 3762</p>
+                <a class="contact-section__contact-detail contact-section__contact-detail--email"
+                  href="mailto:face@face.face">
+                  sammy@preco.io</a>
+              </div>
+            </div>
+
+            <div class="contact-section__contact">
+              <div class="contact-section__contact-image-wrapper">
+                <img class="contact-section__contact-image"
+                    src="/assets/images/gerty.jpg"
+                    alt=""
+                    role="presentation">
+              </div>
+
+              <div class="contact-section__contact-details">
+                <h3 class="contact-section__contact-detail contact-section__contact-detail--name">
+                  Gerty Noble</h3>
+                <p class="contact-section__contact-detail contact-section__contact-detail--role">
+                  Receptionist</p>
+                <p class="contact-section__contact-detail contact-section__contact-detail--phone">
+                  9384 3762</p>
+                <a class="contact-section__contact-detail contact-section__contact-detail--email"
+                  href="mailto:face@face.face">
+                  gerty@preco.io</a>
+              </div>
+            </div>
+          {{/times}}
+
+          {{#times 2}}
+            <div class="contact-section__contact contact-section__contact--padder"></div>
+          {{/times}}
+        </div>
+      </div>
+      <!-- END => contact-section -->
+
+      <div class="company-section" id="company-section">
+        {{#times 2}}
+          <div class="company-section__company">
+            <h3 class="company-section__company-detail company-section__company-detail--name">
+              Singapore Office</h3>
+            <p class="company-section__company-detail company-section__company-detail--address">
+              62 South Buona Vista Road
+              <br>#02-03 Vista Park
+              <br>118 173, Singapore</p>
+            <p class="company-section__company-detail company-section__company-detail--phone">
+              +6592403724</p>
+          </div>
+
+          <div class="company-section__company">
+            <h3 class="company-section__company-detail company-section__company-detail--name">
+              Offshore Office</h3>
+            <p class="company-section__company-detail company-section__company-detail--address">
+              43 Park Lane
+              <br>South Harrow
+              <br>Greater London
+              <br>HA2 8NW
+              <br>United Kingdom</p>
+            <p class="company-section__company-detail company-section__company-detail--phone">
+              +44 (0) 2084226263</p>
+          </div>
+        {{/times}}
+
+        {{#times 2}}
+          <div class="company-section__company company-section__company--padder"></div>
+        {{/times}}
+      </div>
+
+      <a href="/icy-ewe"
+         style="display: block;
+                text-align: center;
+                color: #5895e0;
+                margin-top: 20px;
+                font-size: 30px;
+                font-family: 'open sans', sans-serif;">
+        Go to chat
+      </a>
+    </main>
+
+    <footer class="app__footer">
+      <nav class="main-nav">
+        <a href="" class="main-nav__nav-item">About</a>
+        <a href="" class="main-nav__nav-item">Projects</a>
+        <a href="#contact-section" class="main-nav__nav-item">Contacts</a>
+      </nav>
+    </footer>
+  </div>
+
+<script src="/assets/javascripts/index.0.0.1.js"></script>
+</body>

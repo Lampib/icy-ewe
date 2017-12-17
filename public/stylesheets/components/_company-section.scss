@@ -1,0 +1,31 @@
+.company-section {
+  display: flex;
+  width: calc(100% - #{$g-4});
+  max-width: g(150);
+  margin: $g-4 auto;
+  flex-wrap: wrap;
+
+  &__company {
+    flex-basis: g(43);
+    flex-grow: 1;
+    margin: $g-2;
+
+    &-detail {
+      &--name {
+        @include t-heading;
+      }
+
+      &--address {
+        @include t-body;
+      }
+
+      &--phone {
+        @include t-body;
+      }
+    }
+
+    &--padder {
+      @include margin-vertical(0);
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@mixin t-body($margin-multiplier: 1) {
+  margin-top: g(2) * $margin-multiplier;
+  font-family: $f-body;
+  font-size: 16px;
+  line-height: $g-3;
+  color: $gray-3;
+}
+
+@mixin t-link($margin-multiplier: 1) {
+  @include t-body($margin-multiplier);
+  color: $navy;
+}
+
+@mixin t-heading($margin-multiplier: 1) {
+  margin-top: g(4) * $margin-multiplier;
+  font-family: $f-header;
+  font-size: 22px;
+  line-height: $g-4;
+}
+
+@mixin t-subheading($margin-multiplier: 1) {
+  margin-top: g(1) * $margin-multiplier;
+  font-family: $f-body;
+  font-size: 10px;
+  line-height: $g-3;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $gray-3;
+}
+

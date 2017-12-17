@@ -1,27 +1,22 @@
 {
-  "name": "lampib",
-  "version": "0.1.0",
-  "description": "Lampib's marketing and video site - 2017",
-  "main": "index.js",
-  "author": "Lampib",
-  "license": "MIT",
-  "private": false,
-  "peerDependencies": {},
-  "dependencies": {
-    "skylinkjs": "^0.6.26"
+  "name": "myapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
   },
-  "devDependencies": {
-    "gulp-babel": "^7.0.0",
-    "node-sass": "^4.6.1",
-    "babel-core": "^6.26.0",
-    "babel-plugin-external-helpers": "^6.22.0",
+  "dependencies": {
     "babel-preset-env": "^1.6.1",
-    "gulp": "^3.9.1",
-    "gulp-better-rollup": "^2.0.0",
-    "gulp-crass": "^0.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.1",
-    "rollup-plugin-babel": "^3.0.2",
-    "dotenv": "^4.0.0"
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^4.0.0",
+    "express": "~4.15.5",
+    "express-babelify-middleware": "^0.2.1",
+    "hbs": "~4.0.1",
+    "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "node-sass-middleware": "0.9.8",
+    "serve-favicon": "~2.4.5"
   }
 }

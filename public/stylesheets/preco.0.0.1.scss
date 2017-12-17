@@ -1,0 +1,21 @@
+// Settings: @import "./settings/";
+@import "./settings/base-colors.scss";
+@import "./settings/fonts.scss";
+@import "./settings/sizing.scss";
+
+// Tools: @import "./tools/";
+@import "./tools/sizing.scss";
+@import "./tools/text.scss";
+@import "./tools/box.scss";
+
+// Elements @import "./elements/";
+@import "./elements/resets";
+@import "./elements/preco-base";
+
+// Components @import "./components/";
+@import "./components/app-structure";
+@import "./components/main-nav";
+@import "./components/splash-screen";
+@import "./components/main-header";
+@import "./components/contact-section";
+@import "./components/company-section";
