@@ -1,47 +1,40 @@
-let express = require('express');
-let path = require('path');
-let favicon = require('serve-favicon');
-let logger = require('morgan');
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
+let express        = require('express');
+let path           = require('path');
+let favicon        = require('serve-favicon');
+let logger         = require('morgan');
+let cookieParser   = require('cookie-parser');
+let bodyParser     = require('body-parser');
 let sassMiddleware = require('node-sass-middleware');
-let babelify = require('express-babelify-middleware');
-var hbs = require('hbs');
+let babelify       = require('express-babelify-middleware');
 
-let index = require('./routes/index');
-let chat = require('./routes/chat');
+let app            = express();
 
-let app = express();
+let hbsHelpers = require('./config/hbs-helpers');
+let db         = require('./config/db.js');
+let routes     = require('./routes');
 
-// view engine setup
+hbsHelpers.init();
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-hbs.registerHelper('times', function(n, block) {
-  var accum = '';
-  for(var i = 0; i < n; ++i)
-      accum += block.fn(i);
-  return accum;
-});
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: false, // false = .scss
-  sourceMap: true,
-  prefix:  '/assets',
+  src            : path.join(__dirname, 'public'),
+  dest           : path.join(__dirname, 'public'),
+  indentedSyntax : false, // false = .scss
+  sourceMap      : true,
+  prefix         :  '/assets',
 }));
 app.use('/assets/javascripts/icy-ewe.*.js', babelify('public/javascripts/icy-ewe.js'));
 app.use('/assets/javascripts/index.*.js', babelify('public/javascripts/index.js'));
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/icy-ewe', chat);
+routes.init(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

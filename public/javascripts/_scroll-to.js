@@ -13,7 +13,10 @@ const setSmoothScroll = document.body.scrollBy
         if (anchorElt) {
           anchor.addEventListener('click', e => {
             e.preventDefault();
-            appBody.scrollBy({top: anchorElt.getBoundingClientRect().top - offset, behavior: 'smooth'});
+            appBody.scrollBy({
+              top      : anchorElt.getBoundingClientRect().top - offset,
+              behavior : 'smooth',
+            });
           });
         }
       }

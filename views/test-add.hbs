@@ -1,0 +1,104 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ title }}</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Open+Sans:400,700" rel="stylesheet">
+  {{! update this and the file name }}
+  <link rel="stylesheet" href="/assets/stylesheets/icy-ewe.0.0.2.css">
+</head>
+
+<body>
+  <style>
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 4px;
+      margin: 40px;
+    }
+  </style>
+
+  <form action="/add-user" method="post">
+    <label for="input__person_name">Name</label>
+    <input id="input__person_name" type="text" name="name" required>
+
+    <br>
+
+    <label for="input__person_email">Email</label>
+    <input id="input__person_email" type="email" name="email" required>
+
+    <br>
+
+    <label for="input__person_phone">Phone</label>
+    <input id="input__person_phone" type="tel" name="phone">
+
+    <br>
+
+    <label for="input__person_company_id">Company</label>
+    <select id="input__person_company_id"t name="company_id" required>
+      <option label="-- Choose your company --" selected disabled></option>
+      <option label="Thing" value="1"></option>
+      <option label="Thong" value="2"></option>
+      <option label="Thang" value="3"></option>
+    </select>
+
+    <br>
+
+    <button>Submit</button>
+  </form>
+
+  <form action="/add-company" method="post">
+    <label for="input__company_name">Name*</label>
+    <input id="input__company_name" type="text" name="name" required>
+
+    <br>
+
+    <label for="input__company_address_line_1">Address line 1*</label>
+    <input id="input__company_address_line_1" type="text" name="address_line_1" required>
+
+    <br>
+
+    <label for="input__company_address_line_2">Address line 2</label>
+    <input id="input__company_address_line_2" type="text" name="address_line_2">
+
+    <br>
+
+    <label for="input__company_address_line_3">Address line 3</label>
+    <input id="input__company_address_line_3" type="text" name="address_line_3">
+
+    <br>
+
+    <label for="input__company_address_line_4">Address line 4</label>
+    <input id="input__company_address_line_4" type="text" name="address_line_4">
+
+    <br>
+
+    <label for="input__company_city">City*</label>
+    <input id="input__company_city" type="text" name="city" required>
+
+    <br>
+
+    <label for="input__company_region">Region</label>
+    <input id="input__company_region" type="text" name="region">
+
+    <br>
+
+    <label for="input__company_postcode">Post/Zip code</label>
+    <input id="input__company_postcode" type="text" name="postcode">
+
+    <br>
+
+    <label for="input__company_country">Country*</label>
+    <input id="input__company_country" type="text" name="country" required>
+
+    <br>
+
+    <label for="input__company_notes">Other notes</label>
+    <textarea id="input__company_notes" type="text" name="notes"></textarea>
+
+    <br>
+
+    <button>Submit</button>
+  </form>
+</body>

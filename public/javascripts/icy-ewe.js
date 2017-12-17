@@ -19,14 +19,14 @@ AdapterJS.webRTCReady(initialiseRoom);
 function initialiseRoom(isUsingPlugin) {
   skylink.init(
     {
-      apiKey:      config.TEMASYS_WEB_SDK_API,
-      defaultRoom: 'Ready',
+      apiKey      : config.TEMASYS_WEB_SDK_API,
+      defaultRoom : 'Ready',
     },
     () =>
       skylink.joinRoom(
         {
-          audio: true,
-          video: true
+          audio : true,
+          video : true
         },
         data => {
           let { error, errorCode, room } = data || {};

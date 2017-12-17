@@ -59,6 +59,7 @@ package-lock.json
 
 # dotenv environment variables file
 .env
+knexfile.js
 scripts/_env.js
 
 # temp folders

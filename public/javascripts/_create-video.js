@@ -3,9 +3,9 @@ let primaryVideos   = document.getElementById('primary-videos');
 let secondaryVideos = document.getElementById('secondary-videos');
 
 let videoData = {
-  add:    createVideo,
-  attach: attachVideo,
-  remove: removeVideo,
+  add    : createVideo,
+  attach : attachVideo,
+  remove : removeVideo,
 };
 
 export default videoData;
@@ -17,8 +17,8 @@ function createVideo(peerId, peerInfo, isSelf) {
     isSelf,
     peerInfo,
     peerId,
-    stream:    null,
-    isPrimary: isSelf,
+    stream    : null,
+    isPrimary : isSelf,
   };
 
   videoData.element = buildVideo(videoData);
@@ -89,7 +89,7 @@ function buildVideo(videoData) {
   videoContainer.appendChild(controlsLayer);
 
   return {
-    video:     video,
-    container: videoContainer,
+    video     : video,
+    container : videoContainer,
   };
 }
