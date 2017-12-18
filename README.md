@@ -2,7 +2,11 @@
 
 ## Installation
 ```shell
-yarn
+# Install dependencies
+yarn;
+
+# Migrate the database
+yarn run migrate;
 ```
 
 Then copy `example.env` to `.env` and modify the relevant details.
@@ -10,11 +14,10 @@ Then copy `example.env` to `.env` and modify the relevant details.
 ## Running
 ```shell
 # With debug
-DEBUG=icy-ewe:* npm start
+DEBUG=icy-ewe:* yarn run start;
 
 # Withough debug
-npm start
-
+yarn run start;
 ```
 
 ## Renew SSL
