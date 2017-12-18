@@ -1,9 +1,9 @@
 import { eventOptions } from './_has'
 
-let appBody   = document.querySelector('.app__body');
+let appBody = document.querySelector('.app__body');
+let hiding  = false;
 let topElt;
 let bottomElt;
-let hiding = false;
 
 appBody.addEventListener('scroll', setHeaderDisplay, eventOptions ? { passive : true } : false);
 window.addEventListener('resize',  setHeaderDisplay, eventOptions ? { passive : true } : false);

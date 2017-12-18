@@ -1,5 +1,13 @@
 .main-header {
+  $main-header-padding: 2;
+  $main-header-line-height: 3;
+
   height: 0;
+
+  &__wrapper {
+    height: g($main-header-padding + $main-header-line-height + $main-header-padding);
+    pointer-events: none;
+  }
 
   &__content {
     position: absolute;
@@ -9,14 +17,15 @@
     transform: scaleY(0);
     transform-origin: 50% 0;
     width: 100%;
-    padding: $g-2 $g-5;
-    line-height: $g-3;
+    padding: g($main-header-padding) $g-5;
+    line-height: g($main-header-line-height);
     color: $gray-3;
     font-family: Arvo;
     font-weight: 800;
     font-size: 24px;
     background-color: $gray-8;
     transition: transform 0.1s ease-in;
+    pointer-events: initial;
 
     .body--header-hidden & {
       transform: scaleY(1);
@@ -26,18 +35,36 @@
 }
 
 @media (min-height: 500px) {
-  .main-header__content {
-    padding-top: $g-3;
-    padding-bottom: $g-3;
-    font-size: 26px;
+  $main-header-padding: 3;
+  $main-header-line-height: 3;
+
+  .main-header {
+    &__wrapper {
+      height: g($main-header-padding + $main-header-line-height + $main-header-padding);
+    }
+
+    &__content {
+      padding-top: g($main-header-padding);
+      padding-bottom: g($main-header-padding);
+      font-size: 26px;
+    }
   }
 }
 
 @media (min-height: 750px) {
-  .main-header__content {
-    padding-top: $g-4;
-    padding-bottom: $g-4;
-    line-height: $g-4;
-    font-size: 30px;
+  $main-header-padding: 4;
+  $main-header-line-height: 4;
+
+  .main-header {
+    &__wrapper {
+      height: g($main-header-padding + $main-header-line-height + $main-header-padding);
+    }
+
+    &__content {
+      padding-top: g($main-header-padding);
+      padding-bottom: g($main-header-padding);
+      line-height: g($main-header-line-height);
+      font-size: 30px;
+    }
   }
 }

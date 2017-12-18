@@ -8,13 +8,15 @@
         rel="stylesheet"
         media="none" onload="media='all'">
   {{! update this and the file name }}
-  <link rel="stylesheet" href="/assets/stylesheets/preco.0.0.1.css">
+  <link rel="stylesheet" href="/assets/stylesheets/preco.0.0.3.css">
 </head>
 
 <body>
   <header class="main-header">
-    <div class="main-header__content">
-      Preco
+    <div class="main-header__wrapper">
+      <div class="main-header__content">
+        Preco
+      </div>
     </div>
   </header>
 
@@ -27,7 +29,7 @@
         </div>
       </div>
 
-      <h2 class="section-header">Projects</h2>
+      <h2 class="section-header" id="project-section">Projects</h2>
       <div class="project-section">
         <div class="project-section__project">
           <div class="project-section__image-wrapper">
@@ -67,9 +69,9 @@
       <!-- END ==> project-section -->
 
 
-      <h2 class="section-header">Contacts</h2>
+      <h2 class="section-header" id="contact-section">Contacts</h2>
 
-      <div class="contact-section" id="contact-section">
+      <div class="contact-section">
         <div class="contact-section__contact-list">
           {{#times 5}}
             <div class="contact-section__contact">
@@ -155,27 +157,16 @@
         {{/times}}
       </div>
       <!-- END ==> company-section -->
-
-
-      <a href="/icy-ewe"
-         style="display: block;
-                text-align: center;
-                color: #5895e0;
-                margin-top: 20px;
-                font-size: 30px;
-                font-family: 'open sans', sans-serif;">
-        Go to chat
-      </a>
     </main>
 
     <footer class="app__footer">
       <nav class="main-nav">
-        <a href="" class="main-nav__nav-item">About</a>
-        <a href="" class="main-nav__nav-item">Projects</a>
+        <a href="#project-section" class="main-nav__nav-item">Projects</a>
         <a href="#contact-section" class="main-nav__nav-item">Contacts</a>
+        <a href="/icy-ewe" class="main-nav__nav-item">Open Chat</a>
       </nav>
     </footer>
   </div>
 
-<script src="/assets/javascripts/index.0.0.1.js"></script>
+<script src="/assets/javascripts/index.0.0.3.js"></script>
 </body>
