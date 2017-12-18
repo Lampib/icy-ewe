@@ -68,3 +68,6 @@ tmp/**
 
 # personal files
 local/**
+
+# generated files
+public/**/*.css
