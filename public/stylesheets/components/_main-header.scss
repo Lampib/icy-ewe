@@ -18,7 +18,7 @@
     background-color: $gray-8;
     transition: transform 0.1s ease-in;
 
-    .body--header-open & {
+    .body--header-hidden & {
       transform: scaleY(1);
       transition: transform 0.1s ease-out;
     }

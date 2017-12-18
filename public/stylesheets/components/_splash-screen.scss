@@ -24,6 +24,7 @@
     font-family: $f-header;
     font-size: 80px;
     line-height: 120px;
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.7));
   }
 
   &__strap-line {
@@ -32,5 +33,6 @@
     line-height: 72px;
     border-top: 4px solid white;
     padding: 0 $g-4;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
   }
 }

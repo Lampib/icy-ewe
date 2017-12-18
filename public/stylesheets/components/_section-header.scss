@@ -1,0 +1,8 @@
+.section-header {
+  @include t-heading;
+  width: calc(100% - #{g(10)});
+  max-width: g(150);
+  margin: 0 auto;
+  margin-top: g(15);
+  margin-bottom: $g-2;
+}

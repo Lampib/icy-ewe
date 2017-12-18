@@ -28,10 +28,11 @@ app.use(sassMiddleware({
   dest           : path.join(__dirname, 'public'),
   indentedSyntax : false, // false = .scss
   sourceMap      : true,
-  prefix         :  '/assets',
+  prefix         : '/assets',
+  outputStyle    : 'compressed',
 }));
-app.use('/assets/javascripts/icy-ewe.*.js', babelify('public/javascripts/icy-ewe.js'));
-app.use('/assets/javascripts/index.*.js', babelify('public/javascripts/index.js'));
+app.use('/assets/javascripts/icy-ewe.*.js', babelify('public/javascripts/icy-ewe.js', {debug : false}, {minified : true}));
+app.use('/assets/javascripts/index.*.js', babelify('public/javascripts/index.js', {debug : false}, {minified : true}));
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 
 routes.init(app);

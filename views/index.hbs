@@ -4,7 +4,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ title }}</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Open+Sans:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Open+Sans:400,700"
+        rel="stylesheet"
+        media="none" onload="media='all'">
   {{! update this and the file name }}
   <link rel="stylesheet" href="/assets/stylesheets/preco.0.0.1.css">
 </head>
@@ -25,6 +27,47 @@
         </div>
       </div>
 
+      <h2 class="section-header">Projects</h2>
+      <div class="project-section">
+        <div class="project-section__project">
+          <div class="project-section__image-wrapper">
+            <h3 class="project-section__title">Norwegian Fjords</h3>
+          </div>
+
+          <div class="project-section__info">
+            <p class="project-section__blurb">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet pretium velit sit amet cursus. Pellentesque felis mauris, elementum id libero ac, euismod convallis massa. Aliquam erat volutpat. Praesent quis lorem in diam facilisis consequat vel in metus. Maecenas vitae dolor ut sem ultricies pulvinar eget a orci.
+            </p>
+            <p class="project-section__blurb">
+              Nunc nec sollicitudin diam, et finibus sem. Etiam pharetra augue in commodo condimentum. Vestibulum ac erat nec velit eleifend laoreet. In sed iaculis nibh.
+            </p>
+            <div class="project-section__links">
+              <a class="project-section__link">Contacts <i class="project-section__link-icon far fa-angle-right"></i></a>
+              <a class="project-section__link">Website <i class="project-section__link-icon far fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-section__project">
+          <div class="project-section__image-wrapper">
+            <h3 class="project-section__title">Aalesunds FK</h3>
+          </div>
+
+          <div class="project-section__info">
+            <p class="project-section__blurb">
+              Morbi placerat orci ut ligula euismod accumsan. Sed vestibulum massa eros, id lacinia ipsum placerat ut. Morbi volutpat tortor tellus, at sodales diam feugiat et. Praesent consectetur in diam eget molestie. Sed egestas ullamcorper lacus non ultricies. Ut interdum pellentesque tempus. Vivamus et pretium arcu. Quisque auctor lacinia tempus. Donec id ex risus. Fusce sodales bibendum nibh nec ultricies. Maecenas sed faucibus turpis. Curabitur bibendum ultrices iaculis.
+            </p>
+            <div class="project-section__links">
+              <a class="project-section__link">Contacts <i class="project-section__link-icon far fa-angle-right"></i></a>
+              <a class="project-section__link">Website <i class="project-section__link-icon far fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END ==> project-section -->
+
+
+      <h2 class="section-header">Contacts</h2>
 
       <div class="contact-section" id="contact-section">
         <div class="contact-section__contact-list">
@@ -79,6 +122,7 @@
       </div>
       <!-- END => contact-section -->
 
+
       <div class="company-section" id="company-section">
         {{#times 2}}
           <div class="company-section__company">
@@ -110,6 +154,8 @@
           <div class="company-section__company company-section__company--padder"></div>
         {{/times}}
       </div>
+      <!-- END ==> company-section -->
+
 
       <a href="/icy-ewe"
          style="display: block;

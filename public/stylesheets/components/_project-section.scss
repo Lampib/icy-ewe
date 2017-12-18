@@ -1,0 +1,104 @@
+.project-section {
+  margin: 0 auto;
+  max-width: g(150);
+
+  &__project {
+    margin-top: 0;
+
+    &:not(:first-child) {
+      margin-top: $g-6;
+    }
+  }
+
+  &__title {
+    @include t-heading;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: $g-2 $g-5;
+    color: white;
+    background-color: rgba($gray-3, 0.7);
+    border-top-right-radius: 4px;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    height: 0;
+    flex-shrink: 0;
+    padding-top: 50%;
+    background-size: cover;
+  }
+
+  &__info {
+    margin: 0 $g-5;
+  }
+
+  &__blurb {
+    @include t-body;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $g-2;
+  }
+
+  &__link {
+    @include t-subheading;
+    color: $navy;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      margin-left: $g-3;
+    }
+  }
+
+  &__link-icon {
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  &__link:hover &__link-icon {
+    transform: translateX(0.5em);
+  }
+
+  &__project:nth-child(1) &__image-wrapper {
+    background-image: url('/assets/images/fjords.jpg');
+  }
+
+  &__project:nth-child(2) &__image-wrapper {
+    background-image: url('/assets/images/aafk.jpg');
+  }
+}
+
+@media (min-width: 800px) {
+  .project-section {
+    &__project {
+      display: flex;
+    }
+
+    &__image-wrapper {
+      flex-basis: 50%;
+      padding-top: 25%;
+    }
+
+    &__title {
+      left: auto;
+      right: 0;
+      border-radius: 0;
+      border-top-left-radius: 4px;
+    }
+
+    &__blurb {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@supports (backdrop-filter: blur(2px)) {
+  .project-section__title {
+    backdrop-filter: blur(2px);
+  }
+}

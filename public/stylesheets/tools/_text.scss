@@ -21,9 +21,9 @@
 @mixin t-subheading($margin-multiplier: 1) {
   margin-top: g(1) * $margin-multiplier;
   font-family: $f-body;
-  font-size: 10px;
+  font-size: 12px;
   line-height: $g-3;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: $gray-3;
 }
