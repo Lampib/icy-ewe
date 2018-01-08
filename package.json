@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "preco",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,9 @@
     "dotenv": "^4.0.0",
     "express": "~4.15.5",
     "express-babelify-middleware": "^0.2.1",
+    "express-fileupload": "^0.3.0",
     "hbs": "~4.0.1",
+    "image-size": "^0.6.2",
     "knex": "^0.14.2",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",

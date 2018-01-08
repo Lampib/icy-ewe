@@ -6,6 +6,7 @@ let cookieParser   = require('cookie-parser');
 let bodyParser     = require('body-parser');
 let sassMiddleware = require('node-sass-middleware');
 let babelify       = require('express-babelify-middleware');
+let fileUpload     = require('express-fileupload');
 
 let app            = express();
 
@@ -13,12 +14,14 @@ let hbsHelpers = require('./config/hbs-helpers');
 let db         = require('./config/db.js');
 let routes     = require('./routes');
 
+global.appRoot = path.resolve(__dirname);
 hbsHelpers.init();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(fileUpload({ safeFileNames: true, fileSize: 30 * 1024 * 1024 }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -19,6 +19,7 @@
     color: white;
     background-color: rgba($gray-3, 0.7);
     border-top-right-radius: 4px;
+    margin-top: 0;
   }
 
   &__image-wrapper {
@@ -83,6 +84,8 @@
     }
 
     &__title {
+      bottom: auto;
+      top: 0;
       left: auto;
       right: 0;
       border-radius: 0;
@@ -99,6 +102,7 @@
 
 @supports (backdrop-filter: blur(2px)) {
   .project-section__title {
-    backdrop-filter: blur(2px);
+    background-color: transparent;
+    backdrop-filter: blur(2px) brightness(0.6);
   }
 }

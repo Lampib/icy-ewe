@@ -73,49 +73,31 @@
 
       <div class="contact-section">
         <div class="contact-section__contact-list">
-          {{#times 5}}
+          {{#each people}}
             <div class="contact-section__contact">
               <div class="contact-section__contact-image-wrapper">
                 <img class="contact-section__contact-image"
-                    src="/assets/images/sammy.jpg"
+                    src="{{ this.thumb }}"
                     alt=""
                     role="presentation">
               </div>
 
               <div class="contact-section__contact-details">
                 <p class="contact-section__contact-detail contact-section__contact-detail--name">
-                  Sammy Potts</p>
+                  {{ this.name }}</p>
                 <p class="contact-section__contact-detail contact-section__contact-detail--role">
-                  Executive man</p>
+                  {{#if this.role }}
+                    {{ this.role }} at
+                  {{/if}}
+                  {{ this.company_name }}</p>
                 <p class="contact-section__contact-detail contact-section__contact-detail--phone">
-                  9384 3762</p>
+                  {{ this.phone }}</p>
                 <a class="contact-section__contact-detail contact-section__contact-detail--email"
                   href="mailto:face@face.face">
-                  sammy@preco.io</a>
+                  {{ this.email }}</a>
               </div>
             </div>
-
-            <div class="contact-section__contact">
-              <div class="contact-section__contact-image-wrapper">
-                <img class="contact-section__contact-image"
-                    src="/assets/images/gerty.jpg"
-                    alt=""
-                    role="presentation">
-              </div>
-
-              <div class="contact-section__contact-details">
-                <h3 class="contact-section__contact-detail contact-section__contact-detail--name">
-                  Gerty Noble</h3>
-                <p class="contact-section__contact-detail contact-section__contact-detail--role">
-                  Receptionist</p>
-                <p class="contact-section__contact-detail contact-section__contact-detail--phone">
-                  9384 3762</p>
-                <a class="contact-section__contact-detail contact-section__contact-detail--email"
-                  href="mailto:face@face.face">
-                  gerty@preco.io</a>
-              </div>
-            </div>
-          {{/times}}
+          {{/each}}
 
           {{#times 2}}
             <div class="contact-section__contact contact-section__contact--padder"></div>

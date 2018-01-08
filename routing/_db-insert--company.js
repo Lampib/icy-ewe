@@ -4,7 +4,7 @@ module.exports = addUser;
 
 function addUser(req, res, next) {
   let requiredFields = [
-    'name',
+    'company_name',
     'address_line_1',
     'city',
     'country',

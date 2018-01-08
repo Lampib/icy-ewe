@@ -19,13 +19,15 @@
     }
   </style>
 
-  <form action="/add-user" method="post">
-    <label for="input__person_name">Name</label>
+  <form action="/add-user"
+        method="post"
+        encType="multipart/form-data">
+    <label for="input__person_name">Name*</label>
     <input id="input__person_name" type="text" name="name" required>
 
     <br>
 
-    <label for="input__person_email">Email</label>
+    <label for="input__person_email">Email*</label>
     <input id="input__person_email" type="email" name="email" required>
 
     <br>
@@ -35,12 +37,17 @@
 
     <br>
 
-    <label for="input__person_company_id">Company</label>
+    <label for="input__person_thumb">Image</label>
+    <input id="input__person_thumb" type="file" name="thumb">
+
+    <br>
+
+    <label for="input__person_company_id">Company*</label>
     <select id="input__person_company_id"t name="company_id" required>
       <option label="-- Choose your company --" selected disabled></option>
-      <option label="Thing" value="1"></option>
-      <option label="Thong" value="2"></option>
-      <option label="Thang" value="3"></option>
+      {{#each companies}}
+        <option label="{{ this.company_name }}" value="{{ this.id }}"></option>
+      {{/each}}
     </select>
 
     <br>
@@ -50,7 +57,7 @@
 
   <form action="/add-company" method="post">
     <label for="input__company_name">Name*</label>
-    <input id="input__company_name" type="text" name="name" required>
+    <input id="input__company_name" type="text" name="company_name" required>
 
     <br>
 

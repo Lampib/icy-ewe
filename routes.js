@@ -1,9 +1,11 @@
-let setTitle   = require('./routing/_set-title');
-let redirectTo = require('./routing/_redirect-to');
+let setTitle     = require('./routing/_set-title');
+let setCompanies = require('./routing/_set-companies');
+let setPeople    = require('./routing/_set-people');
+let redirectTo   = require('./routing/_redirect-to');
 
 let addJsonHeaders = require('./routing/_add-headers--json');
 
-let insertUser    = require('./routing/_db-insert--user');
+let insertPerson  = require('./routing/_db-insert--person');
 let insertCompany = require('./routing/_db-insert--company');
 
 let renderIndex    = require('./routing/_render--index');
@@ -17,6 +19,7 @@ module.exports = {
 function init(app) {
   app.get('/',
     setTitle(''),
+    setPeople,
     renderIndex);
 
   app.get('/icy-ewe',
@@ -25,11 +28,12 @@ function init(app) {
 
   app.get('/test-add',
     setTitle('Test add'),
+    setCompanies,
     renderTestAdd)
 
   app.post('/add-user',
     setTitle('Know me'),
-    insertUser,
+    insertPerson,
     redirectTo('/test-add'));
 
   app.post('/add-company',

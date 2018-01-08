@@ -16,10 +16,12 @@
     flex-basis: g(43);
     flex-grow: 1;
     margin: $g-2;
+    margin-right: 0;
 
     &-image {
       width: g(15);
       height: g(15);
+      object-fit: cover;
     }
 
     &-detail {
