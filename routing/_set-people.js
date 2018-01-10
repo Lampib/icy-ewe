@@ -7,8 +7,8 @@ function setPeople(req, res, next) {
   db.from('people')
     .leftJoin('companies', 'people.company_id', 'companies.id')
     .then(people => {
-      console.log(people);
       res.locals.hbs.people = people;
+      res.locals.hbs.primaryPeople = people.filter(person => person.primary);
       next();
     })
     .catch(e => { console.log(e); });

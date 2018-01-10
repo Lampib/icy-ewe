@@ -108,35 +108,39 @@
 
 
       <div class="company-section" id="company-section">
-        {{#times 2}}
-          <div class="company-section__company">
-            <h3 class="company-section__company-detail company-section__company-detail--name">
-              Singapore Office</h3>
-            <p class="company-section__company-detail company-section__company-detail--address">
-              62 South Buona Vista Road
-              <br>#02-03 Vista Park
-              <br>118 173, Singapore</p>
-            <p class="company-section__company-detail company-section__company-detail--phone">
-              +6592403724</p>
-          </div>
+        <div class="company-section__companies">
+          {{#each primaryCompanies}}
+            <div class="company-section__company">
+              <h3 class="company-section__company-detail company-section__company-detail--name">
+                {{ this.company_name }}</h3>
+              <p class="company-section__company-detail company-section__company-detail--address">
+                {{ this.company_address_line_1 }}
+                {{#if this.company_address_line_2}}<br>{{ this.company_address_line_2 }}{{/if}}
+                {{#if this.company_address_line_3}}<br>{{ this.company_address_line_3 }}{{/if}}
+                {{#if this.company_address_line_4}}<br>{{ this.company_address_line_4 }}{{/if}}
+                {{#if this.company_city}}<br>{{ this.company_city }}{{/if}}
+                {{#if this.company_region}}<br>{{ this.company_region }}{{/if}}
+                {{#if this.company_postcode}}<br>{{ this.company_postcode }}{{/if}}
+                {{#if this.company_country}}<br>{{countryName this.company_country}}{{/if}}
+              </p>
+              {{#if this.company_phone_1}}
+                <p class="company-section__company-detail company-section__company-detail--phone">
+                  {{ this.company_phone_1 }}
+                  {{#if this.company_phone_2}}<br>{{ this.company_phone_2 }}{{/if}}
+                </p>
+              {{else}}
+                {{#if this.company_phone_2}}
+                  <p class="company-section__company-detail company-section__company-detail--phone">
+                    {{ this.company_phone_2 }}</p>
+                {{/if}}
+              {{/if}}
+            </div>
+          {{/each}}
 
-          <div class="company-section__company">
-            <h3 class="company-section__company-detail company-section__company-detail--name">
-              Offshore Office</h3>
-            <p class="company-section__company-detail company-section__company-detail--address">
-              43 Park Lane
-              <br>South Harrow
-              <br>Greater London
-              <br>HA2 8NW
-              <br>United Kingdom</p>
-            <p class="company-section__company-detail company-section__company-detail--phone">
-              +44 (0) 2084226263</p>
-          </div>
-        {{/times}}
-
-        {{#times 2}}
-          <div class="company-section__company company-section__company--padder"></div>
-        {{/times}}
+          {{#times 2}}
+            <div class="company-section__company company-section__company--padder"></div>
+          {{/times}}
+        </div>
       </div>
       <!-- END ==> company-section -->
     </main>

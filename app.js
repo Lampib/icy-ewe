@@ -10,12 +10,11 @@ let fileUpload     = require('express-fileupload');
 
 let app            = express();
 
-let hbsHelpers = require('./config/hbs-helpers');
-let db         = require('./config/db.js');
-let routes     = require('./routes');
+let hbs    = require('./config/hbs');
+let db     = require('./config/db.js');
+let routes = require('./routes');
 
 global.appRoot = path.resolve(__dirname);
-hbsHelpers.init();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

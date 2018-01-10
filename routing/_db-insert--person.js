@@ -10,11 +10,12 @@ async function addUser(req, res, next) {
     'email',
     'company_id',
   ];
-
+  let booleanFields = [
+    'primary',
+  ];
   let optionalFields = [
     'phone',
   ];
-
   let optionalImages = [
     'thumb',
   ];
@@ -22,7 +23,21 @@ async function addUser(req, res, next) {
   let toInsert = {};
 
   requiredFields.forEach(fieldName => {
+    if (!req.body[fieldName]) {
+      throw Error(`Required field "${ fieldName }" was not provided when adding person.`);
+    }
     toInsert[fieldName] = req.body[fieldName];
+  });
+
+  booleanFields.forEach(fieldName => {
+    let positiveValues = [
+      true, 'true', 'on', 'True', 'TRUE',
+    ];
+    if (positiveValues.indexOf(req.body[fieldName]) > -1) {
+      toInsert[`company_${ fieldName }`] = true;
+    } else {
+      toInsert[`company_${ fieldName }`] = false;
+    }
   });
 
   optionalFields.forEach(fieldName => {

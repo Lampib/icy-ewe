@@ -1,5 +1,6 @@
 let setTitle     = require('./routing/_set-title');
 let setCompanies = require('./routing/_set-companies');
+let setCountries = require('./routing/_set-countries');
 let setPeople    = require('./routing/_set-people');
 let redirectTo   = require('./routing/_redirect-to');
 
@@ -20,6 +21,7 @@ function init(app) {
   app.get('/',
     setTitle(''),
     setPeople,
+    setCompanies,
     renderIndex);
 
   app.get('/icy-ewe',
@@ -28,8 +30,9 @@ function init(app) {
 
   app.get('/test-add',
     setTitle('Test add'),
+    setCountries,
     setCompanies,
-    renderTestAdd)
+    renderTestAdd);
 
   app.post('/add-user',
     setTitle('Know me'),

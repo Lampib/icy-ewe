@@ -22,42 +22,56 @@
   <form action="/add-user"
         method="post"
         encType="multipart/form-data">
-    <label for="input__person_name">Name*</label>
-    <input id="input__person_name" type="text" name="name" required>
+    {{#unless companies.length}}
+      <h3>You need to add a company before you can add people.</h3>
+    {{else}}
+      <label for="input__person_name">Name*</label>
+      <input id="input__person_name" type="text" name="name" required>
 
-    <br>
+      <br>
 
-    <label for="input__person_email">Email*</label>
-    <input id="input__person_email" type="email" name="email" required>
+      <label for="input__person_primary">Is primary contact*</label>
+      <input id="input__person_primary" type="checkbox" name="primary">
 
-    <br>
+      <br>
 
-    <label for="input__person_phone">Phone</label>
-    <input id="input__person_phone" type="tel" name="phone">
+      <label for="input__person_email">Email*</label>
+      <input id="input__person_email" type="email" name="email" required>
 
-    <br>
+      <br>
 
-    <label for="input__person_thumb">Image</label>
-    <input id="input__person_thumb" type="file" name="thumb">
+      <label for="input__person_phone">Phone</label>
+      <input id="input__person_phone" type="tel" name="phone">
 
-    <br>
+      <br>
 
-    <label for="input__person_company_id">Company*</label>
-    <select id="input__person_company_id"t name="company_id" required>
-      <option label="-- Choose your company --" selected disabled></option>
-      {{#each companies}}
-        <option label="{{ this.company_name }}" value="{{ this.id }}"></option>
-      {{/each}}
-    </select>
+      <label for="input__person_thumb">Image</label>
+      <input id="input__person_thumb" type="file" name="thumb">
 
-    <br>
+      <br>
 
-    <button>Submit</button>
+      <label for="input__person_company_id">Company*</label>
+      <select id="input__person_company_id"t name="id" required>
+        <option label="-- Choose your company --" selected disabled></option>
+        {{#each companies}}
+          <option label="{{ this.company_name }}" value="{{ this.id }}"></option>
+        {{/each}}
+      </select>
+
+      <br>
+
+      <button>Submit</button>
+    {{/unless}}
   </form>
 
   <form action="/add-company" method="post">
     <label for="input__company_name">Name*</label>
-    <input id="input__company_name" type="text" name="company_name" required>
+    <input id="input__company_name" type="text" name="name" required>
+
+    <br>
+
+    <label for="input__company_primary">Is primary company*</label>
+    <input id="input__company_primary" type="checkbox" name="primary">
 
     <br>
 
@@ -97,7 +111,26 @@
     <br>
 
     <label for="input__company_country">Country*</label>
-    <input id="input__company_country" type="text" name="country" required>
+    <select id="input__company_country" type="text" name="country" required>
+      <option disabled selected>-- Choose a country --</option>
+      {{#each primaryCountries}}
+        <option value="{{ this.code }}">{{ this.name }}</option>
+      {{/each}}
+      <option disabled> ---- </option>
+      {{#each countries}}
+        <option value="{{ this.code }}">{{ this.name }}</option>
+      {{/each}}
+    </select>
+
+    <br>
+
+    <label for="input__company_phone_1">Phone no.</label>
+    <input id="input__company_phone_1" type="text" name="phone_1">
+
+    <br>
+
+    <label for="input__company_phone_2">Secondary phone no.</label>
+    <input id="input__company_phone_2" type="text" name="phone_2">
 
     <br>
 
