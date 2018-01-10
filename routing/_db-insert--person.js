@@ -34,9 +34,9 @@ async function addUser(req, res, next) {
       true, 'true', 'on', 'True', 'TRUE',
     ];
     if (positiveValues.indexOf(req.body[fieldName]) > -1) {
-      toInsert[`company_${ fieldName }`] = true;
+      toInsert[`${ fieldName }`] = true;
     } else {
-      toInsert[`company_${ fieldName }`] = false;
+      toInsert[`${ fieldName }`] = false;
     }
   });
 

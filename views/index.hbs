@@ -73,7 +73,7 @@
 
       <div class="contact-section">
         <div class="contact-section__contact-list">
-          {{#each people}}
+          {{#each primaryPeople}}
             <div class="contact-section__contact">
               <div class="contact-section__contact-image-wrapper">
                 <img class="contact-section__contact-image"
@@ -90,10 +90,12 @@
                     {{ this.role }} at
                   {{/if}}
                   {{ this.company_name }}</p>
-                <p class="contact-section__contact-detail contact-section__contact-detail--phone">
-                  {{ this.phone }}</p>
+                {{#if this.phone }}
+                  <p class="contact-section__contact-detail contact-section__contact-detail--phone">
+                    {{ this.phone }}</p>
+                {{/if}}
                 <a class="contact-section__contact-detail contact-section__contact-detail--email"
-                  href="mailto:face@face.face">
+                  href="mailto:{{ this.email }}">
                   {{ this.email }}</a>
               </div>
             </div>
