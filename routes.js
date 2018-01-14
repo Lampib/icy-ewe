@@ -57,6 +57,7 @@ function init(app) {
 
   app.get('/add-data',
     setTitle('Test add'),
+    setUser,
     setCountries,
     setCompanies,
     renderTestAdd,

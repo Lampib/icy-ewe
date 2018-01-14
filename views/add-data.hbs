@@ -10,196 +10,223 @@
 </head>
 
 <body>
-  <div style="display: flex; flex-wrap: wrap;justify-content: center;align-items: flex-start;">
-    <form class="add-form add-form--person"
-          action="/add-user"
-          method="post"
-          encType="multipart/form-data">
+  <div class="app">
+    <header class="app__header">
+      <div class="icy-ewe-header">
+        <h1 class="icy-ewe-header__title">I See You!</h1>
+      </div>
+    </header>
 
-      {{#unless companies.length}}
-        <h3>You need to add a company before you can add people.</h3>
+    <main class="app__body">
+      {{#if user.loggedIn}}
+        <div style="display: flex; flex-wrap: wrap;justify-content: center;align-items: flex-start;">
+          <form class="add-form add-form--person"
+                action="/add-user"
+                method="post"
+                encType="multipart/form-data">
+
+            {{#unless companies.length}}
+              <h3>You need to add a company before you can add people.</h3>
+            {{else}}
+              <div class="add-form__field">
+                <label for="input__person_primary">Primary*</label>
+                <div>
+                  <input id="input__person_primary" type="checkbox" name="primary">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_name">Name*</label>
+                <div>
+                  <input id="input__person_name" type="text" name="name" placeholder="Joe Bloggs" required>
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_email">Email*</label>
+                <div>
+                  <input id="input__person_email" type="email" name="email" placeholder="joe@bloggs.com" required>
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_password">Password</label>
+                <div>
+                  <input id="input__person_password" type="password" name="password" placeholder="*******">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_phone">Phone 1</label>
+                <div>
+                  <input id="input__person_phone" type="tel" name="phone_1" placeholder="+65 (0) 12345678">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_phone">Phone 2</label>
+                <div>
+                  <input id="input__person_phone" type="tel" name="phone_2" placeholder="+65 (0) 98765432">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_thumb">Image</label>
+                <div>
+                  <input id="input__person_thumb" type="file" name="thumb">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_id">Company*</label>
+                <select id="input__person_id" name="company_id" required>
+                  <option label="-- Choose --" selected disabled></option>
+                  {{#each companies}}
+                    <option label="{{ this.name }}" value="{{ this.id }}"></option>
+                  {{/each}}
+                </select>
+              </div>
+
+              <div class="add-form__field">
+                <button>Add employee</button>
+              </div>
+            {{/unless}}
+          </form>
+
+          <form class="add-form add-form--company"
+                action="/add-company"
+                method="post"
+                encType="multipart/form-data">
+
+            <div class="add-form__field">
+              <label for="input__primary">Primary*</label>
+              <div>
+                <input id="input__primary" type="checkbox" name="primary" placeholder="">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__name">Name*</label>
+              <div>
+                <input id="input__name" type="text" name="name" placeholder="Preco" required>
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__address_line_1">Address line 1*</label>
+              <div>
+                <input id="input__address_line_1" type="text" name="address_line_1" placeholder="111 Telok Ayer st." required>
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__address_line_2">Address line 2</label>
+              <div>
+                <input id="input__address_line_2" type="text" name="address_line_2" placeholder="#04-01">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__address_line_3">Address line 3</label>
+              <div>
+                <input id="input__address_line_3" type="text" name="address_line_3" placeholder="">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__address_line_4">Address line 4</label>
+              <div>
+                <input id="input__address_line_4" type="text" name="address_line_4" placeholder="">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__city">City*</label>
+              <div>
+                <input id="input__city" type="text" name="city" placeholder="Singapore" required>
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__region">Region</label>
+              <div>
+                <input id="input__region" type="text" name="region" placeholder="Central">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__postcode">Post/Zip code</label>
+              <div>
+                <input id="input__postcode" type="text" name="postcode" placeholder="068580">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__country">Country*</label>
+              <div>
+                <select id="input__country" name="country" required>
+                  <option disabled selected>-- Choose --</option>
+                  {{#each primaryCountries}}
+                    <option value="{{ this.code }}">{{ this.name }}</option>
+                  {{/each}}
+                  <option disabled> ---- </option>
+                  {{#each countries}}
+                    <option value="{{ this.code }}">{{ this.name }}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__phone_1">Phone no.</label>
+              <div>
+                <input id="input__phone_1" type="text" name="phone_1" placeholder="+65 (0) 23456789">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__phone_2">Secondary phone</label>
+              <div>
+                <input id="input__phone_2" type="text" name="phone_2" placeholder="+65 (0) 87654321">
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__notes">Description</label>
+              <div>
+                <textarea id="input__description" type="text" name="description"></textarea>
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__notes">Internal notes</label>
+              <div>
+                <textarea id="input__notes" type="text" name="notes"></textarea>
+              </div>
+            </div>
+
+
+            <div class="add-form__field">
+              <button>Add company</button>
+            </div>
+          </form>
+        </div>
       {{else}}
-        <div class="add-form__field">
-          <label for="input__person_primary">Primary*</label>
-          <div>
-            <input id="input__person_primary" type="checkbox" name="primary">
-          </div>
-        </div>
+        <form action="/log-in" method="post">
+          <label for="email_input">email</label>
+          <input id="email_input" type="email" name="email">
 
-        <div class="add-form__field">
-          <label for="input__person_name">Name*</label>
-          <div>
-            <input id="input__person_name" type="text" name="name" placeholder="Joe Bloggs" required>
-          </div>
-        </div>
+          <br>
 
-        <div class="add-form__field">
-          <label for="input__person_email">Email*</label>
-          <div>
-            <input id="input__person_email" type="email" name="email" placeholder="joe@bloggs.com" required>
-          </div>
-        </div>
+          <label for="password_input">password</label>
+          <input id="password_input" type="password" name="password">
 
-        <div class="add-form__field">
-          <label for="input__person_password">Password</label>
-          <div>
-            <input id="input__person_password" type="password" name="password" placeholder="*******">
-          </div>
-        </div>
+          <br>
 
-        <div class="add-form__field">
-          <label for="input__person_phone">Phone 1</label>
-          <div>
-            <input id="input__person_phone" type="tel" name="phone_1" placeholder="+65 (0) 12345678">
-          </div>
-        </div>
-
-        <div class="add-form__field">
-          <label for="input__person_phone">Phone 2</label>
-          <div>
-            <input id="input__person_phone" type="tel" name="phone_2" placeholder="+65 (0) 98765432">
-          </div>
-        </div>
-
-        <div class="add-form__field">
-          <label for="input__person_thumb">Image</label>
-          <div>
-            <input id="input__person_thumb" type="file" name="thumb">
-          </div>
-        </div>
-
-        <div class="add-form__field">
-          <label for="input__person_id">Company*</label>
-          <select id="input__person_id" name="company_id" required>
-            <option label="-- Choose --" selected disabled></option>
-            {{#each companies}}
-              <option label="{{ this.name }}" value="{{ this.id }}"></option>
-            {{/each}}
-          </select>
-        </div>
-
-        <div class="add-form__field">
-          <button>Add employee</button>
-        </div>
-      {{/unless}}
-    </form>
-
-    <form class="add-form add-form--company"
-          action="/add-company"
-          method="post"
-          encType="multipart/form-data">
-
-      <div class="add-form__field">
-        <label for="input__primary">Primary*</label>
-        <div>
-          <input id="input__primary" type="checkbox" name="primary" placeholder="">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__name">Name*</label>
-        <div>
-          <input id="input__name" type="text" name="name" placeholder="Preco" required>
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__address_line_1">Address line 1*</label>
-        <div>
-          <input id="input__address_line_1" type="text" name="address_line_1" placeholder="111 Telok Ayer st." required>
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__address_line_2">Address line 2</label>
-        <div>
-          <input id="input__address_line_2" type="text" name="address_line_2" placeholder="#04-01">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__address_line_3">Address line 3</label>
-        <div>
-          <input id="input__address_line_3" type="text" name="address_line_3" placeholder="">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__address_line_4">Address line 4</label>
-        <div>
-          <input id="input__address_line_4" type="text" name="address_line_4" placeholder="">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__city">City*</label>
-        <div>
-          <input id="input__city" type="text" name="city" placeholder="Singapore" required>
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__region">Region</label>
-        <div>
-          <input id="input__region" type="text" name="region" placeholder="Central">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__postcode">Post/Zip code</label>
-        <div>
-          <input id="input__postcode" type="text" name="postcode" placeholder="068580">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__country">Country*</label>
-        <div>
-          <select id="input__country" name="country" required>
-            <option disabled selected>-- Choose --</option>
-            {{#each primaryCountries}}
-              <option value="{{ this.code }}">{{ this.name }}</option>
-            {{/each}}
-            <option disabled> ---- </option>
-            {{#each countries}}
-              <option value="{{ this.code }}">{{ this.name }}</option>
-            {{/each}}
-          </select>
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__phone_1">Phone no.</label>
-        <div>
-          <input id="input__phone_1" type="text" name="phone_1" placeholder="+65 (0) 23456789">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__phone_2">Secondary phone</label>
-        <div>
-          <input id="input__phone_2" type="text" name="phone_2" placeholder="+65 (0) 87654321">
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__notes">Description</label>
-        <div>
-          <textarea id="input__description" type="text" name="description"></textarea>
-        </div>
-      </div>
-
-      <div class="add-form__field">
-        <label for="input__notes">Internal notes</label>
-        <div>
-          <textarea id="input__notes" type="text" name="notes"></textarea>
-        </div>
-      </div>
-
-
-      <div class="add-form__field">
-        <button>Add company</button>
-      </div>
-    </form>
+          <button>Log in</button>
+          <input type="hidden" name="redirecturl" value="/add-data">
+        </form>
+      {{/if}}
+    </main>
   </div>
 </body>
