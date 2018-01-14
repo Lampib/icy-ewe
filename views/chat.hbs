@@ -10,20 +10,47 @@
 </head>
 
 <body>
-  <div class="app">
-    <header class="app__header">
-      <div class="site-header">
-        <h1 class="site-header__title">I See You!</h1>
-      </div>
-    </header>
-    <main class="app__body">
-      <div class="videos">
-        <div id="primary-videos" class="videos__primary"></div>
-        <div id="secondary-videos" class="videos__secondary"></div>
-      </div>
-    </main>
-  </div>
+  {{#if user.loggedIn}}
+    <div class="app">
+      <header class="app__header">
+        <div class="site-header">
+          <h1 class="site-header__title">I See You!</h1>
+        </div>
+      </header>
+      <main class="app__body">
+        <div class="videos">
+          <div id="primary-videos" class="videos__primary"></div>
+          <div id="secondary-videos" class="videos__secondary"></div>
+        </div>
+      </main>
+    </div>
 
-<script src="https://cdn.temasys.io/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
-<script src="/assets/javascripts/icy-ewe.0.0.1.js"></script>
+    <script src="https://cdn.temasys.io/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
+    <script src="/assets/javascripts/icy-ewe.0.0.1.js"></script>
+  {{else}}
+    <div class="app">
+      <header class="app__header">
+        <div class="site-header">
+          <h1 class="site-header__title">I See You!</h1>
+        </div>
+      </header>
+      <main class="app__body">
+        <h1>Please log in to continue:</h1>
+        <form action="/log-in" method="post">
+          <label for="email_input">email</label>
+          <input id="email_input" type="email" name="email">
+
+          <br>
+
+          <label for="password_input">password</label>
+          <input id="password_input" type="password" name="password">
+
+          <br>
+
+          <button>Log in</button>
+          <input type="hidden" name="redirecturl" value="/icy-ewe">
+        </form>
+      </main>
+    </div>
+  {{/if}}
 </body>

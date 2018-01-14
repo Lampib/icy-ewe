@@ -1,4 +1,5 @@
 let express        = require('express');
+let expressSession = require('express-session');
 let path           = require('path');
 let favicon        = require('serve-favicon');
 let logger         = require('morgan');
@@ -8,11 +9,11 @@ let sassMiddleware = require('node-sass-middleware');
 let babelify       = require('express-babelify-middleware');
 let fileUpload     = require('express-fileupload');
 
-let app            = express();
-
-let hbs    = require('./config/hbs');
-let db     = require('./config/db.js');
-let routes = require('./routes');
+let app      = express('./config/app');
+let hbs      = require('./config/hbs');
+let db       = require('./config/db');
+let passport = require('./config/passport');
+let routes   = require('./routes');
 
 global.appRoot = path.resolve(__dirname);
 
@@ -36,6 +37,13 @@ app.use(sassMiddleware({
 app.use('/assets/javascripts/icy-ewe.*.js', babelify('public/javascripts/icy-ewe.js', {debug : false}, {minified : true}));
 app.use('/assets/javascripts/index.*.js', babelify('public/javascripts/index.js', {debug : false}, {minified : true}));
 app.use('/assets', express.static(path.join(__dirname, 'public')));
+app.use(expressSession({
+  secret            : 'I h@ve only the bester@test secrets in this yard!',
+  resave            : true,
+  saveUninitialized : true,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 routes.init(app);
 

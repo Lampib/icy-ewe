@@ -17,6 +17,7 @@ exports.up = function(knex, Promise) {
       .references('id')
       .inTable('company');
     table.timestamps(false, true);
+    table.unique('email');
   });
 };
 

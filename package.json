@@ -17,12 +17,15 @@
     "express": "~4.15.5",
     "express-babelify-middleware": "^0.2.1",
     "express-fileupload": "^0.3.0",
+    "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "image-size": "^0.6.2",
     "knex": "^0.14.2",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
     "node-sass-middleware": "0.9.8",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.4.5"
   }
 }

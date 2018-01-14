@@ -1,8 +1,14 @@
 module.exports = redirectTo;
 
-function redirectTo(redirectPath) {
+function redirectTo(redirectPath, { force = false } = {}) {
   return (req, res, next) => {
-    res.redirect(redirectPath);
+    let requestedRedirectURL = req.query.redirecturl || req.body.redirecturl;
+
+    if (!force && requestedRedirectURL) {
+      res.redirect(requestedRedirectURL);
+    } else {
+      res.redirect(redirectPath);
+    }
     next();
   }
 }

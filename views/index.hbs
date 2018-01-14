@@ -113,7 +113,7 @@
       <!-- END => contact-section -->
 
 
-      {{!-- --}
+      {{!--
       <div class="company-section" id="company-section">
         <div class="company-section__companies">
           {{#each primaryCompanies}}
@@ -150,14 +150,19 @@
         </div>
       </div>
       <!-- END ==> company-section -->
-      {{!--  --}}
+      --}}
     </main>
 
     <footer class="app__footer">
       <nav class="main-nav">
         <a href="#project-section" class="main-nav__nav-item">Projects</a>
         <a href="#contact-section" class="main-nav__nav-item">Contacts</a>
-        <a href="/icy-ewe" class="main-nav__nav-item">Open Chat</a>
+        {{#if user.loggedIn}}
+          <a href="/icy-ewe" class="main-nav__nav-item">Open Chat</a>
+          <a href="/log-out" class="main-nav__nav-item">Log out</a>
+        {{else}}
+          <a href="/log-in" class="main-nav__nav-item">Log in</a>
+        {{/if}}
       </nav>
     </footer>
   </div>
