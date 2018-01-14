@@ -1,73 +1,42 @@
-let sizeOf = require('image-size');
-let db     = require('../db');
-let path   = require('path');
+let insertData = require('../routing/_insert-data');
 
-module.exports = addUser;
+const FIELDS = [
+  {
+    name     : 'name',
+    type     : 'string',
+    required : true,
+  },
+  {
+    name     : 'email',
+    type     : 'string',
+    required : true,
+  },
+  {
+    name     : 'company_id',
+    type     : 'string',
+    required : true,
+  },
+  {
+    name     : 'primary',
+    type     : 'boolean',
+  },
+  {
+    name     : 'phone_1',
+    type     : 'string',
+  },
+  {
+    name     : 'phone_2',
+    type     : 'string',
+  },
+  {
+    name     : 'thumb',
+    type     : 'image',
+  },
+];
 
-async function addUser(req, res, next) {
-  let requiredFields = [
-    'name',
-    'email',
-    'company_id',
-  ];
-  let booleanFields = [
-    'primary',
-  ];
-  let optionalFields = [
-    'phone_1',
-    'phone_2',
-  ];
-  let optionalImages = [
-    'thumb',
-  ];
+module.exports = addPerson;
 
-  let toInsert = {};
-
-  requiredFields.forEach(fieldName => {
-    if (!req.body[fieldName]) {
-      throw Error(`Required field "${ fieldName }" was not provided when adding person.`);
-    }
-    toInsert[fieldName] = req.body[fieldName];
-  });
-
-  booleanFields.forEach(fieldName => {
-    let positiveValues = [
-      true, 'true', 'on', 'True', 'TRUE',
-    ];
-    if (positiveValues.indexOf(req.body[fieldName]) > -1) {
-      toInsert[fieldName] = true;
-    } else {
-      toInsert[fieldName] = false;
-    }
-  });
-
-  optionalFields.forEach(fieldName => {
-    req.body[fieldName] && (toInsert[fieldName] = req.body[fieldName]);
-  });
-
-  optionalImages = optionalImages
-    .forEach(fieldName => {
-      if (!req.files || !req.files[fieldName]) { return null; }
-      let file     = req.files[fieldName];
-      let fileName = createFileName(file.mimetype);
-      let filePath = path.join(global.appRoot, 'public', 'images', 'people', fileName);
-      req.files[fieldName].mv(filePath)
-        .catch(e => console.log(`${ fieldName } failed to move.`));
-      toInsert[fieldName] = `/assets/images/people/${ fileName }`;
-    });
-
-  await db('people').insert(toInsert)
-    .catch(e => { console.log(e); });
-
+async function addPerson(req, res, next) {
+  await insertData('person', FIELDS, req.body, req.files);
   next();
-}
-
-function createFileName(mimetype, minLength = 80) {
-  let hash = '';
-  do {
-    hash += (+`${ Math.random() }`.replace(/\./g, '')).toString(36);
-    hash = hash.replace(/^\d+/, '');
-  } while (hash.length < minLength);
-
-  return `${ hash }.${ mimetype.split('/').pop() }`;
 }

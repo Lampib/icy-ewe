@@ -25,16 +25,14 @@
     }
 
     &-detail {
+      @include t-body(0);
+
       &--name {
         @include t-heading(0);
       }
 
       &--role {
         @include t-subheading(0);
-      }
-
-      &--phone {
-        @include t-body(0);
       }
 
       &--email {

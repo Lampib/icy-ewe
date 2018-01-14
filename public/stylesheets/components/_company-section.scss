@@ -17,16 +17,10 @@
     margin: $g-2;
 
     &-detail {
+      @include t-body;
+
       &--name {
         @include t-heading;
-      }
-
-      &--address {
-        @include t-body;
-      }
-
-      &--phone {
-        @include t-body;
       }
     }
 

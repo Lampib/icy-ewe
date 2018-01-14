@@ -72,4 +72,5 @@ local/**
 # generated files
 public/**/*.css
 public/**/*.css.map
-public/images/people/*.*
+public/images/person/**/*.*
+public/images/company/**/*.*

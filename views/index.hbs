@@ -90,9 +90,13 @@
                     {{ this.role }} at
                   {{/if}}
                   {{ this.company.name }}</p>
-                {{#if this.phone }}
-                  <p class="contact-section__contact-detail contact-section__contact-detail--phone">
-                    {{ this.phone }}</p>
+                {{#if this.phone_1 }}
+                  <p class="contact-section__contact-detail contact-section__contact-detail--phone-1">
+                    {{ this.phone_1 }}</p>
+                {{/if}}
+                {{#if this.phone_2 }}
+                  <p class="contact-section__contact-detail contact-section__contact-detail--phone-2">
+                    {{ this.phone_2 }}</p>
                 {{/if}}
                 <a class="contact-section__contact-detail contact-section__contact-detail--email"
                   href="mailto:{{ this.email }}">
@@ -109,6 +113,7 @@
       <!-- END => contact-section -->
 
 
+      {{!-- --}
       <div class="company-section" id="company-section">
         <div class="company-section__companies">
           {{#each primaryCompanies}}
@@ -145,6 +150,7 @@
         </div>
       </div>
       <!-- END ==> company-section -->
+      {{!--  --}}
     </main>
 
     <footer class="app__footer">

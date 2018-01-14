@@ -7,10 +7,14 @@ function setPeople(req, res, next) {
   db.select('*').from('person')
     .leftJoin('company', 'person.company_id', 'company.id')
     .options({ nestTables : true })
-    .then(people => {
+    .then(peopleRaw => {
+      let people = peopleRaw.map(data => {
+        let person = data.person;
+        person.company = data.company;
+        return person;
+      });
       res.locals.hbs.people = people;
       res.locals.hbs.primaryPeople = people.filter(person => person.primary);
-      console.log(people);
       next();
     })
     .catch(e => {

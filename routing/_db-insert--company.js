@@ -1,54 +1,73 @@
-let db = require('../db');
+let insertData = require('../routing/_insert-data');
 
-module.exports = addUser;
+const FIELDS = [
+  {
+    name      : 'name',
+    type      : 'string',
+    required  : true,
+  },
+  {
+    name     : 'address_line_1',
+    type     : 'string',
+    required : true,
+  },
+  {
+    name     : 'primary',
+    type     : 'boolean',
+    required : true,
+  },
+  {
+    name     : 'address_line_2',
+    type     : 'string',
+  },
+  {
+    name     : 'address_line_3',
+    type     : 'string',
+  },
+  {
+    name     : 'address_line_4',
+    type     : 'string',
+  },
+  {
+    name     : 'city',
+    type     : 'string',
+    required : true,
+  },
+  {
+    name     : 'region',
+    type     : 'string',
+  },
+  {
+    name     : 'country',
+    type     : 'string',
+    required : true,
+  },
+  {
+    name     : 'postcode',
+    type     : 'string',
+  },
+  {
+    name     : 'phone_1',
+    type     : 'string',
+  },
+  {
+    name     : 'phone_2',
+    type     : 'string',
+  },
+  {
+    name     : 'notes',
+    type     : 'string',
+  },
+  {
+    name     : 'description',
+    type     : 'string',
+  },
+];
 
-function addUser(req, res, next) {
-  let requiredFields = [
-    'name',
-    'address_line_1',
-    'city',
-    'country',
-  ];
-  let booleanFields = [
-    'primary',
-  ];
-  let optionalFields = [
-    'address_line_2',
-    'address_line_3',
-    'address_line_4',
-    'region',
-    'postcode',
-    'phone_1',
-    'phone_2',
-    'notes',
-  ];
+module.exports = addPerson;
 
-  let toInsert = {};
-
-  requiredFields.forEach(fieldName => {
-    if (!req.body[fieldName]) {
-      throw Error(`Required field "${ fieldName }" was not provided when adding company.`);
-    }
-    toInsert[fieldName] = req.body[fieldName];
-  });
-
-  booleanFields.forEach(fieldName => {
-    let positiveValues = [
-      true, 'true', 'on', 'True', 'TRUE',
-    ];
-    if (positiveValues.indexOf(req.body[fieldName]) > -1) {
-      toInsert[fieldName] = true;
-    } else {
-      toInsert[fieldName] = false;
-    }
-  });
-
-  optionalFields.forEach(fieldName => {
-    req.body[fieldName] && (toInsert[fieldName] = req.body[fieldName]);
-  });
-
-  db('company').insert(toInsert)
-  .then(() => {
-    next();
-  });
+async function addPerson(req, res, next) {
+  await insertData('company', FIELDS, req.body, req.files);
+  next();
 }
+
