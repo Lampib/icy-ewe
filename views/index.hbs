@@ -109,6 +109,46 @@
             <div class="contact-section__contact contact-section__contact--padder"></div>
           {{/times}}
         </div>
+
+        {{#if user.loggedIn}}
+          <div class="contact-section__contact-list">
+            {{#each nonPrimaryPeople}}
+              <div class="contact-section__contact">
+                <div class="contact-section__contact-image-wrapper">
+                  <img class="contact-section__contact-image"
+                      src="{{ this.thumb }}"
+                      alt=""
+                      role="presentation">
+                </div>
+
+                <div class="contact-section__contact-details">
+                  <p class="contact-section__contact-detail contact-section__contact-detail--name">
+                    {{ this.name }}</p>
+                  <p class="contact-section__contact-detail contact-section__contact-detail--role">
+                    {{#if this.role }}
+                      {{ this.role }} at
+                    {{/if}}
+                    {{ this.company.name }}</p>
+                  {{#if this.phone_1 }}
+                    <p class="contact-section__contact-detail contact-section__contact-detail--phone-1">
+                      {{ this.phone_1 }}</p>
+                  {{/if}}
+                  {{#if this.phone_2 }}
+                    <p class="contact-section__contact-detail contact-section__contact-detail--phone-2">
+                      {{ this.phone_2 }}</p>
+                  {{/if}}
+                  <a class="contact-section__contact-detail contact-section__contact-detail--email"
+                    href="mailto:{{ this.email }}">
+                    {{ this.email }}</a>
+                </div>
+              </div>
+            {{/each}}
+
+            {{#times 2}}
+              <div class="contact-section__contact contact-section__contact--padder"></div>
+            {{/times}}
+          </div>
+        {{/if}}
       </div>
       <!-- END => contact-section -->
 

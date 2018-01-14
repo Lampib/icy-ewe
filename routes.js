@@ -63,16 +63,14 @@ function init(app) {
     done);
 
   app.post('/add-user',
+    redirectTo('/', { force : true, loggedOutOnly : true }),
     setTitle('Know me'),
     insertPerson,
     redirectTo('/add-data'),
     done);
 
-  app.post('/log-in',
-    redirectTo('/'),
-    done);
-
   app.post('/add-company',
+    redirectTo('/', { force : true, loggedOutOnly : true }),
     setTitle('Know me'),
     insertCompany,
     redirectTo('/add-data'),

@@ -15,6 +15,7 @@ function setPeople(req, res, next) {
       });
       res.locals.hbs.people = people;
       res.locals.hbs.primaryPeople = people.filter(person => person.primary);
+      res.locals.hbs.nonPrimaryPeople = people.filter(person => !person.primary);
       next();
     })
     .catch(e => {
