@@ -7,6 +7,11 @@ const FIELDS = [
     required : true,
   },
   {
+    name     : 'password',
+    type     : 'password',
+    addSalt  : true,
+  },
+  {
     name     : 'email',
     type     : 'string',
     required : true,

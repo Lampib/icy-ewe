@@ -1,6 +1,7 @@
 let sizeOf = require('image-size');
 let db     = require('../db');
 let path   = require('path');
+let bcrypt = require('bcrypt');
 
 const POSITIVE_VALUES = [
   true, 'true', 'on', 'True', 'TRUE',
@@ -8,26 +9,36 @@ const POSITIVE_VALUES = [
 
 module.exports = insertData;
 
-function insertData(tableName, fields, simpleData, files) {
+async function insertData(tableName, fields, simpleData, files) {
   let toInsert = {};
 
-  fields.forEach(field => {
-    switch (field.type) {
-      case 'boolean':
-        return isSimpleValueValid(simpleData[field.name], field)
-          && insertBoolean(field, simpleData[field.name], toInsert);
-        break;
-      case 'string':
-        return isSimpleValueValid(simpleData[field.name], field)
-          && insertString(field, simpleData[field.name], toInsert);
-        break;
-      case 'image':
-        return insertImage(field, files, toInsert, tableName);
-        break;
-    }
-  });
+  let fieldPromises = fields
+    .filter(field => {
+      let value = simpleData[field.name];
+      switch (field.type) {
+        case 'string':
+        case 'password':
+          return isSimpleValueValid(value, field);
+        default:
+          return true;
+      }
+    })
+    .map(field => {
+      let value = simpleData[field.name];
+      switch (field.type) {
+        case 'boolean':
+          return insertBoolean(field, value, toInsert);
+        case 'string':
+          return insertString(field, value, toInsert);
+        case 'password':
+          return insertPassword(field, value, toInsert);
+        case 'image':
+          return insertImage(field, files, toInsert, tableName);
+      }
+    });
 
-  return db(tableName).insert(toInsert)
+  return Promise.all(fieldPromises)
+    .then(() => db(tableName).insert(toInsert))
     .catch(e => { console.log(e); });
 }
 
@@ -44,6 +55,13 @@ function isSimpleValueValid(providedValue, field) {
 
 function insertString(field, value, toInsert) {
   toInsert[field.name] = value;
+}
+
+function insertPassword(field, value, toInsert) {
+  return bcrypt.hash(value, 11)
+    .then(hash => {
+      toInsert[field.name] = hash;
+    });
 }
 
 function insertBoolean(field, value, toInsert) {
