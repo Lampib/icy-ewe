@@ -17,13 +17,16 @@ skylink.on('mediaAccessSuccess', stream => {
 AdapterJS.webRTCReady(initialiseRoom);
 
 function initialiseRoom(isUsingPlugin) {
+  let queryParams = new URL(location.href).searchParams;
+  let defaultRoom = queryParams.get('room') || 'Ready';
+
   skylink.init(
     {
       apiKey      : config.TEMASYS_WEB_SDK_API,
-      defaultRoom : 'Ready',
+      defaultRoom : defaultRoom
     },
-    () =>
-      skylink.joinRoom(
+    function() {
+      return skylink.joinRoom(
         {
           audio : true,
           video : true
@@ -32,6 +35,7 @@ function initialiseRoom(isUsingPlugin) {
           let { error, errorCode, room } = data || {};
           if (error) {  }
         }
-      )
+      );
+    }
   );
 }
