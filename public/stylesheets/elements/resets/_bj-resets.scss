@@ -1,9 +1,17 @@
+textarea,
+input,
 button,
-[type="button"] {
-  background: transparent;
-  border: 0;
-  padding: 0;
-  border-radius: 0;
-  outline: 0;
+select {
   font: inherit;
+  outline: 0;
+  border: 0;
+}
+
+textarea,
+input,
+button {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
 }

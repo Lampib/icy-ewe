@@ -3,6 +3,7 @@ let setCompanies = require('./routing/_set-companies');
 let setCountries = require('./routing/_set-countries');
 let setPeople    = require('./routing/_set-people');
 let redirectTo   = require('./routing/_redirect-to');
+let done         = require('./routing/_close-connection');
 
 let addJsonHeaders = require('./routing/_add-headers--json');
 
@@ -11,7 +12,7 @@ let insertCompany = require('./routing/_db-insert--company');
 
 let renderIndex    = require('./routing/_render--index');
 let renderChat     = require('./routing/_render--chat');
-let renderTestAdd  = require('./routing/_render--test-add');
+let renderTestAdd  = require('./routing/_render--add-data');
 
 module.exports = {
   init,
@@ -22,25 +23,30 @@ function init(app) {
     setTitle(''),
     setPeople,
     setCompanies,
-    renderIndex);
+    renderIndex,
+    done);
 
   app.get('/icy-ewe',
     setTitle('I see you'),
-    renderChat);
+    renderChat,
+    done);
 
-  app.get('/test-add',
+  app.get('/add-data',
     setTitle('Test add'),
     setCountries,
     setCompanies,
-    renderTestAdd);
+    renderTestAdd,
+    done);
 
   app.post('/add-user',
     setTitle('Know me'),
     insertPerson,
-    redirectTo('/test-add'));
+    redirectTo('/add-data'),
+    done);
 
   app.post('/add-company',
     setTitle('Know me'),
     insertCompany,
-    redirectTo('/test-add'));
+    redirectTo('/add-data'),
+    done);
 }

@@ -1,0 +1,78 @@
+.add-form {
+  @include t-body(0);
+  background: $gray-8;
+  padding: $g-3 $g-5;
+  border-radius: 4px;
+  margin: $g-5;
+
+  &__field {
+    display: flex;
+    align-items: center;
+    min-height: $g-4;
+
+    label {
+      flex-basis: g(20);
+      flex-shrink: 0;
+    }
+
+    [type="email"],
+    [type="tel"],
+    [type="text"] ,
+    button,
+    textarea,
+    select {
+      padding: 0 $g-2;
+      line-height: $g-4;
+      background: white;
+      border-radius: 4px;
+      width: 100%;
+      transition: box-shadow 0.2s;
+
+      &:invalid {
+        box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.15);
+      }
+
+      &:focus {
+        box-shadow: inset 0 0 0 rgba(255, 0, 0, 0);
+      }
+
+      &::placeholder {
+        color: #ddd;
+      }
+    }
+
+    [type="checkbox"],
+    [type="file"],
+    select {
+      //margin-left: $g-2;
+      line-height: $g-3;
+      width: 100%;
+    }
+
+    [type="checkbox"] {
+      transform-origin: 0 50%;
+      transform: scale(1.9);
+      width: 100%;
+    }
+
+    button {
+      background: #666;
+      color: white;
+    }
+
+    > div {
+      flex-basis: 200px;
+      flex-grow: 1;
+      overflow: hidden;
+      line-height: $g-4;
+    }
+
+    & + & {
+      margin-top: $g-1;
+    }
+  }
+
+  &--person &__field label {
+    flex-basis: g(15);
+  }
+}

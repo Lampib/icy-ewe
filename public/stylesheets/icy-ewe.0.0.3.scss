@@ -1,8 +1,12 @@
 // Settings: @import "./settings/";
-@import "./settings/_fonts.scss";
+@import "./settings/base-colors.scss";
+@import "./settings/fonts.scss";
+@import "./settings/sizing.scss";
 
 // Tools: @import "./tools/";
+@import "./tools/sizing.scss";
 @import "./tools/text.scss";
+@import "./tools/box.scss";
 
 // Elements @import "./elements/";
 @import "./elements/resets";

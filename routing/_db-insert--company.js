@@ -29,7 +29,7 @@ function addUser(req, res, next) {
     if (!req.body[fieldName]) {
       throw Error(`Required field "${ fieldName }" was not provided when adding company.`);
     }
-    toInsert[`company_${ fieldName }`] = req.body[fieldName];
+    toInsert[fieldName] = req.body[fieldName];
   });
 
   booleanFields.forEach(fieldName => {
@@ -37,17 +37,17 @@ function addUser(req, res, next) {
       true, 'true', 'on', 'True', 'TRUE',
     ];
     if (positiveValues.indexOf(req.body[fieldName]) > -1) {
-      toInsert[`company_${ fieldName }`] = true;
+      toInsert[fieldName] = true;
     } else {
-      toInsert[`company_${ fieldName }`] = false;
+      toInsert[fieldName] = false;
     }
   });
 
   optionalFields.forEach(fieldName => {
-    req.body[fieldName] && (toInsert[`company_${ fieldName }`] = req.body[fieldName]);
+    req.body[fieldName] && (toInsert[fieldName] = req.body[fieldName]);
   });
 
-  db('companies').insert(toInsert)
+  db('company').insert(toInsert)
   .then(() => {
     next();
   });

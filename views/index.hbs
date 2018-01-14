@@ -89,7 +89,7 @@
                   {{#if this.role }}
                     {{ this.role }} at
                   {{/if}}
-                  {{ this.company_name }}</p>
+                  {{ this.company.name }}</p>
                 {{#if this.phone }}
                   <p class="contact-section__contact-detail contact-section__contact-detail--phone">
                     {{ this.phone }}</p>
@@ -114,26 +114,26 @@
           {{#each primaryCompanies}}
             <div class="company-section__company">
               <h3 class="company-section__company-detail company-section__company-detail--name">
-                {{ this.company_name }}</h3>
+                {{ this.name }}</h3>
               <p class="company-section__company-detail company-section__company-detail--address">
-                {{ this.company_address_line_1 }}
-                {{#if this.company_address_line_2}}<br>{{ this.company_address_line_2 }}{{/if}}
-                {{#if this.company_address_line_3}}<br>{{ this.company_address_line_3 }}{{/if}}
-                {{#if this.company_address_line_4}}<br>{{ this.company_address_line_4 }}{{/if}}
-                {{#if this.company_city}}<br>{{ this.company_city }}{{/if}}
-                {{#if this.company_region}}<br>{{ this.company_region }}{{/if}}
-                {{#if this.company_postcode}}<br>{{ this.company_postcode }}{{/if}}
-                {{#if this.company_country}}<br>{{countryName this.company_country}}{{/if}}
+                {{ this.address_line_1 }}
+                {{#if this.address_line_2}}<br>{{ this.address_line_2 }}{{/if}}
+                {{#if this.address_line_3}}<br>{{ this.address_line_3 }}{{/if}}
+                {{#if this.address_line_4}}<br>{{ this.address_line_4 }}{{/if}}
+                {{#if this.city}}<br>{{ this.city }}{{/if}}
+                {{#if this.region}}<br>{{ this.region }}{{/if}}
+                {{#if this.postcode}}<br>{{ this.postcode }}{{/if}}
+                {{#if this.country}}<br>{{countryName this.country}}{{/if}}
               </p>
-              {{#if this.company_phone_1}}
+              {{#if this.phone_1}}
                 <p class="company-section__company-detail company-section__company-detail--phone">
-                  {{ this.company_phone_1 }}
-                  {{#if this.company_phone_2}}<br>{{ this.company_phone_2 }}{{/if}}
+                  {{ this.phone_1 }}
+                  {{#if this.phone_2}}<br>{{ this.phone_2 }}{{/if}}
                 </p>
               {{else}}
-                {{#if this.company_phone_2}}
+                {{#if this.phone_2}}
                   <p class="company-section__company-detail company-section__company-detail--phone">
-                    {{ this.company_phone_2 }}</p>
+                    {{ this.phone_2 }}</p>
                 {{/if}}
               {{/if}}
             </div>
