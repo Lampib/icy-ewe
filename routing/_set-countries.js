@@ -3,7 +3,6 @@ const countryList = require('countries-list');
 module.exports = setCountries;
 
 function setCountries(req, res, next) {
-  res.locals.hbs || (res.locals.hbs = {});
   let primaryCountries = [
     'SG',
     'NO',

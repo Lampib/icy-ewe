@@ -19,13 +19,33 @@
       </header>
 
       <main class="app__body">
-        <div class="videos">
-          <div id="primary-videos" class="videos__primary"></div>
-          <div id="secondary-videos" class="videos__secondary"></div>
+        <div class="chat-view">
+          <div class="chat-view__video-section">
+            <div class="videos">
+              <div id="primary-videos" class="videos__primary"></div>
+              <div id="secondary-videos" class="videos__secondary"></div>
+            </div>
+          </div>
+          <div class="chat-view__text-section">
+            <div class="text-chat">
+              <div class="text-chat__chat-board" id="chat_board">
+                <p class="init"><span>Type below to start the conversation!</span></p>
+              </div>
+              <div class="text-chat__input-section">
+                <form id="chat_form" style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;">
+                  <input placeholder="Hit enter to send" type="text" id="chat_input" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                  <button style="display:none;"></button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
 
+    <script>
+      var USER_CHAT_NAME = "{{ user.data.name }}";
+    </script>
     <script src="https://cdn.temasys.io/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
     <script src="/assets/javascripts/icy-ewe.0.0.2.js"></script>
   {{else}}

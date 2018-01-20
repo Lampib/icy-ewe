@@ -14,7 +14,7 @@ Then copy `example.env` to `.env` and modify the relevant details.
 ## Running
 ```shell
 # With debug
-DEBUG=icy-ewe:* yarn run start;
+DEBUG=preco:* yarn run start;
 
 # Withough debug
 yarn run start;

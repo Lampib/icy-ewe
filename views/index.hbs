@@ -24,7 +24,7 @@
     <main class="app__body">
       <div class="splash-screen">
         <div class="splash-screen__overlay">
-          <h1 class="splash-screen__title">Preco</h1>
+          <h1 class="splash-screen__title">Preco{{#if debug}} - DEBUG{{/if}}</h1>
           <p class="splash-screen__strap-line">Every box counts</p>
         </div>
       </div>
@@ -84,7 +84,7 @@
 
               <div class="contact-section__contact-details">
                 <p class="contact-section__contact-detail contact-section__contact-detail--name">
-                  {{ this.name }}</p>
+                  {{#if this.isUser}}You{{else}}{{ this.name }}{{/if}}</p>
                 <p class="contact-section__contact-detail contact-section__contact-detail--role">
                   {{#if this.role }}
                     {{ this.role }} at
@@ -122,8 +122,12 @@
                 </div>
 
                 <div class="contact-section__contact-details">
+                  {{#if ../user.isPrimary}}
+                    <button class="contact-section__delete-contact"
+                            onclick="confirm('Are you sure you want to delete this person?')">x</button>
+                  {{/if}}
                   <p class="contact-section__contact-detail contact-section__contact-detail--name">
-                    {{ this.name }}</p>
+                    {{ this.name }}{{#if this.isUser}} - You{{/if}}</p>
                   <p class="contact-section__contact-detail contact-section__contact-detail--role">
                     {{#if this.role }}
                       {{ this.role }} at

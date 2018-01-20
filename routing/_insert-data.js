@@ -81,10 +81,10 @@ function insertImage(field, files, toInsert, tableName) {
 }
 
 function createImage(file, baseFolder, subFolder) {
-  let fileName = createFileName(file.mimetype);
-  let filePath = path.join(global.appRoot, 'public', 'images', baseFolder, subFolder, fileName);
-  let movePromise =  file.mv(filePath)
-                         .catch(e => console.log(`Image: "${ baseFolder }, ${ subFolder }" failed to move.`));
+  let fileName    = createFileName(file.mimetype);
+  let filePath    = path.join(global.appRoot, 'public', 'images', baseFolder, subFolder, fileName);
+  let movePromise = file.mv(filePath)
+                        .catch(e => console.log(`Image: "${ baseFolder }, ${ subFolder }" failed to move.`));
   return {
     movePromise,
     imageSrc: `/assets/images/${ baseFolder }/${ subFolder }/${ fileName }`,

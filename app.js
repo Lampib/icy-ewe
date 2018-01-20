@@ -34,7 +34,7 @@ app.use(sassMiddleware({
   prefix         : '/assets',
   outputStyle    : 'compressed',
 }));
-app.use('/assets/javascripts/icy-ewe.*.js', babelify('public/javascripts/icy-ewe.js', {debug : false}, {minified : true}));
+app.use('/assets/javascripts/icy-ewe.*.js', babelify('public/javascripts/icy-ewe.js', {debug : false}, {presets : ["env"], minified : true}));
 app.use('/assets/javascripts/index.*.js', babelify('public/javascripts/index.js', {debug : false}, {minified : true}));
 app.use('/assets', express.static(path.join(__dirname, 'public')));
 app.use(expressSession({
@@ -44,6 +44,12 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.hbs = {
+    debug: process.env.DEBUG,
+  };
+  next();
+});
 
 routes.init(app);
 

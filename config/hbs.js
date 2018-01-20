@@ -11,6 +11,5 @@ hbs.registerHelper('times', function(n, block) {
 });
 
 hbs.registerHelper('countryName', function(countryCode) {
-  console.log(countryCode);
   return countryList.countries[countryCode] && countryList.countries[countryCode].name;
 });

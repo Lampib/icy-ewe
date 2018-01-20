@@ -3,13 +3,13 @@ let db = require('../db');
 module.exports = setPeople;
 
 function setPeople(req, res, next) {
-  res.locals.hbs || (res.locals.hbs = {});
   db.select('*').from('person')
     .leftJoin('company', 'person.company_id', 'company.id')
     .options({ nestTables : true })
     .then(peopleRaw => {
       let people = peopleRaw.map(data => {
         let person = data.person;
+        person.isUser = req.user && req.user.id === person.id;
         person.company = data.company;
         return person;
       });

@@ -18,7 +18,7 @@
     </header>
 
     <main class="app__body">
-      {{#if user.loggedIn}}
+      {{#if user.isPrimary}}
         <div style="display: flex; flex-wrap: wrap;justify-content: center;align-items: flex-start;">
           <form class="add-form add-form--person"
                 action="/add-user"
@@ -211,6 +211,15 @@
             </div>
           </form>
         </div>
+      {{#else if user.loggedIn}}
+        <h1>You require admin privileges</h1>
+        <p>Sorry, you don't seem to have been given privileges to perform this action.</p>
+        <p>Please try one of the following:</p>
+        <ul>
+          <li><a href="/log-out">log out</a> then log in as admin request access</li>
+          <li>request admin privileges</li>
+          <li>request an admin to perform these actions for you</li>
+        </ul>
       {{else}}
         <form action="/log-in" method="post">
           <label for="email_input">email</label>

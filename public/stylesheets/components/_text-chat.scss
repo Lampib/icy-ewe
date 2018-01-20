@@ -1,0 +1,97 @@
+%chat-bubble-name {
+  @include t-subheading;
+  position: absolute;
+  top: $g-1;
+  left: $g-1;
+  margin-top: 0;
+}
+
+.text-chat {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &__chat-board {
+    flex-basis: 0;
+    flex-grow: 1;
+    background: $gray-3;
+    overflow-y: auto;
+
+    p {
+      position: relative;
+      margin: 10px;
+      color: black;
+      border-radius: 4px;
+      padding: 1px $g-1;
+      position: relative;
+      padding-top: $g-3;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 4px;
+        width: 0;
+        height: 0;
+        border: $g-1 solid transparent;
+        border-bottom-width: 4px;
+      }
+
+      &::before {
+        @extend %chat-bubble-name;
+        content: attr(data-name);
+      }
+
+      &.you {
+        margin-left: $g-3;
+        background: $gray-6;
+
+        &::after {
+          right: 100%;
+          border-right-color: $gray-6;
+          border-left-width: 0;
+        }
+      }
+
+      &.them {
+        margin-right: $g-3;
+        background: $gray-8;
+
+        &::after {
+          left: 100%;
+          border-left-color: $gray-8;
+          border-right-width: 0;
+        }
+      }
+    }
+
+    strong {
+      @extend %chat-bubble-name;
+    }
+
+    span {
+      @include t-body;
+      display: block;
+      margin: $g-1 0;
+    }
+    .init span {
+      color: $gray-6;
+    }
+  }
+
+  &__input-section {
+    position: relative;
+    flex-basis: $g-6;
+    background: $gray-8;
+
+    input {
+      @include t-body;
+      margin: 0;
+      text-indent: $g-2;
+    }
+  }
+}
