@@ -3,6 +3,8 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary();
     table.boolean('primary')
          .notNullable();
+    table.boolean('admin')
+         .notNullable();
     table.string('password', pow(8));
     table.string('name', pow(8))
          .notNullable();
@@ -14,8 +16,8 @@ exports.up = function(knex, Promise) {
     table.string('thumb', pow(8));
     table.string('person_notes', pow(8));
     table.foreign('company_id')
-      .references('id')
-      .inTable('company');
+         .references('id')
+         .inTable('company');
     table.timestamps(false, true);
     table.unique('email');
   });

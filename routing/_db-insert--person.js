@@ -7,11 +7,6 @@ const FIELDS = [
     required : true,
   },
   {
-    name     : 'password',
-    type     : 'password',
-    addSalt  : true,
-  },
-  {
     name     : 'email',
     type     : 'string',
     required : true,
@@ -22,7 +17,15 @@ const FIELDS = [
     required : true,
   },
   {
+    name     : 'password',
+    type     : 'password',
+  },
+  {
     name     : 'primary',
+    type     : 'boolean',
+  },
+  {
+    name     : 'admin',
     type     : 'boolean',
   },
   {
@@ -40,6 +43,7 @@ const FIELDS = [
 ];
 
 module.exports = addPerson;
+
 
 async function addPerson(req, res, next) {
   await insertData('person', FIELDS, req.body, req.files);

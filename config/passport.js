@@ -8,7 +8,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  db.select('*').from('person').where('id', 1)
+  db.select('*').from('person').where('id', id)
     .then(entries => {
       done(null, entries[0]);
     });
@@ -36,12 +36,11 @@ passport.use('local-login',
       passReqToCallback : true
   },
   async (req, email, password, done) => {
-    let entries = await db.select('*').from('person').where('email', email);
+    let entries = await db('person').where('email', email);
 
     if (entries.length === 0) { return done(null, false); }
     let person = entries[0];
     let passwordIsCorrect = await bcrypt.compare(password, person.password);
-
     if (!passwordIsCorrect) { return done(null, false); }
 
     // all is well, return successful user

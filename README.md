@@ -7,6 +7,9 @@ yarn;
 
 # Migrate the database
 yarn run migrate;
+
+# Seed the database
+knex seed:run;
 ```
 
 Then copy `example.env` to `.env` and modify the relevant details.

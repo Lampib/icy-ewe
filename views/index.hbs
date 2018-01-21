@@ -84,7 +84,7 @@
 
               <div class="contact-section__contact-details">
                 <p class="contact-section__contact-detail contact-section__contact-detail--name">
-                  {{#if this.isUser}}You{{else}}{{ this.name }}{{/if}}</p>
+                  {{ this.name }}{{#if this.isUser}} - You{{/if}}</p>
                 <p class="contact-section__contact-detail contact-section__contact-detail--role">
                   {{#if this.role }}
                     {{ this.role }} at

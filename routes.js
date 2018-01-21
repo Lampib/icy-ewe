@@ -12,8 +12,8 @@ let done           = require('./routing/_close-connection');
 
 let addJsonHeaders = require('./routing/_add-headers--json');
 
-let insertPerson  = require('./routing/_db-insert--person');
 let insertCompany = require('./routing/_db-insert--company');
+let insertPerson  = require('./routing/_db-insert--person');
 
 let renderIndex    = require('./routing/_render--index');
 let renderChat     = require('./routing/_render--chat');

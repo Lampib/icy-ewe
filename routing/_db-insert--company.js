@@ -66,6 +66,7 @@ const FIELDS = [
 
 module.exports = addPerson;
 
+
 async function addPerson(req, res, next) {
   await insertData('company', FIELDS, req.body, req.files);
   next();
