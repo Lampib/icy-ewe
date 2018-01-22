@@ -31,8 +31,10 @@ function buildSwitchVideoArea(videoData) {
   function switchVideoArea() {
     if (videoData.isPrimary) {
       secondaryVideos.appendChild(videoData.element.container);
+      videoData.element.video.muted = true;
     } else {
       primaryVideos.appendChild(videoData.element.container);
+      videoData.element.video.muted = false;
     }
     videoData.isPrimary = !videoData.isPrimary;
     attachMediaStream(videoData.element.video, videoData.stream);
@@ -67,7 +69,6 @@ function buildVideo(videoData) {
   videoContainer.className = 'videos__video-container video-container';
 
   video.autoplay  = true;
-  video.muted     = true;
   video.id        = videoData.peerId;
   video.className = 'video-container__video';
 
@@ -77,6 +78,7 @@ function buildVideo(videoData) {
   videoContainer.appendChild(controlsLayer);
 
   if (videoData.isSelf) {
+    video.muted = true;
     ownVideo.appendChild(videoContainer);
   } else {
     let switchLevelButton = document.createElement('button');
@@ -88,6 +90,7 @@ function buildVideo(videoData) {
     if (primaryVideos.querySelector('.video-container')) {
       secondaryVideos.appendChild(videoContainer);
       videoData.isPrimary = false;
+      video.muted = true;
     } else {
       primaryVideos.appendChild(videoContainer);
       videoData.isPrimary = true;

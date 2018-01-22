@@ -4,12 +4,12 @@ import videos  from './_create-video.js';
 import textChat from './_text-chat.js';
 
 const myVideoContainer = document.getElementById('my-video-container');
-const LOGGED_ON        = !!USER_CHAT_NAME;
+const LOGGED_ON        = ICY_EWE.USER_LOGGED_IN;
 
 videos.add('_SELF_', {}, true);
 
 skylink.setUserData({
-  name: USER_CHAT_NAME
+  name: ICY_EWE.USER_CHAT_NAME
 });
 skylink.on('peerJoined', videos.add);
 skylink.on('incomingStream', videos.attach);
@@ -23,9 +23,7 @@ AdapterJS.webRTCReady(initialiseRoom);
 function initialiseRoom(isUsingPlugin) {
   let queryParams = new URL(location.href).searchParams;
   let defaultRoom = queryParams.get('room') || 'Preco Lobby';
-  if (DEBUG_MODE) {
-    defaultRoom += '__DEBUG';
-  }
+  ICY_EWE.DEBUG_MODE && (defaultRoom += '__DEBUG');
 
   skylink.init(
     {

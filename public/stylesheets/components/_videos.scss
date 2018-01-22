@@ -30,6 +30,11 @@ video#_SELF_ {
     flex-grow: 0;
     flex-shrink: 1;
     background: $gray-3;
+    transition: flex-basis 0.15s;
+
+    &:empty {
+      flex-basis: 0;
+    }
   }
 
   &__video-container {
