@@ -18,19 +18,23 @@
     transform-origin: 50% 0;
     width: 100%;
     padding: g($main-header-padding) $g-5;
-    line-height: g($main-header-line-height);
-    color: $gray-3;
-    font-family: Arvo;
-    font-weight: 800;
-    font-size: 24px;
     background-color: $gray-8;
     transition: transform 0.15s ease-in;
-    pointer-events: initial;
 
     .body--header-hidden & {
       transform: translateY(0);
       transition: transform 0.15s ease-out;
     }
+  }
+
+  &__title {
+    display: inline;
+    line-height: g($main-header-line-height);
+    color: $gray-3;
+    font-family: Arvo;
+    font-weight: 800;
+    font-size: 24px;
+    pointer-events: initial;
   }
 
   &--static {
@@ -59,6 +63,10 @@
     &__content {
       padding-top: g($main-header-padding);
       padding-bottom: g($main-header-padding);
+    }
+
+    &__title {
+      line-height: g($main-header-line-height);
       font-size: 26px;
     }
   }
@@ -76,6 +84,9 @@
     &__content {
       padding-top: g($main-header-padding);
       padding-bottom: g($main-header-padding);
+    }
+
+    &__title {
       line-height: g($main-header-line-height);
       font-size: 30px;
     }

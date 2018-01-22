@@ -9,7 +9,7 @@ function setPeople(req, res, next) {
     .then(peopleRaw => {
       let people = peopleRaw.map(data => {
         let person = data.person;
-        person.isUser = req.user && req.user.id === person.id;
+        person.isUser = req.user && (req.user.id === person.id);
         person.company = data.company;
         return person;
       });
