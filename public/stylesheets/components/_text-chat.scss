@@ -18,54 +18,27 @@
   &__chat-board {
     flex-basis: 0;
     flex-grow: 1;
-    background: $gray-3;
+    background: $gray-2;
     overflow-y: auto;
 
     p {
+      @include clearfix;
       position: relative;
       margin: 10px;
       color: black;
       border-radius: 4px;
-      padding: 1px $g-1;
+      padding: 0 $g-1;
       position: relative;
       padding-top: $g-3;
-
-      &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: 4px;
-        width: 0;
-        height: 0;
-        border: $g-1 solid transparent;
-        border-bottom-width: 4px;
-      }
-
-      &::before {
-        @extend %chat-bubble-name;
-        content: attr(data-name);
-      }
 
       &.you {
         margin-left: $g-3;
         background: $gray-6;
-
-        &::after {
-          right: 100%;
-          border-right-color: $gray-6;
-          border-left-width: 0;
-        }
       }
 
       &.them {
         margin-right: $g-3;
         background: $gray-8;
-
-        &::after {
-          left: 100%;
-          border-left-color: $gray-8;
-          border-right-width: 0;
-        }
       }
     }
 
@@ -93,5 +66,27 @@
       margin: 0;
       text-indent: $g-2;
     }
+  }
+}
+
+.chat-bubble__pointer {
+  display: block;
+  position: absolute;
+  bottom: 4px;
+  width: 0;
+  height: 0;
+  border: $g-1 solid transparent;
+  border-bottom-width: 4px;
+
+  .you & {
+    right: 100%;
+    border-right-color: $gray-6;
+    border-left-width: 0;
+  }
+
+  .them & {
+    left: 100%;
+    border-left-color: $gray-8;
+    border-right-width: 0;
   }
 }

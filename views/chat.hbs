@@ -13,9 +13,19 @@
   {{#if user.loggedIn}}
     <div class="app">
       <header class="app__header">
-        <div class="icy-ewe-header">
-          <h1 class="icy-ewe-header__title">I See You!</h1>
-        </div>
+        {{! old header
+          <div class="icy-ewe-header">
+            <h1 class="icy-ewe-header__title">I See You!</h1>
+          </div>
+        }}
+
+        <header class="main-header main-header--static main-header--dark">
+          <div class="main-header__wrapper">
+            <div class="main-header__content">
+              Preco
+            </div>
+          </div>
+        </header>
       </header>
 
       <main class="app__body">
@@ -28,6 +38,7 @@
           </div>
           <div class="chat-view__text-section">
             <div class="text-chat">
+              <div class="text-chat__own-cam" id="own_cam"></div>
               <div class="text-chat__chat-board" id="chat_board">
                 <p class="init"><span>Type below to start the conversation!</span></p>
               </div>

@@ -7,6 +7,7 @@
 @import "./tools/sizing.scss";
 @import "./tools/text.scss";
 @import "./tools/box.scss";
+@import "./tools/clearfix.scss";
 
 // Elements @import "./elements/";
 @import "./elements/resets";
@@ -14,7 +15,7 @@
 
 // Components @import "./components/";
 @import "./components/app-structure";
-@import "./components/icy-ewe-header";
+@import "./components/main-header";
 @import "./components/videos";
 @import "./components/video-container";
 @import "./components/text-chat";

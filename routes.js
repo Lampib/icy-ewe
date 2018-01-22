@@ -14,6 +14,7 @@ let addJsonHeaders = require('./routing/_add-headers--json');
 
 let insertCompany = require('./routing/_db-insert--company');
 let insertPerson  = require('./routing/_db-insert--person');
+let deletePerson  = require('./routing/_db-delete--person');
 
 let renderIndex    = require('./routing/_render--index');
 let renderChat     = require('./routing/_render--chat');
@@ -63,15 +64,22 @@ function init(app) {
     renderTestAdd,
     done);
 
-  app.post('/add-user',
-    redirectTo('/', { force : true, loggedOutOnly : true }),
+  app.post('/add-person',
+    redirectTo('/', { force : true, blockNonAdmin : true }),
     setTitle('Know me'),
     insertPerson,
     redirectTo('/add-data'),
     done);
 
+  app.get('/delete-person/:personid',
+    redirectTo('/', { force : true, blockNonAdmin : true }),
+    setTitle('Know me'),
+    deletePerson,
+    redirectTo('/'),
+    done);
+
   app.post('/add-company',
-    redirectTo('/', { force : true, loggedOutOnly : true }),
+    redirectTo('/', { force : true, blockNonAdmin : true }),
     setTitle('Know me'),
     insertCompany,
     redirectTo('/add-data'),

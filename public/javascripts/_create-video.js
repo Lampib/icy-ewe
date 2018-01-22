@@ -1,14 +1,15 @@
 let videos          = {};
+let ownVideo        = document.getElementById('own_cam');
 let primaryVideos   = document.getElementById('primary-videos');
 let secondaryVideos = document.getElementById('secondary-videos');
 
-let videoData = {
+let videoFunctions = {
   add    : createVideo,
   attach : attachVideo,
   remove : removeVideo,
 };
 
-export default videoData;
+export default videoFunctions;
 
 function createVideo(peerId, peerInfo, isSelf) {
   if (isSelf && videos._SELF_) { return; };
@@ -18,7 +19,6 @@ function createVideo(peerId, peerInfo, isSelf) {
     peerInfo,
     peerId,
     stream    : null,
-    isPrimary : isSelf,
   };
 
   videoData.element = buildVideo(videoData);
@@ -60,7 +60,6 @@ function removeVideo(peerId, peerInfo, isSelf) {
 function buildVideo(videoData) {
   let videoContainer    = document.createElement('div');
   let controlsLayer     = document.createElement('div');
-  let switchLevelButton = document.createElement('button');
   let video             = document.createElement('video');
 
   videoData.switchArea = buildSwitchVideoArea(videoData);
@@ -74,19 +73,26 @@ function buildVideo(videoData) {
 
   controlsLayer.className = 'video-container__controls';
 
-  switchLevelButton.className = 'video-container__switch-level-button';
-  switchLevelButton.addEventListener('mousedown', videoData.switchArea);
-  switchLevelButton.addEventListener('touchstart', videoData.switchArea);
+  videoContainer.appendChild(video);
+  videoContainer.appendChild(controlsLayer);
 
   if (videoData.isSelf) {
-    primaryVideos.appendChild(videoContainer);
+    ownVideo.appendChild(videoContainer);
   } else {
-    secondaryVideos.appendChild(videoContainer);
-  }
+    let switchLevelButton = document.createElement('button');
+    switchLevelButton.className = 'video-container__switch-level-button';
+    switchLevelButton.addEventListener('mousedown', videoData.switchArea);
+    switchLevelButton.addEventListener('touchstart', videoData.switchArea);
+    controlsLayer.appendChild(switchLevelButton);
 
-  videoContainer.appendChild(video);
-  controlsLayer.appendChild(switchLevelButton);
-  videoContainer.appendChild(controlsLayer);
+    if (primaryVideos.querySelector('.video-container')) {
+      secondaryVideos.appendChild(videoContainer);
+      videoData.isPrimary = false;
+    } else {
+      primaryVideos.appendChild(videoContainer);
+      videoData.isPrimary = true;
+    }
+  }
 
   return {
     video     : video,

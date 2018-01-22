@@ -1,5 +1,4 @@
 video#_SELF_ {
-  filter: grayscale(1);
   transform: scaleX(-1);
 }
 
@@ -30,7 +29,7 @@ video#_SELF_ {
     flex-basis: 200px;
     flex-grow: 0;
     flex-shrink: 1;
-    background: #333;
+    background: $gray-3;
   }
 
   &__video-container {

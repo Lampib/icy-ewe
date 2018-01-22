@@ -9,7 +9,7 @@ export default {
 
 function initTextChat() {
   skylink.on('incomingMessage', function(message, peerID, peerInfo, isSelf) {
-    var viewingEnd = chat_board.scrollTop === chat_board.scrollHeight - chat_board.getBoundingClientRect().height;
+    var viewingEnd = chat_board.scrollTop > chat_board.scrollHeight - chat_board.getBoundingClientRect().height - 10;
     messagePayloads.push({
       message  : message,
       peerID   : peerID,
@@ -47,9 +47,9 @@ function buildChat() {
         : messagePayload.peerInfo.userData.name || messagePayload.peerId;
       messageHTML = '<p class="' + (messagePayload.isSelf ? 'you' : 'them') + '"><strong>' + name + '</strong>' + messageHTML;
       if (previousPayload.peerID) {
-        messageHTML = '</p>' + messageHTML;
+        messageHTML = '<i class="chat-bubble__pointer"></i></p>' + messageHTML;
       }
     }
     return messageHTML;
-  }).join('') + '</p>';
+  }).join('') + '<i class="chat-bubble__pointer"></i></p>';
 }

@@ -1,6 +1,10 @@
 .video-container {
   position: relative;
 
+  &__video {
+    display: block;
+  }
+
   &__controls {
     position: absolute;
     top: 0;

@@ -124,7 +124,7 @@
                 <div class="contact-section__contact-details">
                   {{#if ../user.isPrimary}}
                     <button class="contact-section__delete-contact"
-                            onclick="confirm('Are you sure you want to delete this person?')">x</button>
+                            onclick="if(confirm('Are you sure you want to delete this person?')){location.href='/delete-person/{{ this.id }}'}">x</button>
                   {{/if}}
                   <p class="contact-section__contact-detail contact-section__contact-detail--name">
                     {{ this.name }}{{#if this.isUser}} - You{{/if}}</p>

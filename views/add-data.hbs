@@ -12,16 +12,20 @@
 <body>
   <div class="app">
     <header class="app__header">
-      <div class="icy-ewe-header">
-        <h1 class="icy-ewe-header__title">I See You!</h1>
-      </div>
+      <header class="main-header main-header--static main-header--dark">
+        <div class="main-header__wrapper">
+          <div class="main-header__content">
+            Preco
+          </div>
+        </div>
+      </header>
     </header>
 
     <main class="app__body">
       {{#if user.isAdmin}}
         <div style="display: flex; flex-wrap: wrap;justify-content: center;align-items: flex-start;">
           <form class="add-form add-form--person"
-                action="/add-user"
+                action="/add-person"
                 method="post"
                 encType="multipart/form-data">
 
