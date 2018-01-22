@@ -22,7 +22,7 @@ AdapterJS.webRTCReady(initialiseRoom);
 
 function initialiseRoom(isUsingPlugin) {
   let queryParams = new URL(location.href).searchParams;
-  let defaultRoom = queryParams.get('room') || 'Ready';
+  let defaultRoom = queryParams.get('room') || 'Preco Lobby';
   if (DEBUG_MODE) {
     defaultRoom += '__DEBUG';
   }
