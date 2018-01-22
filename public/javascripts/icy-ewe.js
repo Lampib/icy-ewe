@@ -23,6 +23,9 @@ AdapterJS.webRTCReady(initialiseRoom);
 function initialiseRoom(isUsingPlugin) {
   let queryParams = new URL(location.href).searchParams;
   let defaultRoom = queryParams.get('room') || 'Ready';
+  if (DEBUG_MODE) {
+    defaultRoom += '__DEBUG';
+  }
 
   skylink.init(
     {
