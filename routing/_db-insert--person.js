@@ -37,6 +37,10 @@ const FIELDS = [
     type     : 'string',
   },
   {
+    name     : 'role',
+    type     : 'string',
+  },
+  {
     name     : 'thumb',
     type     : 'image',
   },

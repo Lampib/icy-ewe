@@ -69,4 +69,9 @@
   &__contact:hover &__delete-contact {
     opacity: 1;
   }
+
+  small {
+    font-size: 0.9em;
+    color: $gray-6;
+  }
 }
