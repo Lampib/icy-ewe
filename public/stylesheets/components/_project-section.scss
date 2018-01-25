@@ -17,12 +17,13 @@
     left: 0;
     padding: $g-2 $g-5;
     color: white;
-    background-color: rgba($gray-3, 0.7);
+    background-color: rgba(black, 0.5);
     border-top-right-radius: 4px;
     margin-top: 0;
   }
 
   &__image-wrapper {
+    display: block;
     position: relative;
     height: 0;
     flex-shrink: 0;
@@ -40,7 +41,6 @@
 
   &__links {
     display: flex;
-    justify-content: flex-end;
     margin-top: $g-2;
   }
 
@@ -62,20 +62,16 @@
   &__link:hover &__link-icon {
     transform: translateX(0.5em);
   }
-
-  &__project:nth-child(1) &__image-wrapper {
-    background-image: url('/assets/images/fjords.jpg');
-  }
-
-  &__project:nth-child(2) &__image-wrapper {
-    background-image: url('/assets/images/aafk.jpg');
-  }
 }
 
 @media (min-width: 800px) {
   .project-section {
     &__project {
       display: flex;
+    }
+
+    &__project:nth-child(2n) {
+      flex-direction: row-reverse;
     }
 
     &__image-wrapper {
@@ -86,10 +82,8 @@
     &__title {
       bottom: auto;
       top: 0;
-      left: auto;
-      right: 0;
       border-radius: 0;
-      border-top-left-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
 
     &__blurb {
@@ -102,7 +96,6 @@
 
 @supports (backdrop-filter: blur(2px)) {
   .project-section__title {
-    background-color: transparent;
-    backdrop-filter: blur(2px) brightness(0.6);
+    backdrop-filter: blur(2px);
   }
 }

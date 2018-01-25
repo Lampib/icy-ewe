@@ -2,6 +2,7 @@ let passport = require('./config/passport');
 
 let setTitle       = require('./routing/_set-title');
 let setCompanies   = require('./routing/_set-companies');
+let setProjects    = require('./routing/_set-projects');
 let setCountries   = require('./routing/_set-countries');
 let setPeople      = require('./routing/_set-people');
 let setUser        = require('./routing/_set-user');
@@ -31,6 +32,7 @@ function init(app) {
     setUser,
     setPeople,
     setCompanies,
+    setProjects,
     renderIndex,
     done);
 
@@ -84,4 +86,11 @@ function init(app) {
     insertCompany,
     redirectTo('/add-data'),
     done);
+
+  app.all(/^\/.*/, (req, res, next) => {
+    if (process.env.DEBUG) {
+      return next();
+    }
+    return res.redirect('/');
+  });
 }

@@ -31,40 +31,35 @@
 
       <h2 class="section-header" id="project-section">Projects</h2>
       <div class="project-section">
-        <div class="project-section__project">
-          <div class="project-section__image-wrapper">
-            <h3 class="project-section__title">Norwegian Fjords</h3>
-          </div>
+        {{#each projects}}
+          <div class="project-section__project">
+            <a class="project-section__image-wrapper"
+               style="background-image: url('{{ this.image }}')"
+               href="{{ this.homepage }}"
+               target="_blank">
+              <h3 class="project-section__title">{{ this.name }}</h3>
+            </a>
 
-          <div class="project-section__info">
-            <p class="project-section__blurb">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet pretium velit sit amet cursus. Pellentesque felis mauris, elementum id libero ac, euismod convallis massa. Aliquam erat volutpat. Praesent quis lorem in diam facilisis consequat vel in metus. Maecenas vitae dolor ut sem ultricies pulvinar eget a orci.
-            </p>
-            <p class="project-section__blurb">
-              Nunc nec sollicitudin diam, et finibus sem. Etiam pharetra augue in commodo condimentum. Vestibulum ac erat nec velit eleifend laoreet. In sed iaculis nibh.
-            </p>
-            <div class="project-section__links">
-              <a class="project-section__link">Contacts <i class="project-section__link-icon far fa-angle-right"></i></a>
-              <a class="project-section__link">Website <i class="project-section__link-icon far fa-angle-right"></i></a>
+            <div class="project-section__info">
+              {{#each this.description}}
+                <p class="project-section__blurb">
+                  {{ this }}
+                </p>
+              {{/each}}
+
+              <div class="project-section__links">
+                {{!
+                <a class="project-section__link">Contacts <i class="project-section__link-icon far fa-angle-right"></i></a>
+                }}
+                <a class="project-section__link"
+                   href="{{ this.homepage }}"
+                   target="_blank">
+                  Website <i class="project-section__link-icon far fa-angle-right"></i>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="project-section__project">
-          <div class="project-section__image-wrapper">
-            <h3 class="project-section__title">Aalesunds FK</h3>
-          </div>
-
-          <div class="project-section__info">
-            <p class="project-section__blurb">
-              Morbi placerat orci ut ligula euismod accumsan. Sed vestibulum massa eros, id lacinia ipsum placerat ut. Morbi volutpat tortor tellus, at sodales diam feugiat et. Praesent consectetur in diam eget molestie. Sed egestas ullamcorper lacus non ultricies. Ut interdum pellentesque tempus. Vivamus et pretium arcu. Quisque auctor lacinia tempus. Donec id ex risus. Fusce sodales bibendum nibh nec ultricies. Maecenas sed faucibus turpis. Curabitur bibendum ultrices iaculis.
-            </p>
-            <div class="project-section__links">
-              <a class="project-section__link">Contacts <i class="project-section__link-icon far fa-angle-right"></i></a>
-              <a class="project-section__link">Website <i class="project-section__link-icon far fa-angle-right"></i></a>
-            </div>
-          </div>
-        </div>
+        {{/each}}
       </div>
       <!-- END ==> project-section -->
 
