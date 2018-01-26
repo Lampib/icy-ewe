@@ -28,7 +28,10 @@
   }
 
   &__title {
-    display: inline;
+    width: calc(100% - #{ $g-4 });
+    max-width: g(147);
+    padding: 0 $g-3;
+    margin: 0 auto;
     line-height: g($main-header-line-height);
     color: $gray-3;
     font-family: Arvo;

@@ -64,7 +64,7 @@
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 800px), (min-aspect-ratio: 5/3) {
   .project-section {
     &__project {
       display: flex;

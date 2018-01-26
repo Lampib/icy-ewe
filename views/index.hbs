@@ -8,7 +8,7 @@
         rel="stylesheet"
         media="none" onload="media='all'">
   {{! update this and the file name }}
-  <link rel="stylesheet" href="/assets/stylesheets/preco.0.0.4.css">
+  <link rel="stylesheet" href="/assets/stylesheets/preco.0.0.5.css">
 </head>
 
 <body>
@@ -193,16 +193,18 @@
     </main>
 
     <footer class="app__footer">
-      <nav class="main-nav">
-        <a href="#project-section" class="main-nav__nav-item">Projects</a>
-        <a href="#contact-section" class="main-nav__nav-item">Contacts</a>
-        {{#if user.loggedIn}}
-          <a href="/icy-ewe" class="main-nav__nav-item">Open Chat</a>
-          <a href="/log-out" class="main-nav__nav-item">Log out</a>
-        {{else}}
-          <a href="/log-in" class="main-nav__nav-item">Log in</a>
-        {{/if}}
-      </nav>
+      <div class="main-nav">
+        <nav class="main-nav__nav-items">
+          <a href="#project-section" class="main-nav__nav-item">Projects</a>
+          <a href="#contact-section" class="main-nav__nav-item">Contacts</a>
+          {{#if user.loggedIn}}
+            <a href="/icy-ewe" class="main-nav__nav-item">Open Chat</a>
+            <a href="/log-out" class="main-nav__nav-item">Log out</a>
+          {{else}}
+            <a href="/log-in" class="main-nav__nav-item">Log in</a>
+          {{/if}}
+        </nav>
+      </div>
     </footer>
   </div>
 
