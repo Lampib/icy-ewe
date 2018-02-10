@@ -49,8 +49,11 @@
   }
 
   &--dark &__content {
-    color: $gray-8;
     background-color: $gray-2;
+  }
+
+  &--dark &__title {
+    color: $gray-6;
   }
 }
 

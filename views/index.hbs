@@ -31,34 +31,50 @@
 
       <h2 class="section-header" id="project-section">Projects</h2>
       <div class="project-section">
-        {{#each projects}}
-          <div class="project-section__project">
-            <a class="project-section__image-wrapper"
-               style="background-image: url('{{ this.image }}')"
-               href="{{ this.homepage }}"
-               target="_blank">
-              <h3 class="project-section__title">{{ this.name }}</h3>
-            </a>
-
-            <div class="project-section__info">
-              {{#each this.description}}
-                <p class="project-section__blurb">
-                  {{ this }}
-                </p>
-              {{/each}}
-
-              <div class="project-section__links">
-                {{!
-                <a class="project-section__link">Contacts <i class="project-section__link-icon far fa-angle-right"></i></a>
-                }}
-                <a class="project-section__link"
-                   href="{{ this.homepage }}"
-                   target="_blank">
-                  Website <i class="project-section__link-icon far fa-angle-right"></i>
+        {{#each companies}}
+          {{#if description}}
+            <div class="project-section__project">
+              {{#if website}}
+                <a class="project-section__image-wrapper"
+                  href="{{ website }}"
+                  target="_blank">
+                  <img class="project-section__image" src="{{ image }}">
+                  <h3 class="project-section__title">{{ name }}</h3>
                 </a>
+              {{else}}
+                <div class="project-section__image-wrapper">
+                  <img class="project-section__image" src="{{ image }}">
+                  <h3 class="project-section__title">{{ name }}</h3>
+                </div>
+              {{/if}}
+
+              <div class="project-section__info">
+                <div class="project-section__blurb markdown">
+                  {{md description}}
+                </div>
+
+                <div class="project-section__links">
+                  {{!
+                  <a class="project-section__link">Contacts <i class="project-section__link-icon far fa-angle-right"></i></a>
+                  }}
+                  {{#if website}}
+                    <a class="project-section__link"
+                      href="{{ website }}"
+                      target="_blank">
+                      Website <i class="project-section__link-icon far fa-angle-right"></i>
+                    </a>
+                  {{/if}}
+
+                  {{#if email}}
+                    <a class="project-section__link"
+                      href="mailto:{{ email }}">
+                      {{ email }} <i class="project-section__link-icon far fa-angle-right"></i>
+                    </a>
+                  {{/if}}
+                </div>
               </div>
             </div>
-          </div>
+          {{/if}}
         {{/each}}
       </div>
       <!-- END ==> project-section -->
@@ -68,34 +84,34 @@
 
       <div class="contact-section">
         <div class="contact-section__contact-list">
-          {{#each primaryPeople}}
+          {{#each displayPeople}}
             <div class="contact-section__contact">
               <div class="contact-section__contact-image-wrapper">
                 <img class="contact-section__contact-image"
-                    src="{{ this.thumb }}"
+                    src="{{ thumb }}"
                     alt=""
                     role="presentation">
               </div>
 
               <div class="contact-section__contact-details">
                 <p class="contact-section__contact-detail contact-section__contact-detail--name">
-                  {{ this.name }}{{#if this.isUser}} - You{{/if}}</p>
+                  {{ name }}{{#if isUser}} - You{{/if}}</p>
                 <p class="contact-section__contact-detail contact-section__contact-detail--role">
-                  {{#if this.role }}
-                    {{ this.role }} <small>at</small>
+                  {{#if role }}
+                    {{ role }} <small>at</small>
                   {{/if}}
-                  {{ this.company.name }}</p>
-                {{#if this.phone_1 }}
+                  {{ company.name }}</p>
+                {{#if phone_1 }}
                   <p class="contact-section__contact-detail contact-section__contact-detail--phone-1">
-                    {{ this.phone_1 }}</p>
+                    {{ phone_1 }}</p>
                 {{/if}}
-                {{#if this.phone_2 }}
+                {{#if phone_2 }}
                   <p class="contact-section__contact-detail contact-section__contact-detail--phone-2">
-                    {{ this.phone_2 }}</p>
+                    {{ phone_2 }}</p>
                 {{/if}}
                 <a class="contact-section__contact-detail contact-section__contact-detail--email"
-                  href="mailto:{{ this.email }}">
-                  {{ this.email }}</a>
+                  href="mailto:{{ email }}">
+                  {{ email }}</a>
               </div>
             </div>
           {{/each}}
@@ -111,7 +127,7 @@
               <div class="contact-section__contact">
                 <div class="contact-section__contact-image-wrapper">
                   <img class="contact-section__contact-image"
-                      src="{{ this.thumb }}"
+                      src="{{ thumb }}"
                       alt=""
                       role="presentation">
                 </div>
@@ -119,26 +135,26 @@
                 <div class="contact-section__contact-details">
                   {{#if ../user.isAdmin}}
                     <button class="contact-section__delete-contact"
-                            onclick="if(confirm('Are you sure you want to delete this person?')){location.href='/delete-person/{{ this.id }}'}">x</button>
+                            onclick="if(confirm('Are you sure you want to delete this person?')){location.href='/delete-person/{{ uuid }}'}">x</button>
                   {{/if}}
                   <p class="contact-section__contact-detail contact-section__contact-detail--name">
-                    {{ this.name }}{{#if this.isUser}} - You{{/if}}</p>
+                    {{ name }}{{#if isUser}} - You{{/if}}</p>
                   <p class="contact-section__contact-detail contact-section__contact-detail--role">
-                    {{#if this.role }}
-                      {{ this.role }} at
+                    {{#if role }}
+                      {{ role }} at
                     {{/if}}
-                    {{ this.company.name }}</p>
-                  {{#if this.phone_1 }}
+                    {{ company.name }}</p>
+                  {{#if phone_1 }}
                     <p class="contact-section__contact-detail contact-section__contact-detail--phone-1">
-                      {{ this.phone_1 }}</p>
+                      {{ phone_1 }}</p>
                   {{/if}}
-                  {{#if this.phone_2 }}
+                  {{#if phone_2 }}
                     <p class="contact-section__contact-detail contact-section__contact-detail--phone-2">
-                      {{ this.phone_2 }}</p>
+                      {{ phone_2 }}</p>
                   {{/if}}
                   <a class="contact-section__contact-detail contact-section__contact-detail--email"
-                    href="mailto:{{ this.email }}">
-                    {{ this.email }}</a>
+                    href="mailto:{{ email }}">
+                    {{ email }}</a>
                 </div>
               </div>
             {{/each}}
@@ -158,26 +174,26 @@
           {{#each primaryCompanies}}
             <div class="company-section__company">
               <h3 class="company-section__company-detail company-section__company-detail--name">
-                {{ this.name }}</h3>
+                {{ name }}</h3>
               <p class="company-section__company-detail company-section__company-detail--address">
-                {{ this.address_line_1 }}
-                {{#if this.address_line_2}}<br>{{ this.address_line_2 }}{{/if}}
-                {{#if this.address_line_3}}<br>{{ this.address_line_3 }}{{/if}}
-                {{#if this.address_line_4}}<br>{{ this.address_line_4 }}{{/if}}
-                {{#if this.city}}<br>{{ this.city }}{{/if}}
-                {{#if this.region}}<br>{{ this.region }}{{/if}}
-                {{#if this.postcode}}<br>{{ this.postcode }}{{/if}}
-                {{#if this.country}}<br>{{countryName this.country}}{{/if}}
+                {{ address_line_1 }}
+                {{#if address_line_2}}<br>{{ address_line_2 }}{{/if}}
+                {{#if address_line_3}}<br>{{ address_line_3 }}{{/if}}
+                {{#if address_line_4}}<br>{{ address_line_4 }}{{/if}}
+                {{#if city}}<br>{{ city }}{{/if}}
+                {{#if region}}<br>{{ region }}{{/if}}
+                {{#if postcode}}<br>{{ postcode }}{{/if}}
+                {{#if country}}<br>{{countryName country}}{{/if}}
               </p>
-              {{#if this.phone_1}}
+              {{#if phone_1}}
                 <p class="company-section__company-detail company-section__company-detail--phone">
-                  {{ this.phone_1 }}
-                  {{#if this.phone_2}}<br>{{ this.phone_2 }}{{/if}}
+                  {{ phone_1 }}
+                  {{#if phone_2}}<br>{{ phone_2 }}{{/if}}
                 </p>
               {{else}}
-                {{#if this.phone_2}}
+                {{#if phone_2}}
                   <p class="company-section__company-detail company-section__company-detail--phone">
-                    {{ this.phone_2 }}</p>
+                    {{ phone_2 }}</p>
                 {{/if}}
               {{/if}}
             </div>

@@ -1,25 +1,29 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('person', table => {
-    table.increments('id').primary();
-    table.boolean('primary')
+    table.increments();
+    table.timestamps(false, true);
+
+    table.boolean('display')
          .notNullable();
     table.boolean('admin')
+         .notNullable();
+    table.boolean('super_admin')
          .notNullable();
     table.string('password', pow(8));
     table.string('name', pow(8))
          .notNullable();
     table.string('email', pow(8))
+         .unique()
          .notNullable();
-    table.integer('company_id').unsigned();
-    table.string('phone_1', pow(8));
-    table.string('phone_2', pow(8));
+    table.string('role', pow(8));
     table.string('thumb', pow(8));
     table.string('person_notes', pow(8));
-    table.foreign('company_id')
-         .references('id')
-         .inTable('company');
-    table.timestamps(false, true);
-    table.unique('email');
+
+    table.string('uuid', pow(6))
+         .notNullable();
+
+    table.string('company_uuid', pow(6))
+         .notNullable();
   });
 };
 

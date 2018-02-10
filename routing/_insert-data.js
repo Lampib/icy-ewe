@@ -2,6 +2,7 @@ let sizeOf = require('image-size');
 let db     = require('../db');
 let path   = require('path');
 let bcrypt = require('bcrypt');
+let uuidv4 = require('uuid/v4');
 
 const POSITIVE_VALUES = [
   true, 'true', 'on', 'True', 'TRUE',
@@ -9,8 +10,10 @@ const POSITIVE_VALUES = [
 
 module.exports = insertData;
 
-async function insertData(tableName, fields, simpleData, files) {
-  let toInsert = {};
+function insertData(tableName, fields, simpleData = {}, files = {}) {
+  let toInsert     = {};
+  let UUID         = uuidv4();
+  let inserts      = [];
 
   let fieldPromises = fields
     .filter(field => {
@@ -26,6 +29,8 @@ async function insertData(tableName, fields, simpleData, files) {
     .map(field => {
       let value = simpleData[field.name];
       switch (field.type) {
+        case 'one2many':
+          return inserts.push(insertOne2Many(field, simpleData, files, tableName, UUID));
         case 'boolean':
           return insertBoolean(field, value, toInsert);
         case 'string':
@@ -37,9 +42,26 @@ async function insertData(tableName, fields, simpleData, files) {
       }
     });
 
-  return Promise.all(fieldPromises)
-    .then(() => db(tableName).insert(toInsert))
-    .catch(e => { console.log(e); });
+  inserts.push(
+    Promise.all(fieldPromises)
+      .then(() => addUUID(tableName, UUID))
+      .then(uuid => {
+        toInsert.uuid = uuid;
+        return db(tableName).insert(toInsert)
+      })
+      .then(() => console.log(`Inserted ${ UUID } into ${ tableName }.`))
+      .catch(err => { throw Error(err); })
+  );
+
+  return Promise.all(inserts);
+}
+
+function addUUID(tableName, UUID) {
+  return new Promise(async (resolve, reject) => {
+    await db('uuid').insert({ uuid : UUID, table : tableName })
+    .catch(err => { throw Error(err); });
+    resolve(UUID);
+  });
 }
 
 function isSimpleValueValid(providedValue, field) {
@@ -55,6 +77,42 @@ function isSimpleValueValid(providedValue, field) {
 
 function insertString(field, value, toInsert) {
   toInsert[field.name] = value;
+}
+
+function insertOne2Many(field, _simpleData, _files, parentName, parentUUID) {
+  let inserts = [];
+  let fields = field.fields.slice(0);
+  fields.push(
+    {
+      name : 'relation_type',
+      type : 'string',
+    },
+    {
+      name : 'relation_uuid',
+      type : 'string',
+    }
+  );
+  let simpleDataList = Object.keys(_simpleData)
+    // Limit the reduce to only items which have teh correct prefix
+    .filter(key => key.indexOf(`${ field.name }__`) === 0)
+    // Get an array of one2many inserts to make
+    .reduce((acc, key) => {
+      let index = +/\d+$/.exec(key);
+      if (!index) { return acc; }
+      index = index - 1;
+      acc[index] = acc[index] || {};
+      let newKey = /__(\D+)/.exec(key)[0].slice(2,-1);
+      acc[index][newKey] = _simpleData[key];
+      return acc;
+    }, []);
+
+  simpleDataList.forEach(simpleData => {
+    simpleData.relation_type = parentName;
+    simpleData.relation_uuid = parentUUID;
+    inserts.push(insertData(field.name, fields, simpleData/*, files*/));
+  });
+
+  return Promise.all(inserts);
 }
 
 function insertPassword(field, value, toInsert) {
@@ -84,21 +142,15 @@ function createImage(file, baseFolder, subFolder) {
   let fileName    = createFileName(file.mimetype);
   let filePath    = path.join(global.appRoot, 'public', 'images', baseFolder, subFolder, fileName);
   let movePromise = file.mv(filePath)
-                        .catch(e => console.log(`Image: "${ baseFolder }, ${ subFolder }" failed to move.`));
+                        .catch(err => console.log(`Image: "${ baseFolder }, ${ subFolder }" failed to move: ${ err }`));
   return {
     movePromise,
     imageSrc: `/assets/images/${ baseFolder }/${ subFolder }/${ fileName }`,
   };
 }
 
-function createFileName(mimetype, minLength = 80) {
-  let hash = '';
-  do {
-    hash += (+`${ Math.random() }`.replace(/\./g, '')).toString(36);
-    hash = hash.replace(/^\d+/, '');
-  } while (hash.length < minLength);
-
-  return `${ hash }.${ mimetype.split('/').pop() }`;
+function createFileName(mimetype) {
+  return `${ uuidv4() }.${ mimetype.split('/').pop() }`;
 }
 
 function simpleString(str) {

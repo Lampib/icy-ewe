@@ -1,12 +1,13 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('company', table => {
-    table.increments('id').primary();
-    table.boolean('primary')
+    table.increments();
+    table.timestamps(false, true);
+
+    table.boolean('display')
          .notNullable();
     table.string('name', pow(8))
          .notNullable();
-    table.string('phone_1', pow(8));
-    table.string('phone_2', pow(8));
+    table.string('website', pow(8));
     table.string('address_line_1', pow(8))
          .notNullable();
     table.string('address_line_2', pow(8));
@@ -20,7 +21,10 @@ exports.up = function(knex, Promise) {
          .notNullable();
     table.string('notes', pow(12));
     table.string('description', pow(12))
-    table.timestamps(false, true);
+    table.string('image', pow(8));
+
+    table.string('uuid', pow(6))
+         .notNullable();
   });
 };
 

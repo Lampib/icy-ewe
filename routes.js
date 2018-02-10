@@ -17,10 +17,7 @@ let insertCompany = require('./routing/_db-insert--company');
 let insertPerson  = require('./routing/_db-insert--person');
 let deletePerson  = require('./routing/_db-delete--person');
 
-let renderIndex    = require('./routing/_render--index');
-let renderChat     = require('./routing/_render--chat');
-let renderTestAdd  = require('./routing/_render--add-data');
-let renderLogIn    = require('./routing/_render--log-in');
+let renderTemplate = require('./routing/_render-template');
 
 module.exports = {
   init,
@@ -33,7 +30,7 @@ function init(app) {
     setPeople,
     setCompanies,
     setProjects,
-    renderIndex,
+    renderTemplate('index'),
     done);
 
   app.get('/log-out',
@@ -44,7 +41,7 @@ function init(app) {
   app.get('/log-in',
     setTitle('Log in'),
     setRedirectURL,
-    renderLogIn,
+    renderTemplate('log-in'),
     done);
 
   app.post('/log-in',
@@ -55,15 +52,15 @@ function init(app) {
   app.get('/icy-ewe',
     setTitle('I see you'),
     setUser,
-    renderChat,
+    renderTemplate('chat'),
     done);
 
   app.get('/add-data',
-    setTitle('Test add'),
+    setTitle('Add data'),
     setUser,
     setCountries,
     setCompanies,
-    renderTestAdd,
+    renderTemplate('add-data'),
     done);
 
   app.post('/add-person',
@@ -73,7 +70,7 @@ function init(app) {
     redirectTo('/add-data'),
     done);
 
-  app.get('/delete-person/:personid',
+  app.get('/delete-person/:personuuid',
     redirectTo('/', { force : true, blockNonAdmin : true }),
     setTitle('Know me'),
     deletePerson,

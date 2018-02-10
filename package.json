@@ -21,12 +21,14 @@
     "hbs": "~4.0.1",
     "image-size": "^0.6.2",
     "knex": "^0.14.2",
+    "marked": "^0.3.12",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
     "node-sass-middleware": "0.9.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.4.5",
-    "uglify-es": "^3.3.8"
+    "uglify-es": "^3.3.8",
+    "uuid": "^3.2.1"
   }
 }

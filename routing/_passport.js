@@ -6,11 +6,11 @@ module.exports = initPassport;
 
 function initPassport(passport) {
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        done(null, user.uuid);
     });
 
-    passport.deserializeUser((id, done) => {
-      db.select('*').from('person').where('id', 1)
+    passport.deserializeUser((uuid, done) => {
+      db.select('*').from('person').where('uuid', 1)
         .then(entries => {
           done(err, entries[0]);
         });

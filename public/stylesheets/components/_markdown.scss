@@ -1,0 +1,7 @@
+.markdown p {
+  @include t-body;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

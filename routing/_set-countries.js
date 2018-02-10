@@ -6,6 +6,7 @@ function setCountries(req, res, next) {
   let primaryCountries = [
     'SG',
     'NO',
+    'NL',
     'US',
     'GB',
   ];

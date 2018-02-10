@@ -12,7 +12,7 @@ const FIELDS = [
     required : true,
   },
   {
-    name     : 'company_id',
+    name     : 'company_uuid',
     type     : 'string',
     required : true,
   },
@@ -21,7 +21,7 @@ const FIELDS = [
     type     : 'password',
   },
   {
-    name     : 'primary',
+    name     : 'display',
     type     : 'boolean',
   },
   {
@@ -29,12 +29,18 @@ const FIELDS = [
     type     : 'boolean',
   },
   {
-    name     : 'phone_1',
-    type     : 'string',
-  },
-  {
-    name     : 'phone_2',
-    type     : 'string',
+    name     : 'phone_number',
+    type     : 'one2many',
+    fields : [
+      {
+        name : 'label',
+        type : 'string',
+      },
+      {
+        name : 'phone_number',
+        type : 'string',
+      },
+    ],
   },
   {
     name     : 'role',

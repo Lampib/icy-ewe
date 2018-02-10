@@ -12,7 +12,7 @@ const FIELDS = [
     required : true,
   },
   {
-    name     : 'primary',
+    name     : 'display',
     type     : 'boolean',
     required : true,
   },
@@ -47,11 +47,39 @@ const FIELDS = [
     type     : 'string',
   },
   {
-    name     : 'phone_1',
+    name     : 'phone_number',
+    type     : 'one2many',
+    fields : [
+      {
+        name : 'label',
+        type : 'string',
+      },
+      {
+        name : 'phone_number',
+        type : 'string',
+      },
+    ],
+  },
+  {
+    name     : 'email',
+    type     : 'one2many',
+    fields : [
+      {
+        name : 'label',
+        type : 'string',
+      },
+      {
+        name : 'email',
+        type : 'string',
+      },
+    ],
+  },
+  {
+    name     : 'website',
     type     : 'string',
   },
   {
-    name     : 'phone_2',
+    name     : 'email',
     type     : 'string',
   },
   {
@@ -61,6 +89,10 @@ const FIELDS = [
   {
     name     : 'description',
     type     : 'string',
+  },
+  {
+    name     : 'image',
+    type     : 'image',
   },
 ];
 

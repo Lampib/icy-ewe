@@ -35,13 +35,21 @@
               <h3>You need to add a company before you can add people.</h3>
             {{else}}
               <div class="add-form__field">
-                <label for="input__person_primary">Primary*</label>
+                <label for="input__person_display">Display</label>
                 <div>
-                  <input id="input__person_primary" type="checkbox" name="primary">
+                  <input id="input__person_display" type="checkbox" name="display">
                 </div>
               </div>
+
               <div class="add-form__field">
-                <label for="input__person_admin">Admin*</label>
+                <label for="input__person_admin">Admin</label>
+                <div>
+                  <input id="input__person_admin" type="checkbox" name="admin">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__person_admin">Super admin</label>
                 <div>
                   <input id="input__person_admin" type="checkbox" name="admin">
                 </div>
@@ -97,11 +105,11 @@
               </div>
 
               <div class="add-form__field">
-                <label for="input__person_id">Company*</label>
-                <select id="input__person_id" name="company_id" required>
+                <label for="input__person_company_uuid">Company*</label>
+                <select id="input__person_company_uuid" name="company_uuid" required>
                   <option label="-- Choose --" selected disabled></option>
                   {{#each companies}}
-                    <option label="{{ this.name }}" value="{{ this.id }}"></option>
+                    <option label="{{ this.name }}" value="{{ this.uuid }}"></option>
                   {{/each}}
                 </select>
               </div>
@@ -118,9 +126,9 @@
                 encType="multipart/form-data">
 
             <div class="add-form__field">
-              <label for="input__primary">Primary*</label>
+              <label for="input__display">Display*</label>
               <div>
-                <input id="input__primary" type="checkbox" name="primary" placeholder="">
+                <input id="input__display" type="checkbox" name="display" placeholder="">
               </div>
             </div>
 
@@ -196,17 +204,35 @@
               </div>
             </div>
 
+            <fieldset class="add-form__fieldset">
+              <h3 class="add-form__fieldset-title">Phone number</h3>
+
+              <div class="add-form__field">
+                <label for="input__phone_label_1">Label</label>
+                <div>
+                  <input id="input__phone_label_1" type="text" name="phone_number__label_1" placeholder="Mobile">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__phone_number_1">Number</label>
+                <div>
+                  <input id="input__phone_number_1" type="text" name="phone_number__phone_number_1" placeholder="+65 (0) 23456789">
+                </div>
+              </div>
+            </fieldset>
+
             <div class="add-form__field">
-              <label for="input__phone_1">Phone no.</label>
+              <label for="input__email">Email</label>
               <div>
-                <input id="input__phone_1" type="text" name="phone_1" placeholder="+65 (0) 23456789">
+                <input id="input__email" type="text" name="email" placeholder="contact@preco.io">
               </div>
             </div>
 
             <div class="add-form__field">
-              <label for="input__phone_2">Secondary phone</label>
+              <label for="input__website">Website</label>
               <div>
-                <input id="input__phone_2" type="text" name="phone_2" placeholder="+65 (0) 87654321">
+                <input id="input__website" type="text" name="website" placeholder="https://preco.io/">
               </div>
             </div>
 
@@ -221,6 +247,13 @@
               <label for="input__notes">Internal notes</label>
               <div>
                 <textarea id="input__notes" type="text" name="notes"></textarea>
+              </div>
+            </div>
+
+            <div class="add-form__field">
+              <label for="input__person_image">Image</label>
+              <div>
+                <input id="input__person_image" type="file" name="image">
               </div>
             </div>
 

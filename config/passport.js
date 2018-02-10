@@ -4,11 +4,11 @@ let db            = require('../db');
 let bcrypt        = require('bcrypt');
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user.uuid);
 });
 
-passport.deserializeUser((id, done) => {
-  db.select('*').from('person').where('id', id)
+passport.deserializeUser((uuid, done) => {
+  db.select('*').from('person').where('uuid', uuid)
     .then(entries => {
       done(null, entries[0]);
     });

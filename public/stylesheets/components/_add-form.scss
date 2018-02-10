@@ -5,6 +5,15 @@
   border-radius: 4px;
   margin: $g-5;
 
+  &__fieldset {
+    margin: $g-4 $g-2;
+    margin-right: 0;
+  }
+
+  &__fieldset-title {
+    @include t-subheading(0);
+  }
+
   &__field {
     display: flex;
     align-items: center;
@@ -22,8 +31,8 @@
     button,
     textarea,
     select {
-      padding: 0 $g-2;
-      line-height: $g-4;
+      padding: ($g-1 / 2) $g-2;
+      line-height: $g-3;
       background: white;
       border-radius: 4px;
       width: 100%;
