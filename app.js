@@ -9,7 +9,7 @@ let sassMiddleware = require('node-sass-middleware');
 let babelify       = require('express-babelify-middleware');
 let fileUpload     = require('express-fileupload');
 let fs             = require('fs');
-var uglifyJS       = require("uglify-es");
+let uglifyJS       = require("uglify-es");
 
 let app      = express('./config/app');
 let hbs      = require('./config/hbs');
@@ -48,13 +48,6 @@ app.use('/assets/javascripts/_*.js', (req, res, next) => {
   res.locals.jsPath = `public/javascripts/_${ req.originalUrl.split('/_')[1] }`;
   next();
 }, minifyJS);
-function minifyJS(req, res, next) {
-  fs.readFile(path.join(__dirname, res.locals.jsPath), 'utf8', (err, str) => {
-    res.setHeader('Content-Type', 'text/javascript');
-    res.status(200)
-       .send(uglifyJS.minify(str).code);
-  });
-}
 
 app.use('/assets/javascripts/index.*.js', babelify('public/javascripts/index.js', {debug : false}, {minified : true}));
 app.use('/assets', express.static(path.join(__dirname, 'public')));
@@ -95,3 +88,11 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
+function minifyJS(req, res, next) {
+  fs.readFile(path.join(__dirname, res.locals.jsPath), 'utf8', (err, str) => {
+    res.setHeader('Content-Type', 'text/javascript');
+    res.status(200)
+       .send(uglifyJS.minify(str).code);
+  });
+}
