@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.boolean('admin')
          .notNullable();
     table.boolean('super_admin')
+         .defaultTo(false)
          .notNullable();
     table.string('password', pow(8));
     table.string('name', pow(8))

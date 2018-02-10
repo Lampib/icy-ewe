@@ -1,5 +1,7 @@
 let express        = require('express');
+let mysql          = require("mysql");
 let expressSession = require('express-session');
+let MySQLStore     = require('express-mysql-session')(expressSession);
 let path           = require('path');
 let favicon        = require('serve-favicon');
 let logger         = require('morgan');
@@ -37,6 +39,16 @@ app.use(sassMiddleware({
   outputStyle    : 'compressed',
 }));
 
+let options = {
+  host     : process.env.DB_HOST,
+  database : process.env.DB_NAME,
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASSWORD,
+  port     : 3306,
+};
+let connection = mysql.createConnection(options);
+let sessionStore = new MySQLStore({}, connection);
+
 // JavaScript bundle
 app.use('/assets/javascripts/icy-ewe-bundle.*.js', babelify('public/javascripts/icy-ewe.js', {debug : false}, {presets : ["env"], minified : true}));
 // Javascript modules
@@ -55,6 +67,7 @@ app.use(expressSession({
   secret            : 'I h@ve only the bester@test secrets in this y@rd!',
   resave            : true,
   saveUninitialized : true,
+  store             : sessionStore,
 }));
 app.use(passport.initialize());
 app.use(passport.session());

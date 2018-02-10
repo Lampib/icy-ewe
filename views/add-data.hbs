@@ -26,14 +26,29 @@
     <main class="app__body">
       {{#if user.isAdmin}}
         <div style="display: flex; flex-wrap: wrap;justify-content: center;align-items: flex-start;">
-          <form class="add-form add-form--person"
-                action="/add-person"
-                method="post"
-                encType="multipart/form-data">
+          <div>
+            <form class="add-form add-form--person"
+                  action="/csv-import-people"
+                  method="post"
+                  encType="multipart/form-data">
 
-            {{#unless companies.length}}
-              <h3>You need to add a company before you can add people.</h3>
-            {{else}}
+              <div class="add-form__field">
+                <label for="input__csv">CSV</label>
+                <div>
+                  <input id="input__csv" type="file" name="csv">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <button>Add employees</button>
+              </div>
+            </form>
+
+            <form class="add-form add-form--person"
+                  action="/add-person"
+                  method="post"
+                  encType="multipart/form-data">
+
               <div class="add-form__field">
                 <label for="input__person_display">Display</label>
                 <div>
@@ -117,8 +132,8 @@
               <div class="add-form__field">
                 <button>Add employee</button>
               </div>
-            {{/unless}}
-          </form>
+            </form>
+          </div>
 
           <form class="add-form add-form--company"
                 action="/add-company"

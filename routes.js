@@ -13,9 +13,10 @@ let done           = require('./routing/_close-connection');
 
 let addJsonHeaders = require('./routing/_add-headers--json');
 
-let insertCompany = require('./routing/_db-insert--company');
-let insertPerson  = require('./routing/_db-insert--person');
-let deletePerson  = require('./routing/_db-delete--person');
+let insertCompany   = require('./routing/_db-insert--company');
+let insertPerson    = require('./routing/_db-insert--person');
+let csvImportPeople = require('./routing/_csv-import--person');
+let deletePerson    = require('./routing/_db-delete--person');
 
 let renderTemplate = require('./routing/_render-template');
 
@@ -65,8 +66,13 @@ function init(app) {
 
   app.post('/add-person',
     redirectTo('/', { force : true, blockNonAdmin : true }),
-    setTitle('Know me'),
     insertPerson,
+    redirectTo('/add-data'),
+    done);
+
+  app.post('/csv-import-people',
+    redirectTo('/', { force : true, blockNonAdmin : true }),
+    csvImportPeople,
     redirectTo('/add-data'),
     done);
 
@@ -79,7 +85,6 @@ function init(app) {
 
   app.post('/add-company',
     redirectTo('/', { force : true, blockNonAdmin : true }),
-    setTitle('Know me'),
     insertCompany,
     redirectTo('/add-data'),
     done);

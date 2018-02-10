@@ -4,13 +4,14 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.timestamps(false, true);
 
-    table.string('label', pow(8));
-    table.string('relation_type', pow(5));
-    table.string('phone_number', pow(5));
-
+    table.string('label', pow(8))
+         .notNullable();
+    table.string('relation_type', pow(5))
+         .notNullable();
+    table.string('phone_number', pow(5))
+         .notNullable();
     table.string('uuid', pow(6))
          .notNullable();
-
     table.string('relation_uuid', pow(6))
          .notNullable();
   });
