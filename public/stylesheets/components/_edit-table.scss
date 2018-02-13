@@ -1,0 +1,28 @@
+.edit-table {
+  display: none;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+  }
+
+  th,
+  td {
+    position: relative;
+  }
+
+  th {
+    padding: 10px 5px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  td {
+    text-align: center;
+
+    input {
+      padding: 0 5px;
+      line-height: 32px;
+    }
+  }
+}

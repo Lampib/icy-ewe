@@ -1,0 +1,248 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" value="{{this.viewport}}" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ title }}</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Open+Sans:400,700"
+        rel="stylesheet"
+        media="none" onload="media='all'">
+  {{! update this and the file name }}
+  <link rel="stylesheet" href="/assets/stylesheets/add-forms.0.0.4.css">
+</head>
+
+<body>
+  <div class="app">
+    <header class="app__header">
+      <header class="main-header main-header--static main-header--dark">
+        <div class="main-header__wrapper">
+          <div class="main-header__content">
+            <h1 class="main-header__title">Preco</h1>
+          </div>
+        </div>
+      </header>
+    </header>
+
+    <main class="app__body">
+      {{#if user.isAdmin}}
+        <form class="add-form add-form--person">
+          <div class="edit-table">
+            <noscript>
+              <h1>
+                Sorry, you need JavaScript to use this page.
+              </h1>
+            </noscript>
+
+            <table>
+              <tr>
+                <th>
+                  Display
+                </th>
+
+                {{#if user.isSuperAdmin}}
+                  <th>
+                    Admin
+                  </th>
+
+                  <th>
+                    Super admin
+                  </th>
+                {{/if}}
+
+                <th>
+                  Name*
+                </th>
+
+                <th>
+                  Email*
+                </th>
+
+                <th>
+                  Phone 1 Label
+                </th>
+                <th>
+                  Number
+                </th>
+
+                <th>
+                  Phone 2 Label
+                </th>
+                <th>
+                  Number
+                </th>
+
+                <th>
+                  Role
+                </th>
+
+                {{#if user.isSuperAdmin}}
+                  <th>
+                    Company*
+                  </th>
+                {{/if}}
+              </tr>
+
+              {{#each people}}
+                {{#if this.canEdit}}
+                  <tr>
+                    <td>
+                      <input id="input__person_display" type="checkbox" name="display" value="{{this.display}}">
+                      <input id="input__person_uuid" type="hidden" name="uuid" value="{{this.uuid}}" disabled required>
+                    </td>
+
+                    <td>
+                      <input id="input__person_admin" type="checkbox" name="admin" value="{{this.admin}}">
+                    </td>
+
+                    {{#if ../user.isSuperAdmin}}
+                      <td>
+                        <input id="input__person_super_admin" type="checkbox" name="super_admin" value="{{this.super_admin}}">
+                      </td>
+                    {{/if}}
+
+                    <td>
+                      <input id="input__person_name" type="text" name="name" value="{{this.name}}" placeholder="Joe Bloggs" required>
+                    </td>
+
+                    <td>
+                      <input id="input__person_email" type="email" name="email" value="{{this.email}}" placeholder="joe@bloggs.com" required>
+                    </td>
+
+                    <td>
+                      <input id="input__person_phone" name="phone_number__label_1" value="{{this.phoneNumbers.1.label}}" placeholder="Mobile">
+                    </td>
+
+                    <td>
+                      <input id="input__person_phone" type="tel" name="phone_number__phone_number_1" value="{{this.phoneNumbers.1.phone_number}}" placeholder="+65 (0) 12345678">
+                    </td>
+
+                    <td>
+                      <input id="input__person_phone" name="phone_number__label_2" value="{{this.phoneNumbers.2.label}}" placeholder="Office">
+                    </td>
+
+                    <td>
+                      <input id="input__person_phone" type="tel" name="phone_number__phone_number_2" value="{{this.phoneNumbers.2.phone_number}}" placeholder="+65 (0) 12345678">
+                    </td>
+
+                    <td>
+                      <input id="input__person_role" type="tel" name="role_2" value="{{this.role_2}}" placeholder="CEO">
+                    </td>
+
+                    <td>
+                      <select id="input__person_company_uuid" name="company_uuid" value="{{this.company_uuid}}" required>
+                        <option label="{{ this.company.name }}" value="{{ this.company_uuid }}" selected disabled></option>
+                        {{#each ../companies}}
+                          <option label="{{ this.name }}" value="{{ this.uuid }}"></option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </tr>
+                {{/if}}
+              {{/each}}
+            </table>
+          </div>
+
+          <button>Submit edits</button>
+        </form>
+
+        <script>
+          activateFields();
+          document.querySelector('.edit-table').style.display = 'block';
+          document.querySelector('.app__body button').onclick = function(e) {
+            e.preventDefault && e.preventDefault();
+            submitForm();
+            return false;
+          };
+
+          function activateFields() {
+            var rows = document.querySelectorAll('.edit-table tr');
+            var row,
+                input,
+                i,
+                j;
+
+            for (i = 0; i < rows.length; i += 1) {
+              row = rows[i];
+              inputs = row.querySelectorAll('input,select');
+              for (j = 0; j < inputs.length; j += 1) {
+                input = inputs[j];
+                input.onchange = buildSetClassToActive(row);;
+              }
+            }
+          }
+
+          function buildSetClassToActive(row) {
+            return function() {
+              row.className = 'active';
+            }
+          }
+
+          function submitForm() {
+            var rows = document.querySelectorAll('.edit-table tr.active');
+            var people = [];
+
+            var row,
+                input,
+                i,
+                j,
+                person,
+                inputs;
+
+            for (i = 0; i < rows.length; i += 1) {
+              person = {};
+              row = rows[i];
+              inputs = row.querySelectorAll('input,select');
+              for (j = 0; j < inputs.length; j += 1) {
+                input = inputs[j];
+                if (input.value) {
+                  person[input.name] = input.value;
+                }
+              }
+              if (person.uuid) {
+                people.push(person);
+              }
+            }
+
+            sendForm(people);
+          }
+
+          function sendForm(people) {
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener('load', reqListener);
+            oReq.open('PATCH', '/edit-users', true);
+            oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            oReq.send('users=' + JSON.stringify(people));
+          }
+
+          function reqListener() {
+            location = location;
+          }
+        </script>
+      {{else if user.loggedIn}}
+        <h1>You require admin privileges</h1>
+        <p>Sorry, you don't seem to have been given privileges to perform this action.</p>
+        <p>Please try one of the following:</p>
+        <ul>
+          <li><a href="/log-out">log out</a> then log in as admin request access</li>
+          <li>request admin privileges</li>
+          <li>request an admin to perform these actions for you</li>
+        </ul>
+      {{else}}
+        <form action="/log-in" method="post">
+          <label for="email_input">email</label>
+          <input id="email_input" type="email" name="email" value="{{this.email}}">
+
+          <br>
+
+          <label for="password_input">password</label>
+          <input id="password_input" type="password" name="password" value="{{this.password}}">
+
+          <br>
+
+          <button>Log in</button>
+          <input type="hidden" name="redirecturl" value="{{this.redirecturl}}" value="/add-data">
+        </form>
+      {{/if}}
+    </main>
+  </div>
+</body>

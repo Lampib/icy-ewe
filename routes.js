@@ -15,6 +15,7 @@ let addJsonHeaders = require('./routing/_add-headers--json');
 
 let insertCompany   = require('./routing/_db-insert--company');
 let insertPerson    = require('./routing/_db-insert--person');
+let updatePeople    = require('./routing/_db-update--person');
 let csvImportPeople = require('./routing/_csv-import--person');
 let deletePerson    = require('./routing/_db-delete--person');
 
@@ -32,6 +33,21 @@ function init(app) {
     setCompanies,
     setProjects,
     renderTemplate('index'),
+    done);
+
+  app.get('/edit-users',
+    setTitle(''),
+    setUser,
+    setPeople,
+    setCompanies,
+    setProjects,
+    renderTemplate('edit-users'),
+    done);
+
+  app.patch('/edit-users',
+    redirectTo('/not-done', { force : true, blockNonAdmin : true }),
+    updatePeople,
+    renderTemplate('done'),
     done);
 
   app.get('/log-out',
@@ -76,11 +92,10 @@ function init(app) {
     redirectTo('/add-data'),
     done);
 
-  app.get('/delete-person/:personuuid',
-    redirectTo('/', { force : true, blockNonAdmin : true }),
-    setTitle('Know me'),
+  app.delete('/delete-person',
+    redirectTo('/not-done', { force : true, blockNonAdmin : true }),
     deletePerson,
-    redirectTo('/'),
+    renderTemplate('done'),
     done);
 
   app.post('/add-company',

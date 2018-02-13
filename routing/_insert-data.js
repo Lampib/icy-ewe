@@ -11,7 +11,7 @@ const POSITIVE_VALUES = [
 module.exports = insertData;
 
 function insertData(tableName, fields, simpleData = {}, files = {}) {
-  let toInsert     = {};
+  let formattedFields     = {};
   let UUID         = uuidv4();
   let inserts      = [];
 
@@ -32,28 +32,42 @@ function insertData(tableName, fields, simpleData = {}, files = {}) {
         case 'one2many':
           return inserts.push(insertOne2Many(field, simpleData, files, tableName, UUID));
         case 'boolean':
-          return insertBoolean(field, value, toInsert);
+          return insertBoolean(field, value, formattedFields);
         case 'string':
-          return insertString(field, value, toInsert);
+          return insertString(field, value, formattedFields);
         case 'password':
-          return insertPassword(field, value, toInsert);
+          return insertPassword(field, value, formattedFields);
         case 'image':
-          return insertImage(field, files, toInsert, tableName);
+          return insertImage(field, files, formattedFields, tableName);
       }
     });
 
-  inserts.push(
-    Promise.all(fieldPromises)
-      .then(() => addUUID(tableName, UUID))
+  if (simpleData.uuid) {
+    inserts.push(
+      Promise.all(fieldPromises)
       .then(uuid => {
-        toInsert.uuid = uuid;
-        return db(tableName).insert(toInsert)
+        return db(tableName).where('uuid', simpleData.uuid).update(formattedFields);
+      })
+      .then(() => console.log(`Updated ${ UUID } in ${ tableName }.`))
+      .catch(err => { throw Error(err); })
+    );
+  } else {
+    inserts.push(
+      Promise.all(fieldPromises)
+      .then(() => {
+        return addUUID(tableName, UUID)
+      })
+      .then(uuid => {
+        formattedFields.uuid = uuid;
+        return db(tableName).insert(formattedFields);
       })
       .then(() => console.log(`Inserted ${ UUID } into ${ tableName }.`))
       .catch(err => { throw Error(err); })
-  );
+    );
+  }
 
-  return Promise.all(inserts);
+  return Promise.all(inserts)
+  .catch(err => console.log(err));
 }
 
 function addUUID(tableName, UUID) {
@@ -75,8 +89,8 @@ function isSimpleValueValid(providedValue, field) {
   return true;
 }
 
-function insertString(field, value, toInsert) {
-  toInsert[field.name] = value;
+function insertString(field, value, formattedFields) {
+  formattedFields[field.name] = value;
 }
 
 function insertOne2Many(field, _simpleData, _files, parentName, parentUUID) {
@@ -115,27 +129,27 @@ function insertOne2Many(field, _simpleData, _files, parentName, parentUUID) {
   return Promise.all(inserts);
 }
 
-function insertPassword(field, value, toInsert) {
+function insertPassword(field, value, formattedFields) {
   return bcrypt.hash(value, 11)
     .then(hash => {
-      toInsert[field.name] = hash;
+      formattedFields[field.name] = hash;
     });
 }
 
-function insertBoolean(field, value, toInsert) {
+function insertBoolean(field, value, formattedFields) {
   if (POSITIVE_VALUES.indexOf(value) > -1) {
-    toInsert[field.name] = true;
+    formattedFields[field.name] = true;
   } else {
-    toInsert[field.name] = false;
+    formattedFields[field.name] = false;
   }
 }
 
-function insertImage(field, files, toInsert, tableName) {
+function insertImage(field, files, formattedFields, tableName) {
   let file = files && files[field.name];
 
   if (!file) { return null; }
 
-  toInsert[field.name] = createImage(file, tableName, simpleString(field.name)).imageSrc;
+  formattedFields[field.name] = createImage(file, tableName, simpleString(field.name)).imageSrc;
 }
 
 function createImage(file, baseFolder, subFolder) {
