@@ -1,6 +1,9 @@
 # Preco
 
 ## Installation
+First copy `example.env` to `.env` and modify the relevant details.
+
+Then:
 ```shell
 # Install dependencies
 yarn;
@@ -12,15 +15,9 @@ yarn run migrate;
 knex seed:run;
 ```
 
-Then copy `example.env` to `.env` and modify the relevant details.
-
 ## Running
 ```shell
-# With debug
-DEBUG=preco:* yarn run start;
-
-# Withough debug
-yarn run start;
+yarn run start
 ```
 
 ## Renew SSL
