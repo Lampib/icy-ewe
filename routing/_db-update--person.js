@@ -5,10 +5,7 @@ module.exports = addPerson;
 
 
 async function addPerson(req, res, next) {
-  console.log('Oh hai there!');
-  console.log(req.body.users);
-  await Promise.all(JSON.parse(req.body.users).map(person => {
-    console.log(person);
+  await Promise.all(JSON.parse(req.body.people).map(person => {
     return insertData('person', FIELDS, person, {})
   }));
   next();

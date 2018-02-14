@@ -3,16 +3,20 @@ let db = require('../db');
 module.exports = deletePerson;
 
 async function deletePerson(req, res, next) {
-  let body = req.body;
+  let peopleIDs = req.body && req.body.people
+    ? JSON.parse(req.body.people)
+    : [];
 
-  if (body.uuid) {
-    await db('person').where('uuid', (body.uuid)).del()
-    .catch(e => { console.log(e); });
-    await db('uuid').where('uuid', (body.uuid)).del()
-    .catch(e => { console.log(e); });
-    let phoneNumberCount = await db('phone_number').where('relation_uuid', (body.uuid)).del()
-    .catch(e => { console.log(e); });
-  }
+  await Promise.all(peopleIDs.map(uuid => {
+    return Promise.all([
+      db('person').where('uuid', (uuid)).del()
+      .catch(err => { console.log(err); }),
+      db('uuid').where('uuid', (uuid)).del()
+      .catch(err => { console.log(err); }),
+      db('phone_number').where('relation_uuid', (uuid)).del()
+      .catch(err => { console.log(err); }),
+    ]);
+  }));
 
   next();
 }

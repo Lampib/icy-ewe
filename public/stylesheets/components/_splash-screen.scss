@@ -4,6 +4,16 @@
   height: 100%;
   background: 50% 50% url("/assets/images/crates.svg");
   background-size: cover;
+  overflow: hidden;
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &__overlay {
     display: flex;
@@ -34,5 +44,10 @@
     border-top: 4px solid white;
     padding: 0 $g-4;
     filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
+  }
+
+  .preco-logo .p-l--red,
+  .preco-logo .p-l--grey {
+    fill: white;
   }
 }

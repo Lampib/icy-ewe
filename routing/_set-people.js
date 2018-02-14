@@ -9,7 +9,7 @@ function setPeople(req, res, next) {
     .leftJoin('company', 'person.company_uuid', 'company.uuid')
     .options({ nestTables : true })
     .then(async (peopleRaw) => {
-      let phoneNumbers = await db.select('phone_number', 'label', 'relation_uuid').from('phone_number')
+      let phoneNumbers = await db.select('phone_number', 'label', 'relation_uuid', 'uuid').from('phone_number')
         .where(function() {
           peopleRaw.forEach(person => {
             this.orWhere('relation_uuid', person.person.uuid);

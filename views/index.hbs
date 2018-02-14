@@ -15,7 +15,10 @@
   <header class="main-header">
     <div class="main-header__wrapper">
       <div class="main-header__content">
-        <h1 class="main-header__title">Preco</h1>
+        <h1 class="main-header__title">
+          {{> preco_logo}}
+          Preco
+        </h1>
       </div>
     </div>
   </header>
@@ -23,13 +26,200 @@
   <div class="app">
     <main class="app__body">
       <div class="splash-screen">
+        <video class="splash-screen__image"
+               src="/assets/images/shipping.mp4"
+               poster="/assets/images/shipping.jpg"
+               autoplay loop></video>
         <div class="splash-screen__overlay">
-          <h1 class="splash-screen__title">Preco{{#if debug}} - DEBUG{{/if}}</h1>
+          <h1 class="splash-screen__title">
+            {{> preco_logo}}
+            Preco
+          </h1>
           <p class="splash-screen__strap-line">Every box counts</p>
         </div>
       </div>
 
+      <h2 class="section-header">
+        Farm, Grow, Live
+      </h2>
+
+      <div class="project-section">
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="http://www.euronordic.nl/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/vinama.jpg">
+            <h3 class="project-section__title">Lamptib</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                Our up-and-coming project to help feed the mouth of millions.
+              </p>
+              <p class="project-section__blurb">
+                By growing animals in boxes and providing full transport for them we can yadda yadda I need more copy for this.
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="http://www.euronordic.nl/" target="_blank">
+                See the slideshow <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
       <h2 class="section-header" id="project-section">Projects</h2>
+
+      <!-- Temporarily hard-coded -->
+      <div class="project-section">
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="http://www.euronordic.nl/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/euronordic.jpg">
+            <h3 class="project-section__title">EuroNordic</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                Our flexible, trained and experienced professionals know the markets they are operating in. With all logistics disciplines in one organization, we are able to control your entire logistics chain. We are your partner for transports to Norway, agencies, forwarding, chartering, warehousing and more!
+              </p>
+              <p class="project-section__blurb">
+                Our organization has a strong focus on safety, continuous improvement, proactive approach and optimal communication. Next to that, you should be able to rely on and trust your logistics partner. That is exactly why more and more companies have chosen Euro Nordic as their logistics service provider. Since 1999 we have been delivering exactly what we promised: the best direction for logistics!
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="http://www.euronordic.nl/" target="_blank">
+                Website <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="http://www.onego.nl/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/onego.jpg">
+            <h3 class="project-section__title">Onego</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                Our principal activity is the chartering and operation of a cross-Atlantic fleet carrying cargoes for various prestigious clients and major world industries. Having direct contact with many industries and ship owners, our company carries extensive knowledge of the shipping market across international boundaries.
+              </p>
+              <p class="project-section__blurb">
+                Our ability to respond quickly and effectively in a spot market due to the variety of tonnage in the service areas, as well as an extensive contractual portfolio, put us a step ahead of the competition. Our professionalism and experience, coupled with the utmost care and a tailor-made approach to each customer, have ensured many successful voyages for our clients.
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="http://www.onego.nl/" target="_blank">
+                Website <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="https://ncl.no/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/northsea-container-line.jpg">
+            <h3 class="project-section__title">NorthSea Container Line</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                We transport your cargo to and from your required destination within Europe. NCL is a complete logistics provider that operates vessels covering most of the Norwegian West-, Mid- and North-coast and central European hubs Hamburg, Bremerhaven and Rotterdam. We combine sea and land based transportation to secure efficient and cost effective transport door2door.  At NorthSea Container Line, we deliver great services accompanied by a competitive price. Our returning customers and partners enjoy a particularly fast response time and tailored solutions to accompany individual transport needs.
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="https://ncl.no/" target="_blank">
+                Website <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="http://thoresenvinama.com/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/vinama.jpg">
+            <h3 class="project-section__title">Vinama</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                We are a shipping-trading joint venture company working in Vietnam since 1993. Our main foreign shareholders are Thoresen Thai Agencies Bangkok, Elkem Chartering Oslo and Maritime 24 Singapore with local partner Vinama Agencies.
+              </p>
+              <p class="project-section__blurb">
+                We have concentrated on project cargoes, crude oil import/export, and agricultural products and we are today one of the largest agency companies in Southern Vietnam with yearly approx. 600 vessel calls. In addition to agency and husbandry services we also offer a full service including crane drivers/lashing/cargo supervision for our principal’s vessels.
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="http://thoresenvinama.com/" target="_blank">
+                Website <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="https://www.dynafyr.no/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/dyna-fyr.jpg">
+            <h3 class="project-section__title">Dyna Fyr</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                Dyna Lighthouse is a unique venue located in the middle of the inner Oslo fjord. The lighthouse offers an outstanding dining experience and hosts events for up to 40 people.
+              </p>
+              <p class="project-section__blurb">
+                The boat trip to the lighthouse takes around 25 minutes from the "Kiss &amp; Sail" pier at Tjuvholmen. Our cuisine is based on the best from the ocean and use the best, in season materials.
+              </p>
+              <p class="project-section__blurb">
+                This is to an intimate and distinctive experience: one of Oslo’s most spectacular landmarks.
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="https://www.dynafyr.no/" target="_blank">
+                Website <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="https://www.recgroup.com/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/rec-group.jpg">
+            <h3 class="project-section__title">REC Group</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                At a time where more than one billion people still don’t have access to electricity and the repercussions of climate change are already being experienced, now is the time to go solar.
+              </p>
+              <p class="project-section__blurb">
+                REC’s combination of product quality, company reliability, and commitment to sustainability makes us the ideal brand for your solar investment, whether residential, commercial, or utility scale.
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="https://www.recgroup.com/" target="_blank">
+                Website <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="project-section__project">
+          <a class="project-section__image-wrapper" href="https://www.elkem.com/" target="_blank">
+            <img class="project-section__image" src="/assets/images/company-temp/elkem.jpg">
+            <h3 class="project-section__title">Elkem</h3>
+          </a>
+
+          <div class="project-section__info">
+              <p class="project-section__blurb">
+                Elkem’s core expertise includes knowledge of controlling processes that involve very high temperatures and accurately determining the chemical content of materials so that they precisely match customer needs. Additionally, Elkem is a world leader when it comes to the production of carbonaceous materials, which is crucial when silicon is to be extracted from quartz. Elkem’s processes are energy intensive and efficient operations require a continuous focus on energy efficiency.
+              </p>
+              <p class="project-section__blurb">
+                Since the company was formed in 1904 Elkem has developed a production technology for the purpose of improving operations. The most renowned invention is the Söderberg electrode from 1917. The electrode revolutionised the global smelting plant industry and provided Elkem with substantial patent revenue for a number of years.
+              </p>
+
+            <div class="project-section__links">
+              <a class="project-section__link" href="https://www.elkem.com/" target="_blank">
+                Website <i class="project-section__link-icon far fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End == Temporarily hard-coded -->
+      {{!--
       <div class="project-section">
         {{#each companies}}
           {{#if description}}
@@ -77,6 +267,7 @@
           {{/if}}
         {{/each}}
       </div>
+      --}}
       <!-- END ==> project-section -->
 
 
@@ -135,7 +326,7 @@
                 <div class="contact-section__contact-details">
                   {{#if ../user.isAdmin}}
                     <button class="contact-section__delete-contact"
-                            onclick="if(confirm('Are you sure you want to delete this person?')){location.href='/delete-person/{{ uuid }}'}">x</button>
+                            onclick="if(confirm('Are you sure you want to delete this person?')){deletePerson('{{ uuid }}')}">x</button>
                   {{/if}}
                   <p class="contact-section__contact-detail contact-section__contact-detail--name">
                     {{ name }}{{#if isUser}} - You{{/if}}</p>
@@ -158,6 +349,19 @@
                 </div>
               </div>
             {{/each}}
+            <script>
+              function deletePerson(uuid) {
+                var oReq = new XMLHttpRequest();
+                oReq.addEventListener('load', reqListener);
+                oReq.open('DELETE', '/ajax/person', true);
+                oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                oReq.send('people=["' + uuid + '"]');
+              }
+
+              function reqListener() {
+                location = location;
+              }
+            </script>
 
             {{#times 2}}
               <div class="contact-section__contact contact-section__contact--padder"></div>
@@ -206,6 +410,14 @@
       </div>
       <!-- END ==> company-section -->
       --}}
+
+      <div class="copyright-section">
+        <span></span>
+        <span>
+          &copy; Preco 2018
+        </span>
+      </div>
+
     </main>
 
     <footer class="app__footer">

@@ -54,10 +54,6 @@
                 </th>
 
                 <th>
-                  Email*
-                </th>
-
-                <th>
                   Phone 1 Label
                 </th>
                 <th>
@@ -88,6 +84,9 @@
                     <td>
                       <input id="input__person_display" type="checkbox" name="display" value="{{this.display}}">
                       <input id="input__person_uuid" type="hidden" name="uuid" value="{{this.uuid}}" disabled required>
+                      <input id="input__person_email" type="hidden" name="email" value="{{this.email}}">
+                      <input id="input__person_phone_number_uuid_1" type="hidden" name="phone_number__uuid_1" value="{{this.phoneNumbers.1.uuid}}">
+                      <input id="input__person_phone_number_uuid_2" type="hidden" name="phone_number__uuid_2" value="{{this.phoneNumbers.2.uuid}}">
                     </td>
 
                     <td>
@@ -105,23 +104,19 @@
                     </td>
 
                     <td>
-                      <input id="input__person_email" type="email" name="email" value="{{this.email}}" placeholder="joe@bloggs.com" required>
+                      <input id="input__person_phone_label_1" name="phone_number__label_1" value="{{this.phoneNumbers.1.label}}" placeholder="Mobile">
                     </td>
 
                     <td>
-                      <input id="input__person_phone" name="phone_number__label_1" value="{{this.phoneNumbers.1.label}}" placeholder="Mobile">
+                      <input id="input__person_phone_number_1" type="tel" name="phone_number__phone_number_1" value="{{this.phoneNumbers.1.phone_number}}" placeholder="+65 (0) 12345678">
                     </td>
 
                     <td>
-                      <input id="input__person_phone" type="tel" name="phone_number__phone_number_1" value="{{this.phoneNumbers.1.phone_number}}" placeholder="+65 (0) 12345678">
+                      <input id="input__person_phone_label_2" name="phone_number__label_2" value="{{this.phoneNumbers.2.label}}" placeholder="Office">
                     </td>
 
                     <td>
-                      <input id="input__person_phone" name="phone_number__label_2" value="{{this.phoneNumbers.2.label}}" placeholder="Office">
-                    </td>
-
-                    <td>
-                      <input id="input__person_phone" type="tel" name="phone_number__phone_number_2" value="{{this.phoneNumbers.2.phone_number}}" placeholder="+65 (0) 12345678">
+                      <input id="input__person_phone_number_2" type="tel" name="phone_number__phone_number_2" value="{{this.phoneNumbers.2.phone_number}}" placeholder="+65 (0) 12345678">
                     </td>
 
                     <td>
@@ -142,7 +137,7 @@
             </table>
           </div>
 
-          <button>Submit edits</button>
+          <button>Save edits</button>
         </form>
 
         <script>
@@ -209,9 +204,9 @@
           function sendForm(people) {
             var oReq = new XMLHttpRequest();
             oReq.addEventListener('load', reqListener);
-            oReq.open('PATCH', '/edit-users', true);
+            oReq.open('PATCH', '/ajax/person', true);
             oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            oReq.send('users=' + JSON.stringify(people));
+            oReq.send('people=' + encodeURIComponent(JSON.stringify(people)));
           }
 
           function reqListener() {

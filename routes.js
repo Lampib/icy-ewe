@@ -44,12 +44,6 @@ function init(app) {
     renderTemplate('edit-users'),
     done);
 
-  app.patch('/edit-users',
-    redirectTo('/not-done', { force : true, blockNonAdmin : true }),
-    updatePeople,
-    renderTemplate('done'),
-    done);
-
   app.get('/log-out',
     logOut,
     redirectTo('/'),
@@ -92,16 +86,22 @@ function init(app) {
     redirectTo('/add-data'),
     done);
 
-  app.delete('/delete-person',
-    redirectTo('/not-done', { force : true, blockNonAdmin : true }),
-    deletePerson,
-    renderTemplate('done'),
-    done);
-
   app.post('/add-company',
     redirectTo('/', { force : true, blockNonAdmin : true }),
     insertCompany,
     redirectTo('/add-data'),
+    done);
+
+  app.patch('/ajax/person',
+    redirectTo('/not-done', { force : true, blockNonAdmin : true }),
+    updatePeople,
+    renderTemplate('done'),
+    done);
+
+  app.delete('/ajax/person',
+    redirectTo('/not-done', { force : true, blockNonAdmin : true }),
+    deletePerson,
+    renderTemplate('done'),
     done);
 
   app.all(/^\/.*/, (req, res, next) => {

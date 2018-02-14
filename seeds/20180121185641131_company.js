@@ -6,8 +6,6 @@ exports.seed = function(knex, Promise) {
   let companyPhoneHash = uuidv4();
   let companyEmailHash = uuidv4();
 
-  console.log(companyHash);
-
   return Promise.all([
     knex('uuid').insert([{
       uuid  : companyHash,

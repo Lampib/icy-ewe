@@ -1,0 +1,8 @@
+.copyright-section {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - #{$g-4});
+  max-width: g(150);
+  margin: $g-4 auto;
+  @include t-body(0);
+}

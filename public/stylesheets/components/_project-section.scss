@@ -32,6 +32,7 @@
   }
 
   &__image {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -42,6 +43,10 @@
 
   &__info {
     margin: 0 $g-5;
+  }
+
+  &__blurb {
+    @include t-body;
   }
 
   &__links {
@@ -81,7 +86,14 @@
 
     &__image-wrapper {
       flex-basis: 50%;
-      padding-top: 25%;
+      padding-top: 0;
+      height: auto;
+    }
+
+    &__image {
+      position: static;
+      width: 100%;
+      height: auto;
     }
 
     &__title {
@@ -91,10 +103,8 @@
       border-bottom-right-radius: 4px;
     }
 
-    &__blurb {
-      &:first-child {
-        margin-top: 0;
-      }
+    &__blurb:first-child {
+      margin-top: 0;
     }
   }
 }

@@ -1,0 +1,102 @@
+$preco-red: #810f1d;
+$preco-gray: #4f4c4c;
+$preco-red: white;
+$preco-gray: white;
+$logo-size: 10vmin;
+$logo-part-size: (10 / 82) * 100%;
+
+$dots: (
+  0 0 $preco-gray,
+  2 0 $preco-gray,
+  4 0 $preco-gray,
+  0 2 $preco-gray,
+  0 4 $preco-gray,
+  1 1 $preco-gray,
+  3 1 $preco-gray,
+  5 1 $preco-gray,
+  1 3 $preco-gray,
+  1 5 $preco-gray,
+  2 2 $preco-red,
+  4 2 $preco-red,
+  6 2 $preco-red,
+  2 4 $preco-red,
+  4 4 $preco-red,
+  6 4 $preco-red,
+  2 6 $preco-red,
+  4 6 $preco-red,
+  6 6 $preco-red
+);
+
+$h-lines: (
+  1 1,
+  2 1,
+  3 1,
+  1 2,
+  2 2,
+  3 2
+);
+
+$v-lines: (
+  1 1,
+  2 1,
+  1 2,
+  2 2,
+  1 3,
+  2 3
+);
+
+@function by($n) {
+  @return $n * 120;
+}
+
+.preco-logo {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+
+  &__dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $logo-part-size;
+    height: $logo-part-size;
+    border-radius: 50%;
+
+    $i: 0;
+    @each $dot in $dots {
+      $i: $i + 1;
+
+      &:nth-child(#{$i}) {
+        transform: translate(by(nth($dot, 1)) * 1%, by(nth($dot, 2)) * 1%);
+        background-color: nth($dot, 3);
+      }
+    }
+  }
+
+  &__bar {
+    position: absolute;
+    top: $logo-part-size / 2;
+    left: $logo-part-size / 2;
+    height: ($logo-part-size * by(2)) / 100;
+    width: ($logo-part-size * by(2)) / 100;
+    background: $preco-red;
+
+    $i: 19;
+    @each $line in $h-lines {
+      $i: $i + 1;
+
+      &:nth-child(#{$i}) {
+        transform: translate(nth($line, 1) * 100%, nth($line, 2) * 100%) translateX(-50%) scaleX(0.1);
+      }
+    }
+
+    @each $line in $v-lines {
+      $i: $i + 1;
+
+      &:nth-child(#{$i}) {
+        transform: translate(nth($line, 1) * 100%, nth($line, 2) * 100%) translateY(-50%) scaleY(0.1);
+      }
+    }
+  }
+}

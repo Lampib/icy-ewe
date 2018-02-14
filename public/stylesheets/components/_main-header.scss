@@ -55,6 +55,13 @@
   &--dark &__title {
     color: $gray-6;
   }
+
+  .preco-logo {
+    &__dot,
+    &__bar {
+      background-color: $gray-3;
+    }
+  }
 }
 
 @media (min-height: 500px) {

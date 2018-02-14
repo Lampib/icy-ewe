@@ -12,7 +12,7 @@ module.exports = insertData;
 
 function insertData(tableName, fields, simpleData = {}, files = {}) {
   let formattedFields     = {};
-  let UUID         = uuidv4();
+  let UUID         = simpleData.uuid || uuidv4();
   let inserts      = [];
 
   let fieldPromises = fields
