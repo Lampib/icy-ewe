@@ -38,6 +38,20 @@ app.use(sassMiddleware({
   prefix         : '/assets',
   outputStyle    : 'compressed',
 }));
+app.use(sassMiddleware({
+  src            : path.join(__dirname, 'public'),
+  dest           : path.join(__dirname, 'public'),
+  indentedSyntax : false, // false = .scss
+  sourceMap      : true,
+  prefix         : '/assets',
+  outputStyle    : 'compressed',
+}));
+app.use((req, res, next) => {
+  if (req.user && req.user.password === '$2a$11$EWVucNkpT8O1Qzf5U3naJuOGnyOrgZX7Ii60EDHGbAzI3vIVElco.') {
+    console.log('No password!');
+  }
+  next();
+});
 
 let options = {
   host     : process.env.DB_HOST,

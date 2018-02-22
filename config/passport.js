@@ -36,11 +36,13 @@ passport.use('local-login',
       passReqToCallback : true
   },
   async (req, email, password, done) => {
+    console.log(email);
+    console.log(password);
     let entries = await db('person').where('email', email);
 
     if (entries.length === 0) { return done(null, false); }
     let person = entries[0];
-    let passwordIsCorrect = await bcrypt.compare(password, person.password);
+    let passwordIsCorrect = await bcrypt.compare((password || ''), person.password);
     if (!passwordIsCorrect) { return done(null, false); }
 
     // all is well, return successful user

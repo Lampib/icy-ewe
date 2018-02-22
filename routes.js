@@ -1,15 +1,18 @@
 let passport = require('./config/passport');
 
-let setTitle       = require('./routing/_set-title');
-let setCompanies   = require('./routing/_set-companies');
-let setProjects    = require('./routing/_set-projects');
-let setCountries   = require('./routing/_set-countries');
-let setPeople      = require('./routing/_set-people');
-let setUser        = require('./routing/_set-user');
-let setRedirectURL = require('./routing/_set-redirect-url');
-let redirectTo     = require('./routing/_redirect-to');
-let logOut         = require('./routing/_log-out');
-let done           = require('./routing/_close-connection');
+let setTitle           = require('./routing/_set-title');
+let setCompanies       = require('./routing/_set-companies');
+let setProjects        = require('./routing/_set-projects');
+let setCountries       = require('./routing/_set-countries');
+let setPeople          = require('./routing/_set-people');
+let setUser            = require('./routing/_set-user');
+let setRedirectURL     = require('./routing/_set-redirect-url');
+let setAuthenticator   = require('./routing/_set-authenticator');
+let redirectTo         = require('./routing/_redirect-to');
+let logOut             = require('./routing/_log-out');
+let initAuthentication = require('./routing/_init-authentication');
+let updatePassword     = require('./routing/_update-password');
+let done               = require('./routing/_close-connection');
 
 let addJsonHeaders = require('./routing/_add-headers--json');
 
@@ -56,6 +59,18 @@ function init(app) {
     done);
 
   app.post('/log-in',
+    initAuthentication,
+    passport.authenticate('local-login', { failureRedirect: '/log-in' }),
+    redirectTo('/'),
+    done);
+
+  app.get('/update-password',
+    setAuthenticator,
+    renderTemplate('update-password'),
+    done);
+
+  app.post('/update-password',
+    updatePassword,
     passport.authenticate('local-login', { failureRedirect: '/log-in' }),
     redirectTo('/'),
     done);
