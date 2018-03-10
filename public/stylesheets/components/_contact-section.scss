@@ -66,6 +66,31 @@
     cursor: pointer;
   }
 
+  &__start-call,
+  &__add-to-call {
+    @include t-subheading;
+    display: block;
+    background-color: $preco-gray;
+    color: white;
+    padding: $g-1 $g-2;
+    border-radius: 4px;
+    min-width: 100%;
+    margin-top: $g-1;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    transition-property: background-color, transform, opacity;
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
+
+    &:not(:disabled):hover {
+      background-color: $preco-red;
+      transform: translateY(-1px);
+    }
+  }
+
   &__contact:hover &__delete-contact {
     opacity: 1;
   }

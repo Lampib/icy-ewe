@@ -1,7 +1,3 @@
-$preco-red: #810f1d;
-$preco-gray: #4f4c4c;
-$preco-red: white;
-$preco-gray: white;
 $logo-size: 10vmin;
 $logo-part-size: (10 / 82) * 100%;
 
@@ -50,6 +46,9 @@ $v-lines: (
 }
 
 .preco-logo {
+  $preco-red: white;
+  $preco-gray: white;
+
   position: relative;
   display: inline-block;
   width: 1em;

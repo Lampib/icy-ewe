@@ -8,9 +8,12 @@ let setPeople          = require('./routing/_set-people');
 let setUser            = require('./routing/_set-user');
 let setRedirectURL     = require('./routing/_set-redirect-url');
 let setAuthenticator   = require('./routing/_set-authenticator');
+let setQueryParams     = require('./routing/_set-query-params');
+
 let redirectTo         = require('./routing/_redirect-to');
 let logOut             = require('./routing/_log-out');
 let initAuthentication = require('./routing/_init-authentication');
+let emailChatLink      = require('./routing/_email-chat-link');
 let updatePassword     = require('./routing/_update-password');
 let done               = require('./routing/_close-connection');
 
@@ -78,7 +81,13 @@ function init(app) {
   app.get('/icy-ewe',
     setTitle('I see you'),
     setUser,
+    setQueryParams,
     renderTemplate('chat'),
+    done);
+
+  app.post('/icy-ewe',
+    redirectTo('/', { force : true, blockNonAdmin : true }),
+    emailChatLink,
     done);
 
   app.get('/add-data',

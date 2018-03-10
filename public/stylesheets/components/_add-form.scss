@@ -9,6 +9,12 @@
     color: #ccc;
   }
 
+  &__legend {
+    padding-bottom: $g-1 - 1px;
+    border-bottom: 1px solid $gray-6;
+    margin-bottom: $g-1;
+  }
+
   &__fieldset {
     margin: $g-4 $g-2;
     margin-right: 0;

@@ -274,6 +274,16 @@
       <h2 class="section-header" id="contact-section">Contacts</h2>
 
       <div class="contact-section">
+        {{#if user.loggedIn}}
+          <form id="start-call-form" action="/icy-ewe" method="POST"></form>
+          <button class="contact-section__start-call"
+                  id="start-call-button"
+                  disabled="true"
+                  onclick="inviteAndStart()">
+            Invite contacts and start call
+          </button>
+        {{/if}}
+
         <div class="contact-section__contact-list">
           {{#each displayPeople}}
             <div class="contact-section__contact">
@@ -303,6 +313,13 @@
                 <a class="contact-section__contact-detail contact-section__contact-detail--email"
                   href="mailto:{{ email }}">
                   {{ email }}</a>
+
+                {{#if ../user.loggedIn}}
+                  {{#unless isUser}}
+                    <button class="contact-section__add-to-call"
+                            onclick="addToCall(event, '{{ uuid }}')">Add to call</button>
+                  {{/unless}}
+                {{/if}}
               </div>
             </div>
           {{/each}}
@@ -328,27 +345,38 @@
                     <button class="contact-section__delete-contact"
                             onclick="if(confirm('Are you sure you want to delete this person?')){deletePerson('{{ uuid }}')}">x</button>
                   {{/if}}
+
                   <p class="contact-section__contact-detail contact-section__contact-detail--name">
                     {{ name }}{{#if isUser}} - You{{/if}}</p>
+
                   <p class="contact-section__contact-detail contact-section__contact-detail--role">
                     {{#if role }}
                       {{ role }} at
                     {{/if}}
                     {{ company.name }}</p>
+
                   {{#if phone_1 }}
                     <p class="contact-section__contact-detail contact-section__contact-detail--phone-1">
                       {{ phone_1 }}</p>
                   {{/if}}
+
                   {{#if phone_2 }}
                     <p class="contact-section__contact-detail contact-section__contact-detail--phone-2">
                       {{ phone_2 }}</p>
                   {{/if}}
+
                   <a class="contact-section__contact-detail contact-section__contact-detail--email"
                     href="mailto:{{ email }}">
                     {{ email }}</a>
+
+                  {{#unless isUser}}
+                    <button class="contact-section__add-to-call"
+                            onclick="addToCall(event, '{{ uuid }}')">Add to call</button>
+                  {{/unless}}
                 </div>
               </div>
             {{/each}}
+
             <script>
               function deletePerson(uuid) {
                 var oReq = new XMLHttpRequest();
@@ -367,6 +395,52 @@
               <div class="contact-section__contact contact-section__contact--padder"></div>
             {{/times}}
           </div>
+        {{/if}}
+
+        {{#if user.loggedIn}}
+          <script>
+            var startCallButton = document.getElementById('start-call-button');
+            var startCallForm   = document.getElementById('start-call-form');
+
+            var inCall = [];
+            function addToCall(event, uuid) {
+              var txtAddToCall      = 'Add to call';
+              var txtRemoveFromCall = 'Remove from call';
+              var index             = inCall.indexOf(uuid);
+
+              if (index === -1) {
+                inCall.push(uuid);
+                event.target.innerHTML = txtRemoveFromCall;
+              } else {
+                inCall.splice(index, 1);
+                event.target.innerHTML = txtAddToCall;
+              }
+
+              startCallButton.disabled = inCall.length > 0
+                ? false
+                : true;
+            }
+
+            function generateUUID() {
+              var d = new Date().getTime();
+              var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = (d + Math.random()*16)%16 | 0;
+                d = Math.floor(d/16);
+                return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+              });
+              return uuid;
+            };
+
+            function inviteAndStart() {
+              var input = document.createElement('input');
+              inCall.push('{{ user.data.uuid }}');
+              input.type = 'hidden';
+              input.name = 'uuids';
+              input.value = inCall.join();
+              startCallForm.appendChild(input);
+              startCallForm.submit();
+            }
+          </script>
         {{/if}}
       </div>
       <!-- END => contact-section -->

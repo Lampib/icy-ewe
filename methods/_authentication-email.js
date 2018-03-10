@@ -9,15 +9,18 @@ async function sendAuthenticationEmail(email) {
 
   sendEmail({
     to      : email,
-    subject : 'Preco -Please authenticate your email',
+    subject : 'Preco | Please authenticate your email',
     html    : `
-      Your authentication code is:
-      <br>
-      ${ authenticator }
-      <br>
-      <a href="${ process.env.ROOT_URL }/update-password?authenticator=${encodeURIComponent(authenticator) }&email=${ encodeURIComponent(email) }">
-        Click here to authenticate
-      </a>
+      <div style="text-align: center; padding-top: 40px;">
+        Your authentication code is:
+        <br>
+
+        <h2 style="word-break: break-all;">${ authenticator }</h2>
+
+        <a href="${ process.env.ROOT_URL }/update-password?authenticator=${encodeURIComponent(authenticator) }&email=${ encodeURIComponent(email) }">
+          Click here to authenticate
+        </a>
+      </div>
     `,
   });
 

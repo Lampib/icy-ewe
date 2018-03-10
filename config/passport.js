@@ -31,13 +31,11 @@ passport.use('local-signup', new LocalStrategy(
 
 passport.use('local-login',
   new LocalStrategy({
-      usernameField     : 'email',
-      passwordField     : 'password',
-      passReqToCallback : true
+    usernameField     : 'email',
+    passwordField     : 'password',
+    passReqToCallback : true
   },
   async (req, email, password, done) => {
-    console.log(email);
-    console.log(password);
     let entries = await db('person').where('email', email);
 
     if (entries.length === 0) { return done(null, false); }

@@ -8,7 +8,7 @@
         rel="stylesheet"
         media="none" onload="media='all'">
   {{! update this and the file name }}
-  <link rel="stylesheet" href="/assets/stylesheets/add-forms.0.0.4.css">
+  <link rel="stylesheet" href="/assets/stylesheets/add-forms.0.0.5.css">
 </head>
 
 <body>
@@ -31,6 +31,7 @@
                   action="/csv-import-people"
                   method="post"
                   encType="multipart/form-data">
+              <legend class="add-form__legend">CSV import employees</legend>
 
               <div class="add-form__field">
                 <label for="input__csv">CSV</label>
@@ -48,6 +49,7 @@
                   action="/add-person"
                   method="post"
                   encType="multipart/form-data">
+              <legend class="add-form__legend">Add single employee</legend>
 
               <div class="add-form__field">
                 <label for="input__person_display">Display</label>
@@ -71,7 +73,7 @@
               </div>
 
               <div class="add-form__field">
-                <label for="input__person_name">Name*</label>
+                <label for="input__person_name">Full name*</label>
                 <div>
                   <input id="input__person_name" type="text" name="name" placeholder="Joe Bloggs" required>
                 </div>
@@ -139,6 +141,7 @@
                 action="/add-company"
                 method="post"
                 encType="multipart/form-data">
+            <legend class="add-form__legend">Add company</legend>
 
             <div class="add-form__field">
               <label for="input__display">Display*</label>
@@ -220,12 +223,12 @@
             </div>
 
             <fieldset class="add-form__fieldset">
-              <h3 class="add-form__fieldset-title">Phone number</h3>
+              <legend class="add-form__fieldset-title">Phone number 1</legend>
 
               <div class="add-form__field">
                 <label for="input__phone_label_1">Label</label>
                 <div>
-                  <input id="input__phone_label_1" type="text" name="phone_number__label_1" placeholder="Mobile">
+                  <input id="input__phone_label_1" type="text" name="phone_number__label_1" placeholder="Singapore Office">
                 </div>
               </div>
 
@@ -233,6 +236,24 @@
                 <label for="input__phone_number_1">Number</label>
                 <div>
                   <input id="input__phone_number_1" type="text" name="phone_number__phone_number_1" placeholder="+65 (0) 23456789">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="add-form__fieldset">
+              <legend class="add-form__fieldset-title">Phone number 2</legend>
+
+              <div class="add-form__field">
+                <label for="input__phone_label_2">Label</label>
+                <div>
+                  <input id="input__phone_label_2" type="text" name="phone_number__label_2" placeholder="Norway Office">
+                </div>
+              </div>
+
+              <div class="add-form__field">
+                <label for="input__phone_number_2">Number</label>
+                <div>
+                  <input id="input__phone_number_2" type="text" name="phone_number__phone_number_2" placeholder="+65 (0) 98765432">
                 </div>
               </div>
             </fieldset>
