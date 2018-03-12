@@ -1,5 +1,6 @@
 let insertData = require('../routing/_insert-data');
 let parseCSV   = require('../methods/_parse-csv');
+let flashError = require('../methods/_flash-error');
 const FIELDS   = require('../config/_schema--person');
 
 module.exports = importPeopleFromCSV;
@@ -11,7 +12,7 @@ async function importPeopleFromCSV(req, res, next) {
   let peopleData = parseCSV(stringCSV, { skipEmpty : true });
 
   await Promise.all(peopleData.map(person => insertData('person', FIELDS, person, {})))
-  .catch(err => console.log(err));
+    .catch(err => flashError(req, err));
 
   next();
 }

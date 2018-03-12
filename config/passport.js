@@ -41,7 +41,10 @@ passport.use('local-login',
     if (entries.length === 0) { return done(null, false); }
     let person = entries[0];
     let passwordIsCorrect = await bcrypt.compare((password || ''), person.password);
-    if (!passwordIsCorrect) { return done(null, false); }
+    if (!passwordIsCorrect) {
+      req.flash('error', "That's not your password.");
+      return done(null, false);
+    }
 
     // all is well, return successful user
     return done(null, person);

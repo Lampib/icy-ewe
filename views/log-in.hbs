@@ -20,6 +20,17 @@
   </header>
 
   <hr>
+
+  {{#each flashErrors}}
+    <div class="flash-message--error">
+      {{ this }}
+    </div>
+  {{/each}}
+  {{#if flashErrors.length}}
+    <br>
+    <br>
+  {{/if}}
+
   <form action="/log-in" method="post">
     <label for="email_input">Email</label>
     <input id="email_input" type="email" name="email">

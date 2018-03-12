@@ -1,5 +1,6 @@
-const sendEmail = require('../methods/_send-email');
-const db        = require('../db');
+let sendEmail  = require('../methods/_send-email');
+let flashError = require('../methods/_flash-error');
+let db         = require('../db');
 
 module.exports = emailChatLink;
 
@@ -10,7 +11,7 @@ async function emailChatLink(req, res, next) {
 
   let callFromUUID   = uuids.slice(-1)[0];
   let inCall         = await db.select('*').from('person').whereIn('uuid', uuids)
-    .catch(err => console.log(err));
+    .catch(err => flashError(req, err));
   let emailFrom      = inCall.filter(person => person.uuid === callFromUUID)[0];
   let emailTo        = inCall.filter(person => person.uuid !== callFromUUID);
   let emailAddresses = emailTo.map(person => person.email);

@@ -12,6 +12,7 @@ let babelify       = require('express-babelify-middleware');
 let fileUpload     = require('express-fileupload');
 let fs             = require('fs');
 let uglifyJS       = require("uglify-es");
+let flash          = require("connect-flash");
 
 let app      = express('./config/app');
 let hbs      = require('./config/hbs');
@@ -75,6 +76,7 @@ app.use(expressSession({
   saveUninitialized : true,
   store             : sessionStore,
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {

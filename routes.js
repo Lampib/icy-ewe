@@ -9,6 +9,7 @@ let setUser            = require('./routing/_set-user');
 let setRedirectURL     = require('./routing/_set-redirect-url');
 let setAuthenticator   = require('./routing/_set-authenticator');
 let setQueryParams     = require('./routing/_set-query-params');
+let setFlashErrors     = require('./routing/_set-flash-errors');
 
 let redirectTo         = require('./routing/_redirect-to');
 let logOut             = require('./routing/_log-out');
@@ -38,6 +39,7 @@ function init(app) {
     setPeople,
     setCompanies,
     setProjects,
+    setFlashErrors,
     renderTemplate('index'),
     done);
 
@@ -47,6 +49,7 @@ function init(app) {
     setPeople,
     setCompanies,
     setProjects,
+    setFlashErrors,
     renderTemplate('edit-users'),
     done);
 
@@ -58,6 +61,7 @@ function init(app) {
   app.get('/log-in',
     setTitle('Log in'),
     setRedirectURL,
+    setFlashErrors,
     renderTemplate('log-in'),
     done);
 
@@ -69,6 +73,7 @@ function init(app) {
 
   app.get('/update-password',
     setAuthenticator,
+    setFlashErrors,
     renderTemplate('update-password'),
     done);
 
@@ -82,6 +87,7 @@ function init(app) {
     setTitle('I see you'),
     setUser,
     setQueryParams,
+    setFlashErrors,
     renderTemplate('chat'),
     done);
 
@@ -95,6 +101,7 @@ function init(app) {
     setUser,
     setCountries,
     setCompanies,
+    setFlashErrors,
     renderTemplate('add-data'),
     done);
 
@@ -119,12 +126,14 @@ function init(app) {
   app.patch('/ajax/person',
     redirectTo('/not-done', { force : true, blockNonAdmin : true }),
     updatePeople,
+    setFlashErrors,
     renderTemplate('done'),
     done);
 
   app.delete('/ajax/person',
     redirectTo('/not-done', { force : true, blockNonAdmin : true }),
     deletePerson,
+    setFlashErrors,
     renderTemplate('done'),
     done);
 

@@ -1,6 +1,6 @@
 let bcrypt       = require('bcrypt');
 let secureRandom = require('secure-random');
-const sendEmail  = require('../methods/_send-email');
+let sendEmail    = require('../methods/_send-email');
 
 module.exports = sendAuthenticationEmail;
 

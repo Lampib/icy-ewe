@@ -1,4 +1,5 @@
 let db         = require('../db');
+let flashError = require('../methods/_flash-error');
 
 module.exports = setPeople;
 
@@ -10,7 +11,7 @@ async function setPeople(req, res, next) {
   let peopleRaw = await db.select('*').from('person')
     .leftJoin('company', 'person.company_uuid', 'company.uuid')
     .options({ nestTables : true })
-    .catch(err => console.log(err));
+    .catch(err => flashError(req, err));
 
   let phoneNumbers = await db.select('phone_number', 'label', 'relation_uuid', 'uuid').from('phone_number')
     .where(function() {
