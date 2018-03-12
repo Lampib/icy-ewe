@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server": "node ./bin/www",
+    "server": "nodemon ./bin/www",
     "migrate": "knex migrate:latest"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "mysql": "^2.15.0",
     "node-sass-middleware": "0.9.8",
     "nodemailer": "^4.4.2",
+    "nodemon": "^1.17.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "secure-random": "^1.1.1",
